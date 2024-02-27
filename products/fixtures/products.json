@@ -1,0 +1,1652 @@
+[
+    {
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG11",
+            "name": "Fruit Snow Foam Neutral pH",
+            "description": "Premium Fruit Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 1L",
+            "price": 10.50,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG15",
+            "name": "Fruit Snow Foam Neutral pH",
+            "description": "Premium Fruit Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 5L",
+            "price": 35.50,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG121",
+            "name": "Pre-Wash Citrus Oil",
+            "description": "Powerful Pre-Wash Citrus Oil for removing tough dirt and grime. Size: 1L",
+            "price": 12.00,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG125",
+            "name": "Pre-Wash Citrus Oil",
+            "description": "Powerful Pre-Wash Citrus Oil for removing tough dirt and grime. Size: 5L",
+            "price": 45.50,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG31",
+            "name": "All Around APC",
+            "description": "Versatile All Around APC (All Purpose Cleaner) for various surfaces. Size: 1L",
+            "price": 11.50,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG35",
+            "name": "All Around APC",
+            "description": "Versatile All Around APC (All Purpose Cleaner) for various surfaces. Size: 5L",
+            "price": 48.50,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG41",
+            "name": "Pink APC",
+            "description": "Effective Pink APC (All Purpose Cleaner) for general cleaning tasks. Size: 1L",
+            "price": 9.50,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG45",
+            "name": "Pink APC",
+            "description": "Effective Pink APC (All Purpose Cleaner) for general cleaning tasks. Size: 5L",
+            "price": 38.00,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG61",
+            "name": "Red Devil Hd Nano Degreaser",
+            "description": "Highly concentrated Red Devil Hd Nano Degreaser for heavy-duty degreasing. Size: 1L",
+            "price": 13.50,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG65",
+            "name": "Red Devil Hd Nano Degreaser",
+            "description": "Highly concentrated Red Devil Hd Nano Degreaser for heavy-duty degreasing. Size: 5L",
+            "price": 42.00,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG7500",
+            "name": "Bug Off Insect Remover",
+            "description": "Effective Bug Off Insect Remover for quick and easy removal of bugs. Size: 500ml",
+            "price": 8.50,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG81",
+            "name": "Blue Snow Foam Neutral pH",
+            "description": "Premium Blue Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 1L",
+            "price": 11.90,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG85",
+            "name": "Blue Snow Foam Neutral pH",
+            "description": "Premium Blue Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 5L",
+            "price": 38.50,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG91",
+            "name": "Pink Snow Foam Neutral pH",
+            "description": "Premium Pink Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 1L",
+            "price": 11.90,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG95",
+            "name": "Pink Snow Foam Neutral pH",
+            "description": "Premium Pink Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 5L",
+            "price": 38.50,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG101",
+            "name": "Yellow Snow Foam Neutral pH",
+            "description": "Premium Yellow Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 1L",
+            "price": 11.90,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "products.product",
+        "fields": {
+            "sku": "10.SG105",
+            "name": "Yellow Snow Foam Neutral pH",
+            "description": "Premium Yellow Snow Foam with Neutral pH for gentle and effective cleaning. Ideal for maintaining a glossy finish on your vehicle. Size: 5L",
+            "price": 52.90,
+            "size": "5L",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG81",
+            "name": "Green Tar&Glue",
+            "description": "Specialized Green Tar&Glue Remover for effective removal of tar and glue residues. Size: 1L",
+            "price": 12.00,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG85",
+            "name": "Green Tar&Glue",
+            "description": "Specialized Green Tar&Glue Remover for effective removal of tar and glue residues. Size: 5L",
+            "price": 45.50,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG91",
+            "name": "Iron Fallout Remover",
+            "description": "Powerful Iron Fallout Remover for eliminating iron particles from surfaces. Size: 1L",
+            "price": 13.90,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG95",
+            "name": "Iron Fallout Remover",
+            "description": "Powerful Iron Fallout Remover for eliminating iron particles from surfaces. Size: 5L",
+            "price": 56.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG101",
+            "name": "Tar & Glue NANO Gel",
+            "description": "NANO Gel formula for effective removal of tar and glue residues. Size: 1L",
+            "price": 14.50,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG105",
+            "name": "Tar & Glue NANO Gel",
+            "description": "NANO Gel formula for effective removal of tar and glue residues. Size: 5L",
+            "price": 58.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG121",
+            "name": "Wheel Cleaner Acid Free",
+            "description": "Acid-Free Wheel Cleaner for safe and effective cleaning of wheels. Size: 1L",
+            "price": 11.90,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG125",
+            "name": "Wheel Cleaner Acid Free",
+            "description": "Acid-Free Wheel Cleaner for safe and effective cleaning of wheels. Size: 5L",
+            "price": 46.50,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG131",
+            "name": "Alloy Wheel",
+            "description": "Specialized Alloy Wheel Cleaner for maintaining the shine of alloy wheels. Size: 1L",
+            "price": 12.50,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG135",
+            "name": "Alloy Wheel",
+            "description": "Specialized Alloy Wheel Cleaner for maintaining the shine of alloy wheels. Size: 5L",
+            "price": 48.90,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG141",
+            "name": "Ultimate Wheel Cleaner",
+            "description": "Ultimate Wheel Cleaner for powerful cleaning and degreasing of wheels. Size: 1L",
+            "price": 13.50,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG145",
+            "name": "Ultimate Wheel Cleaner",
+            "description": "Ultimate Wheel Cleaner for powerful cleaning and degreasing of wheels. Size: 5L",
+            "price": 52.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG751",
+            "name": "Tyre Dressing Gel",
+            "description": "Long-lasting Tyre Dressing Gel for a deep, rich finish on your tires. Size: 500ml",
+            "price": 9.90,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG82",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for crystal-clear windows and mirrors. Size: 750ml",
+            "price": 8.00,
+            "size": "750ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG86",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for crystal-clear windows and mirrors. Size: 5L",
+            "price": 28.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG92",
+            "name": "Interior Cleaner",
+            "description": "Versatile Interior Cleaner for all interior surfaces. Size: 750ml",
+            "price": 10.50,
+            "size": "750ml",
+            "category": "3",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG96",
+            "name": "Interior Cleaner",
+            "description": "Versatile Interior Cleaner for all interior surfaces. Size: 5L",
+            "price": 42.00,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG102",
+            "name": "Leather Cleaner",
+            "description": "Gentle and effective Leather Cleaner for maintaining the beauty of leather surfaces. Size: 500ml",
+            "price": 11.90,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG106",
+            "name": "Leather Cleaner",
+            "description": "Gentle and effective Leather Cleaner for maintaining the beauty of leather surfaces. Size: 5L",
+            "price": 48.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 37,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG122",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a soft and supple finish on leather surfaces. Size: 500ml",
+            "price": 12.00,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG126",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a soft and supple finish on leather surfaces. Size: 5L",
+            "price": 45.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG132",
+            "name": "Dashboard Polish",
+            "description": "Dashboard Polish for a glossy finish on all interior plastic and vinyl surfaces. Size:  special cleaning instructions or precautions. Keep out of reach of children. If medical advice is needed, have product container or label at hand.",
+            "price": 15.00,
+            "size": "750L",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG751",
+            "name": "Tyre Dressing Gel",
+            "description": "Long-lasting Tyre Dressing Gel for a deep, rich finish on your tires. Size: 500ml",
+            "price": 9.90,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG82",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for crystal-clear windows and mirrors. Size: 750ml",
+            "price": 8.00,
+            "size": "750ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 42,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG86",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for crystal-clear windows and mirrors. Size: 5L",
+            "price": 28.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 43,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG92",
+            "name": "Interior Cleaner",
+            "description": "Versatile Interior Cleaner for all interior surfaces. Size: 750ml",
+            "price": 10.50,
+            "size": "750ml",
+            "category": "3",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 44,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG96",
+            "name": "Interior Cleaner",
+            "description": "Versatile Interior Cleaner for all interior surfaces. Size: 5L",
+            "price": 42.00,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 45,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG102",
+            "name": "Leather Cleaner",
+            "description": "Gentle and effective Leather Cleaner for maintaining the beauty of leather surfaces. Size: 500ml",
+            "price": 11.90,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 46,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG106",
+            "name": "Leather Cleaner",
+            "description": "Gentle and effective Leather Cleaner for maintaining the beauty of leather surfaces. Size: 5L",
+            "price": 48.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 47,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG122",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a soft and supple finish on leather surfaces. Size: 500ml",
+            "price": 12.00,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 48,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG126",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a soft and supple finish on leather surfaces. Size: 5L",
+            "price": 45.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 49,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG132",
+            "name": "Dashboard Polish",
+            "description": "Dashboard Polish for a glossy finish on all interior plastic and vinyl surfaces. Size: 750ml",
+            "price": 15.00,
+            "size": "750ml",
+            "category": "3",
+            "rating": null,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 50,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG136",
+            "name": "Dashboard Polish",
+            "description": "Dashboard Polish for a glossy finish on all interior plastic and vinyl surfaces. Size: 5L",
+            "price": 56.00,
+            "size": "5L",
+            "category": "3",
+            "rating": null,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 51,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG142",
+            "name": "Carpet Cleaner",
+            "description": "Effective Carpet Cleaner for removing stains and odors. Size: 500ml",
+            "price": 14.50,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 52,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG146",
+            "name": "Carpet Cleaner",
+            "description": "Effective Carpet Cleaner for removing stains and odors. Size: 5L",
+            "price": 58.00,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 53,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG152",
+            "name": "Upholstery Cleaner",
+            "description": "Powerful Upholstery Cleaner for a fresh and clean interior. Size: 750ml",
+            "price": 16.90,
+            "size": "750ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 54,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG156",
+            "name": "Upholstery Cleaner",
+            "description": "Powerful Upholstery Cleaner for a fresh and clean interior. Size: 5L",
+            "price": 68.50,
+            "size": "5L",
+            "category": "3",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 55,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG162",
+            "name": "Wheel Cleaner",
+            "description": "High-performance Wheel Cleaner for a sparkling finish. Size: 500ml",
+            "price": 13.00,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 56,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG166",
+            "name": "Wheel Cleaner",
+            "description": "High-performance Wheel Cleaner for a sparkling finish. Size: 5L",
+            "price": 52.50,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 57,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG172",
+            "name": "Quick Detailer",
+            "description": "Quick Detailer for a fast and easy shine. Size: 750ml",
+            "price": 18.00,
+            "size": "750ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 58,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG176",
+            "name": "Quick Detailer",
+            "description": "Quick Detailer for a fast and easy shine. Size: 5L",
+            "price": 72.50,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 59,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG182",
+            "name": "Bug and Tar Remover",
+            "description": "Efficient Bug and Tar Remover for a spotless finish. Size: 500ml",
+            "price": 11.50,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 60,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG186",
+            "name": "Bug and Tar Remover",
+            "description": "Efficient Bug and Tar Remover for a spotless finish. Size: 5L",
+            "price": 46.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 61,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG192",
+            "name": "Waterless Wash",
+            "description": "Waterless Wash for a clean and glossy finish without water. Size: 750ml",
+            "price": 20.50,
+            "size": "750ml",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 62,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG196",
+            "name": "Waterless Wash",
+            "description": "Waterless Wash for a clean and glossy finish without water. Size: 5L",
+            "price": 82.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 63,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG202",
+            "name": "Wheel Sealant",
+            "description": "Protective Wheel Sealant for long-lasting shine. Size: 250ml",
+            "price": 22.00,
+            "size": "250ml",
+            "category": "2",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 64,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG206",
+            "name": "Wheel Sealant",
+            "description": "Protective Wheel Sealant for long-lasting shine. Size: 500ml",
+            "price": 39.00,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 65,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG212",
+            "name": "Trim Restorer",
+            "description": "Trim Restorer for restoring faded and dull trims. Size: 250ml",
+            "price": 17.90,
+            "size": "250ml",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 66,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG216",
+            "name": "Trim Restorer",
+            "description": "Trim Restorer for restoring faded and dull trims. Size: 500ml",
+            "price": 29.50,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 67,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG222",
+            "name": "Convertible Top Cleaner",
+            "description": "Convertible Top Cleaner for a clean and protected convertible roof. Size: 500ml",
+            "price": 25.00,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 68,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG226",
+            "name": "Convertible Top Cleaner",
+            "description": "Convertible Top Cleaner for a clean and protected convertible roof. Size: 1L",
+            "price": 43.50,
+            "size": "1L",
+            "category": "3",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 69,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG232",
+            "name": "Convertible Top Protectant",
+            "description": "Convertible Top Protectant for long-lasting convertible roof protection. Size: 500ml",
+            "price": 28.50,
+            "size": "500ml",
+            "category": "3",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 70,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG236",
+            "name": "Convertible Top Protectant",
+            "description": "Convertible Top Protectant for long-lasting convertible roof protection. Size: 1L",
+            "price": 52.00,
+            "size": "1L",
+            "category": "3",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 71,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG242",
+            "name": "Headlight Restoration Kit",
+            "description": "Headlight Restoration Kit for clear and bright headlights. Size: Kit",
+            "price": 34.90,
+            "size": "Kit",
+            "category": "2",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 72,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG246",
+            "name": "Headlight Restoration Kit",
+            "description": "Headlight Restoration Kit for clear and bright headlights. Size: Kit",
+            "price": 34.90,
+            "size": "Kit",
+            "category": "2",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 73,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG252",
+            "name": "Ceramic Coating",
+            "description": "Protective Ceramic Coating for long-lasting shine and protection. Size: 50ml",
+            "price": 45.00,
+            "size": "50ml",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 74,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG256",
+            "name": "Ceramic Coating",
+            "description": "Protective Ceramic Coating for long-lasting shine and protection. Size: 100ml",
+            "price": 78.50,
+            "size": "100ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 75,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG262",
+            "name": "Car Shampoo",
+            "description": "High-foaming Car Shampoo for a thorough and gentle wash. Size: 1L",
+            "price": 12.50,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 76,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG266",
+            "name": "Car Shampoo",
+            "description": "High-foaming Car Shampoo for a thorough and gentle wash. Size: 5L",
+            "price": 49.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 77,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG272",
+            "name": "Snow Foam Cannon",
+            "description": "Snow Foam Cannon for a thick and clinging foam wash. Size: 1L",
+            "price": 32.00,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 78,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG276",
+            "name": "Snow Foam Cannon",
+            "description": "Snow Foam Cannon for a thick and clinging foam wash. Size: 5L",
+            "price": 125.00,
+            "size": "5L",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 79,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG282",
+            "name": "Wheel Brush",
+            "description": "Soft and durable Wheel Brush for gentle cleaning of wheels. Size: Large",
+            "price": 8.50,
+            "size": "Large",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 80,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG286",
+            "name": "Wheel Brush",
+            "description": "Soft and durable Wheel Brush for gentle cleaning of wheels. Size: Small",
+            "price": 6.00,
+            "size": "Small",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 81,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG292",
+            "name": "Microfiber Towels",
+            "description": "Plush Microfiber Towels for a scratch-free finish. Size: Pack of 3",
+            "price": 10.90,
+            "size": "Pack of 3",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 82,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG296",
+            "name": "Microfiber Towels",
+            "description": "Plush Microfiber Towels for a scratch-free finish. Size: Pack of 6",
+            "price": 19.90,
+            "size": "Pack of 6",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 83,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG302",
+            "name": "Detailing Clay Bar",
+            "description": "Detailing Clay Bar for removing contaminants for a smooth finish. Size: 100g",
+            "price": 9.00,
+            "size": "100g",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 84,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG306",
+            "name": "Detailing Clay Bar",
+            "description": "Detailing Clay Bar for removing contaminants for a smooth finish. Size: 200g",
+            "price": 15.00,
+            "size": "200g",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 85,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG312",
+            "name": "Dual Action Polisher",
+            "description": "Dual Action Polisher for efficient and safe polishing. Size: 900W",
+            "price": 120.00,
+            "size": "900W",
+            "category": "2",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 86,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG316",
+            "name": "Dual Action Polisher",
+            "description": "Dual Action Polisher for efficient and safe polishing. Size: 1200W",
+            "price": 160.00,
+            "size": "1200W",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 87,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG322",
+            "name": "Car Wax",
+            "description": "Premium Car Wax for a deep and glossy protective finish. Size: 200ml",
+            "price": 28.50,
+            "size": "200ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 88,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG326",
+            "name": "Car Wax",
+            "description": "Premium Car Wax for a deep and glossy protective finish. Size: 500ml",
+            "price": 54.00,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 89,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG332",
+            "name": "Detailing Kit",
+            "description": "Complete Detailing Kit for a professional car care routine. Size: Kit",
+            "price": 85.00,
+            "size": "Kit",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 90,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG336",
+            "name": "Detailing Kit",
+            "description": "Complete Detailing Kit for a professional car care routine. Size: Kit",
+            "price": 85.00,
+            "size": "Kit",
+            "category": "1",
+            "rating": 4.9,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 91,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG342",
+            "name": "Air Freshener",
+            "description": "Long-lasting Air Freshener for a refreshing interior. Size: 100ml",
+            "price": 7.90,
+            "size": "100ml",
+            "category": "3",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 92,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG346",
+            "name": "Air Freshener",
+            "description": "Long-lasting Air Freshener for a refreshing interior. Size: 200ml",
+            "price": 12.50,
+            "size": "200ml",
+            "category": "3",
+            "rating": 4.4,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 93,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG352",
+            "name": "Leather Cleaner",
+            "description": "Gentle Leather Cleaner for a soft and clean finish. Size: 250ml",
+            "price": 14.90,
+            "size": "250ml",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 94,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG356",
+            "name": "Leather Cleaner",
+            "description": "Gentle Leather Cleaner for a soft and clean finish. Size: 500ml",
+            "price": 25.00,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 95,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG362",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a supple and protected interior. Size: 250ml",
+            "price": 16.50,
+            "size": "250ml",
+            "category": "1",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 96,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG366",
+            "name": "Leather Conditioner",
+            "description": "Nourishing Leather Conditioner for a supple and protected interior. Size: 500ml",
+            "price": 29.00,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 97,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG372",
+            "name": "Fabric Cleaner",
+            "description": "Effective Fabric Cleaner for a spotless and fresh interior. Size: 250ml",
+            "price": 12.90,
+            "size": "250ml",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 98,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG376",
+            "name": "Fabric Cleaner",
+            "description": "Effective Fabric Cleaner for a spotless and fresh interior. Size: 500ml",
+            "price": 22.00,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 99,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG382",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for a crystal clear view. Size: 500ml",
+            "price": 10.50,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 100,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG386",
+            "name": "Glass Cleaner",
+            "description": "Streak-free Glass Cleaner for a crystal clear view. Size: 1L",
+            "price": 18.00,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 101,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG392",
+            "name": "All-Purpose Cleaner",
+            "description": "Versatile All-Purpose Cleaner for various interior surfaces. Size: 500ml",
+            "price": 13.90,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 102,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG396",
+            "name": "All-Purpose Cleaner",
+            "description": "Versatile All-Purpose Cleaner for various interior surfaces. Size: 1L",
+            "price": 24.50,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 103,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG402",
+            "name": "Wheel Coating",
+            "description": "Protective Wheel Coating for long-lasting shine and resistance. Size: 100ml",
+            "price": 29.90,
+            "size": "100ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 104,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG406",
+            "name": "Wheel Coating",
+            "description": "Protective Wheel Coating for long-lasting shine and resistance. Size: 250ml",
+            "price": 49.00,
+            "size": "250ml",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 105,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG412",
+            "name": "Interior Detailer",
+            "description": "Quick Interior Detailer for a clean and fresh cabin. Size: 500ml",
+            "price": 16.50,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 106,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG416",
+            "name": "Interior Detailer",
+            "description": "Quick Interior Detailer for a clean and fresh cabin. Size: 1L",
+            "price": 28.00,
+            "size": "1L",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 107,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG422",
+            "name": "Spray Wax",
+            "description": "Easy-to-apply Spray Wax for instant shine and protection. Size: 500ml",
+            "price": 21.00,
+            "size": "500ml",
+            "category": "2",
+            "rating": 4.7,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 108,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG426",
+            "name": "Spray Wax",
+            "description": "Easy-to-apply Spray Wax for instant shine and protection. Size: 1L",
+            "price": 36.50,
+            "size": "1L",
+            "category": "2",
+            "rating": 4.8,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 109,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG432",
+            "name": "Odor Eliminator",
+            "description": "Effective Odor Eliminator for a fresh-smelling interior. Size: 250ml",
+            "price": 11.90,
+            "size": "250ml",
+            "category": "1",
+            "rating": 4.6,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    },
+    {
+        "pk": 110,
+        "model": "products.product",
+        "fields": {
+            "sku": "11.SG436",
+            "name": "Odor Eliminator",
+            "description": "Effective Odor Eliminator for a fresh-smelling interior. Size: 500ml",
+            "price": 20.00,
+            "size": "500ml",
+            "category": "1",
+            "rating": 4.5,
+            "image_url": "",
+            "image": "1500x1500_product_media_28001-29000_shiny_garage_icy_ceramic_detailer_500ml.jpg"
+        }
+    }
+]
