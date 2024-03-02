@@ -67,8 +67,8 @@
       "pk": 9,
       "model": "products.category",
       "fields": {
-        "name": "aplicator",
-        "friendly_name": "Aplicator"
+        "name": "applicator",
+        "friendly_name": "Applicator"
       }
     },
     {
