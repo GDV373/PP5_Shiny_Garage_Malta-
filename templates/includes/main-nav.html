@@ -22,10 +22,10 @@
                 Cleaning Products
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="Cleaning-Products-link">
-                <a href="" class="dropdown-item">Exterior</a>
-                <a href="" class="dropdown-item">Interior</a>
-                <a href="" class="dropdown-item">Decontamination</a>
-                <a href="{% url 'products' %}" class="dropdown-item">All Cleaning Products</a>
+                <a href="{% url 'products' %}?category=pre_wash,wash,paint,wheels" class="dropdown-item">Exterior</a>
+                <a href="{% url 'products' %}?category=interior" class="dropdown-item">Interior</a>
+                <a href="{% url 'products' %}?category=decontamination" class="dropdown-item">Decontamination</a>
+                <a href="{% url 'products' %}?category=pre_wash,wash,paint,wheels,interior,decontamination" class="dropdown-item">All Cleaning Products</a>
             </div>
         </li>
 
@@ -34,9 +34,12 @@
                 Acessories
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="acessories-link">
-                <a href="" class="dropdown-item">Cosmetic Bags</a>
-                <a href="" class="dropdown-item">Microfibers</a>
-                <a href="" class="dropdown-item">All Acessories</a>
+                <a href="{% url 'products' %}?category=brush" class="dropdown-item">Brushes</a>
+                <a href="{% url 'products' %}?category=cloths" class="dropdown-item">Microfibers</a>
+                <a href="{% url 'products' %}?category=aplicator" class="dropdown-item">Applicators</a>
+                <a href="{% url 'products' %}?category=wash_buckets" class="dropdown-item">Wash Buckets</a>
+                <a href="{% url 'products' %}?category=brush,cloths,aplicator,wash_buckets" class="dropdown-item">All Acessories</a>
+                
             </div>
         </li>
 
@@ -45,10 +48,7 @@
                 Sets
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="sets-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Sets</a>
+                <a href="{% url 'products' %}?category=kit_set" class="dropdown-item">All Kit Sets</a>
             </div>
         </li>
     </ul>
