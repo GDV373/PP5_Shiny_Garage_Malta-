@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
     '*',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu108.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu108.gitpod.io', 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu110.gitpod.io']
 
 
 # Application definition
@@ -86,6 +86,8 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
