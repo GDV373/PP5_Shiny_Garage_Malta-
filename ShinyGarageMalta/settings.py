@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +50,10 @@ INSTALLED_APPS = [
     'home',
     'products',
     'bag',
-    'checkout'
+    'checkout',
+
+    #extra apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ShinyGarageMalta.urls'
+
+CRIPSY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -82,8 +86,13 @@ TEMPLATES = [
                 'django.template.context_processors.request', #Required by AllAuth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
