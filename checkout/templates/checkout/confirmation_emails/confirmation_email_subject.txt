@@ -1,0 +1,1 @@
+Shiny Garage Malta Confirmation On Order {{ order.order_number }}
