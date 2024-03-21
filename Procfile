@@ -1,0 +1,1 @@
+web: gunicorn ShinyGarageMalta.wsgi:application
