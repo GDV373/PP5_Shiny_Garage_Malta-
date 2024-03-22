@@ -1,1097 +1,1024 @@
 [
-    {
-      "pk": 1,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG11",
-        "name": "Fruit Snow Foam",
-        "description": "Neutral pH Snow Foam for a fruity touch. Size: 1L",
-        "price": 10.5,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "10.SG11.jpg"
-      }
-    },
-    {
-      "pk": 2,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG121",
-        "name": "Pre-Wash Citrus Oil",
-        "description": "Citrus Oil Pre-Wash for effective cleaning. Size: 1L",
-        "price": 12,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.3,
-        "image_url": "",
-        "image": "10.SG121.jpg"
-      }
-    },
-    {
-      "pk": 3,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG31",
-        "name": "All Around APC",
-        "description": "All-Purpose Cleaner for versatile use. Size: 1L",
-        "price": 11.5,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "10.SG31.jpg"
-      }
-    },
-    {
-      "pk": 4,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG41",
-        "name": "Pink APC",
-        "description": "Pink All-Purpose Cleaner for various surfaces. Size: 1L",
-        "price": 9.5,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.4,
-        "image_url": "",
-        "image": "10.SG41.jpg"
-      }
-    },
-    {
-      "pk": 5,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG61",
-        "name": "Red Devil HD Nano Degreaser",
-        "description": "High-Performance Nano Degreaser for tough grease. Size: 1L",
-        "price": 13.5,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "10.SG61.jpg"
-      }
-    },
-    {
-      "pk": 6,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG7500",
-        "name": "Bug Off Insect Remover",
-        "description": "Insect Remover for a bug-free exterior. Size: 500ml",
-        "price": 8.5,
-        "size": "500ml",
-        "category": "1",
-        "rating": 4.2,
-        "image_url": "",
-        "image": "10.SG7500.jpg"
-      }
-    },
-    {
-      "pk": 7,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG81",
-        "name": "Blue Snow Foam",
-        "description": "Neutral pH Blue Snow Foam for a foamy wash. Size: 1L",
-        "price": 11.9,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "10.SG81.jpg"
-      }
-    },
-    {
-      "pk": 8,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG91",
-        "name": "Pink Snow Foam",
-        "description": "Neutral pH Pink Snow Foam for a gentle wash. Size: 1L",
-        "price": 11.9,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "10.SG91.jpg"
-      }
-    },
-    {
-      "pk": 9,
-      "model": "products.product",
-      "fields": {
-        "sku": "10.SG101",
-        "name": "Yellow Snow Foam",
-        "description": "Neutral pH Yellow Snow Foam for a vibrant wash. Size: 1L",
-        "price": 11.9,
-        "size": "1L",
-        "category": "1",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "10.SG101.jpg"
-      }
-    },
-    {
-      "pk": 10,
-      "model": "products.product",
-      "fields": {
-        "sku": "11.SG81",
-        "name": "Green Tar&Glue",
-        "description": "Tar and Glue Remover for a clean surface. Size: 1L",
-        "price": 12,
-        "size": "1L",
-        "category": "2",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "11.SG81.jpg"
-      }
-    },
-    {
-      "pk": 11,
-      "model": "products.product",
-      "fields": {
-        "sku": "11.SG91",
-        "name": "D-Tox Iron & Fallout Remover",
-        "description": "Iron and Fallout Remover for a deep clean. Size: 1L",
-        "price": 13,
-        "size": "1L",
-        "category": "2",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "11.SG91.jpg"
-      }
-    },
-    {
-      "pk": 12,
-      "model": "products.product",
-      "fields": {
-        "sku": "11.SG11500",
-        "name": "Smooth Clay Lube",
-        "description": "Lubricant for Smooth Clay Bar application. Size: 500ml",
-        "price": 8,
-        "size": "500ml",
-        "category": "2",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "11.SG11500.jpg"
-      }
-    },
-    {
-      "pk": 13,
-      "model": "products.product",
-      "fields": {
-        "sku": "11.SG10100",
-        "name": "Clay Bar Fine",
-        "description": "Fine Clay Bar for smooth surface preparation. Size: 100g",
-        "price": 10.5,
-        "size": "100g",
-        "category": "2",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "11.SG10100.jpg"
-      }
-    },
-    {
-      "pk": 17,
-      "model": "products.product",
-      "fields": {
-        "sku": "12.SG14500",
-        "name": "Strawberry Shampoo",
-        "description": "Sweet Strawberry Scented Shampoo for a delightful wash. Size: 500ml",
-        "price": 7,
-        "size": "500ml",
-        "category": "3",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "12.SG14500.jpg"
-      }
-    },
-    {
-      "pk": 18,
-      "model": "products.product",
-      "fields": {
-        "sku": "12.SG15500",
-        "name": "Sleek Premium Shampoo",
-        "description": "Premium Shampoo for a luxurious and clean finish. Size: 500ml",
-        "price": 9,
-        "size": "500ml",
-        "category": "3",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "12.SG15500.jpg"
-      }
-    },
-    {
-      "pk": 19,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG16250",
-        "name": "All in #1 Polish",
-        "description": "Versatile All-in-One Polish for a polished and protected finish. Size: 250ml",
-        "price": 10.5,
-        "size": "250ml",
-        "category": "4",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "13.SG16250.jpg"
-      }
-    },
-    {
-      "pk": 20,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG16500",
-        "name": "All in #1 Polish",
-        "description": "Versatile All-in-One Polish for a polished and protected finish. Size: 500ml",
-        "price": 16,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "13.SG16250.jpg"
-      }
-    },
-    {
-      "pk": 21,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG18200",
-        "name": "Extreme Wear Wax – Synthetic Paste Wax",
-        "description": "Durable Synthetic Paste Wax for extreme wear protection. Size: 200ml",
-        "price": 29.5,
-        "size": "200ml",
-        "category": "4",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "13.SG18200.jpg"
-      }
-    },
-    {
-      "pk": 22,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG19500",
-        "name": "Carnauba Spray Wax",
-        "description": "Carnauba-infused Spray Wax for a glossy and protective finish. Size: 500ml",
-        "price": 15,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "13.SG19500.jpg"
-      }
-    },
-    {
-      "pk": 23,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG20500",
-        "name": "Wet Protector",
-        "description": "Wet Look Protector for enhanced shine and protection. Size: 500ml",
-        "price": 12.5,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.9,
-        "image_url": "",
-        "image": "13.SG20500.jpg"
-      }
-    },
-    {
-      "pk": 24,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG21500",
-        "name": "Morning Dew QD&Wax",
-        "description": "Quick Detailer and Wax for a fresh and glossy finish. Size: 500ml",
-        "price": 13,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "13.SG21500.jpg"
-      }
-    },
-    {
-      "pk": 25,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG211",
-        "name": "Morning Dew QD&Wax",
-        "description": "Quick Detailer and Wax for a fresh and glossy finish. Size: 1L",
-        "price": 20.5,
-        "size": "1L",
-        "category": "4",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "13.SG21500.jpg"
-      }
-    },
-    {
-      "pk": 26,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG22500",
-        "name": "Quick Detail Spray – Synthetic Quick Detailer",
-        "description": "Synthetic Quick Detailer for fast and effective detailing. Size: 500ml",
-        "price": 10,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "13.SG22500.jpg"
-      }
-    },
-    {
-      "pk": 27,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG23250",
-        "name": "Pure Paint Cleaner",
-        "description": "Gentle Paint Cleaner for a pure and clean surface. Size: 250ml",
-        "price": 10,
-        "size": "250ml",
-        "category": "4",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "13.SG23250.jpg"
-      }
-    },
-    {
-      "pk": 28,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG24250",
-        "name": "Paint Cleaner + with Cutting Action",
-        "description": "Paint Cleaner with Cutting Action for effective surface preparation. Size: 250ml",
-        "price": 11,
-        "size": "250ml",
-        "category": "4",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "13.SG24250.jpg"
-      }
-    },
-    {
-      "pk": 29,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG25500",
-        "name": "Glaze – Paint Glaze",
-        "description": "Specialized Paint Glaze for enhanced depth and shine. Size: 500ml",
-        "price": 16,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "13.SG25500.jpg"
-      }
-    },
-    {
-      "pk": 30,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG261",
-        "name": "Foil Fixer",
-        "description": "Versatile Foil Fixer for a range of detailing tasks. Size: 1L",
-        "price": 14,
-        "size": "1L",
-        "category": "4",
-        "rating": 4.9,
-        "image_url": "",
-        "image": "13.SG261.jpg"
-      }
-    },
-    {
-      "pk": 31,
-      "model": "products.product",
-      "fields": {
-        "sku": "13.SG27500",
-        "name": "Scan Inspection Spray",
-        "description": "Inspection Spray for scanning and assessing surfaces. Size: 500ml",
-        "price": 10.5,
-        "size": "500ml",
-        "category": "4",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "13.SG27500.jpg"
-      }
-    },
-    {
-      "pk": 32,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG1500",
-        "name": "Back2Black Polymer Tire Dressing",
-        "description": "Polymer-based Tire Dressing for a deep and lasting finish. Size: 500ml",
-        "price": 12.5,
-        "size": "500ml",
-        "category": "5",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "14.SG1500.jpg"
-      }
-    },
-    {
-      "pk": 33,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG11",
-        "name": "Back2Black Polymer Tire Dressing",
-        "description": "Polymer-based Tire Dressing for a deep and lasting finish. Size: 1L",
-        "price": 22.5,
-        "size": "1L",
-        "category": "5",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "14.SG1500.jpg"
-      }
-    },
-    {
-      "pk": 34,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG21",
-        "name": "EF Wheel Cleaner Concentrate",
-        "description": "Concentrated Wheel Cleaner for effective and efficient cleaning. Size: 1L",
-        "price": 12,
-        "size": "1L",
-        "category": "5",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "14.SG21.jpg"
-      }
-    },
-    {
-      "pk": 35,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG3250",
-        "name": "Jet Black Trim Restorer",
-        "description": "Trim Restorer for restoring faded and dull trims. Size: 250ml",
-        "price": 10,
-        "size": "250ml",
-        "category": "5",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "14.SG3250.jpg"
-      }
-    },
-    {
-      "pk": 36,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG3500",
-        "name": "Jet Black Trim Restorer",
-        "description": "Trim Restorer for restoring faded and dull trims. Size: 500ml",
-        "price": 15,
-        "size": "500ml",
-        "category": "5",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "14.SG3250.jpg"
-      }
-    },
-    {
-      "pk": 37,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG4500",
-        "name": "Monster Wheel Cleaner – Bleeding Effect",
-        "description": "Wheel Cleaner with Bleeding Effect for thorough cleaning. Size: 500ml",
-        "price": 10.5,
-        "size": "500ml",
-        "category": "5",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "14.SG4500.jpg"
-      }
-    },
-    {
-      "pk": 38,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG41",
-        "name": "Monster Wheel Cleaner – Bleeding Effect",
-        "description": "Wheel Cleaner with Bleeding Effect for thorough cleaning. Size: 1L",
-        "price": 16.5,
-        "size": "1L",
-        "category": "5",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "14.SG4500.jpg"
-      }
-    },
-    {
-      "pk": 39,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG51",
-        "name": "Pure Black Tire Cleaner Concentrate",
-        "description": "Concentrated Tire Cleaner for effective cleaning. Size: 1L",
-        "price": 12,
-        "size": "1L",
-        "category": "5",
-        "rating": 4.9,
-        "image_url": "",
-        "image": "14.SG51.jpg"
-      }
-    },
-    {
-      "pk": 40,
-      "model": "products.product",
-      "fields": {
-        "sku": "14.SG6500",
-        "name": "Coco Tire Booster Spray",
-        "description": "Tire Booster Spray with Coconut scent for a fresh finish. Size: 500ml",
-        "price": 13,
-        "size": "500ml",
-        "category": "5",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "14.SG6500.jpg"
-      }
-    },
-    {
-      "pk": 63,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG1500",
-        "name": "Apple Dressing – Natural Interior Finish",
-        "description": "Natural Interior Dressing for an apple-scented finish. Size: 500ml",
-        "price": 10,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "15.SG1500.jpg"
-      }
-    },
-    {
-      "pk": 64,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG2500",
-        "name": "Satin Interior Dressing – Satin Interior Finish",
-        "description": "Satin Interior Dressing for a luxurious satin finish. Size: 500ml",
-        "price": 12.5,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG2500.jpg"
-      }
-    },
-    {
-      "pk": 65,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG311",
-        "name": "Leather Cleaner Professional",
-        "description": "Professional Leather Cleaner for thorough leather cleaning. Size: 1L",
-        "price": 21,
-        "size": "1L",
-        "category": "6",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "15.SG311.jpg"
-      }
-    },
-    {
-      "pk": 66,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG11250",
-        "name": "Leather Mousse",
-        "description": "Leather Mousse for a soft and nourished leather finish. Size: 250ml",
-        "price": 13,
-        "size": "250ml",
-        "category": "6",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "15.SG11250.jpg"
-      }
-    },
-    {
-      "pk": 67,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG3500",
-        "name": "Leather Cleaner Soft",
-        "description": "Soft Leather Cleaner for gentle and effective cleaning. Size: 500ml",
-        "price": 11,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "15.SG3500.jpg"
-      }
-    },
-    {
-      "pk": 68,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG51",
-        "name": "Carpet Cleaner Concentrate",
-        "description": "Concentrated Carpet Cleaner for effective carpet cleaning. Size: 1L",
-        "price": 10.5,
-        "size": "1L",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG51.jpg"
-      }
-    },
-    {
-      "pk": 69,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG6500",
-        "name": "Interior Cleaner",
-        "description": "Interior Cleaner for a clean and fresh interior. Size: 500ml",
-        "price": 8,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "15.SG6500.jpg"
-      }
-    },
-    {
-      "pk": 70,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG61",
-        "name": "Interior Cleaner",
-        "description": "Interior Cleaner for a clean and fresh interior. Size: 1L",
-        "price": 15,
-        "size": "1L",
-        "category": "6",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "15.SG6500.jpg"
-      }
-    },
-    {
-      "pk": 71,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG7500",
-        "name": "Interior Quick Detailer",
-        "description": "Quick Detailer for a clean and refreshed interior. Size: 500ml",
-        "price": 10.5,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG7500.jpg"
-      }
-    },
-    {
-      "pk": 72,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG8500",
-        "name": "Perfect Glass Cleaner",
-        "description": "Glass Cleaner for a streak-free and clear view. Size: 500ml",
-        "price": 7.5,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "15.SG8500.jpg"
-      }
-    },
-    {
-      "pk": 73,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG2250",
-        "name": "Bubble Gum Air Freshener Spray",
-        "description": "Air Freshener Spray with a bubble gum scent. Size: 250ml",
-        "price": 8.5,
-        "size": "250ml",
-        "category": "6",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "15.SG2250.jpg"
-      }
-    },
-    {
-      "pk": 74,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG3250",
-        "name": "Green Tea Air Freshener Spray",
-        "description": "Air Freshener Spray with a green tea scent. Size: 250ml",
-        "price": 8.5,
-        "size": "250ml",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG3250.jpg"
-      }
-    },
-    {
-      "pk": 75,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG4250",
-        "name": "Morning Dew Air Freshener Spray",
-        "description": "Air Freshener Spray with a morning dew scent. Size: 250ml",
-        "price": 8.5,
-        "size": "250ml",
-        "category": "6",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "15.SG4250.jpg"
-      }
-    },
-    {
-      "pk": 76,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG5250",
-        "name": "Peach&Mango Air Freshener Spray",
-        "description": "Air Freshener Spray with a peach and mango scent. Size: 250ml",
-        "price": 8.5,
-        "size": "250ml",
-        "category": "6",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "15.SG5250.jpg"
-      }
-    },
-    {
-      "pk": 77,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG91",
-        "name": "Blueberry Hanging Air Freshener",
-        "description": "Hanging Air Freshener with a blueberry scent. Quantity: 1 pcs",
-        "price": 2.3,
-        "size": "1 pcs",
-        "category": "6",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "15.SG91.jpg"
-      }
-    },
-    {
-      "pk": 78,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG92",
-        "name": "Pinacolada Hanging Air Freshener",
-        "description": "Hanging Air Freshener with a pinacolada scent. Quantity: 1 pcs",
-        "price": 2.3,
-        "size": "1 pcs",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG92.jpg"
-      }
-    },
-    {
-      "pk": 79,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG93",
-        "name": "Melon&Marakuja Hanging Air Freshener",
-        "description": "Hanging Air Freshener with a melon and marakuja scent. Quantity: 1 pcs",
-        "price": 2.3,
-        "size": "1 pcs",
-        "category": "6",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "15.SG92.jpg"
-      }
-    },
-    {
-      "pk": 80,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG9200",
-        "name": "Seal Separator",
-        "description": "Seal Separator for effective sealing. Size: 200ml",
-        "price": 9,
-        "size": "200ml",
-        "category": "6",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "15.SG9200.jpg"
-      }
-    },
-    {
-      "pk": 81,
-      "model": "products.product",
-      "fields": {
-        "sku": "15.SG10500",
-        "name": "Extra Dry – Fabric Cleaning Shampoo",
-        "description": "Fabric Cleaning Shampoo for extra dry and clean fabrics. Size: 500ml",
-        "price": 10.5,
-        "size": "500ml",
-        "category": "6",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "15.SG10500.jpg"
-      }
-    },
-    {
-      "pk": 82,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG1",
-        "name": "Leather Brush",
-        "description": "Leather Brush for effective and gentle leather cleaning. Quantity: 1 pcs",
-        "price": 3.5,
-        "size": "1 pcs",
-        "category": "7",
-        "rating": 4.2,
-        "image_url": "",
-        "image": "16.SG1.jpg"
-      }
-    },
-    {
-      "pk": 83,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG3",
-        "name": "Bi-Color Tire Applicator",
-        "description": "Bi-Color Tire Applicator for precise tire application. Quantity: 1 pcs",
-        "price": 2.5,
-        "size": "1 pcs",
-        "category": "9",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "16.SG3.jpg"
-      }
-    },
-    {
-      "pk": 85,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG5",
-        "name": "Blue Work Cloth 40x40cm 300g",
-        "description": "Blue Work Cloth for versatile cleaning. Size: 40x40cm, Weight: 300g, Quantity: 1 pcs",
-        "price": 4.5,
-        "size": "1 pcs",
-        "category": "8",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "16.SG5.jpg"
-      }
-    },
-    {
-      "pk": 86,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG6",
-        "name": "Glass Cloth 35x35cm",
-        "description": "Glass Cloth for streak-free glass cleaning. Size: 35x35cm, Quantity: 1 pcs",
-        "price": 3.5,
-        "size": "1 pcs",
-        "category": "8",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "16.SG6.jpg"
-      }
-    },
-    {
-      "pk": 89,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG8",
-        "name": "Red Finisher Premium Microfiber Cloth 40x40cm 600g",
-        "description": "Premium Microfiber Cloth for finishing touches. Size: 40x40cm, Weight: 600g, Quantity: 1 pcs",
-        "price": 9.5,
-        "size": "1 pcs",
-        "category": "8",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "16.SG8.jpg"
-      }
-    },
-    {
-      "pk": 90,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG9",
-        "name": "Microfiber Applicator",
-        "description": "Microfiber Applicator for easy and even product application. Quantity: 1 pcs",
-        "price": 2.6,
-        "size": "1 pcs",
-        "category": "9",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "16.SG9.jpg"
-      }
-    },
-    {
-      "pk": 92,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG10500",
-        "name": "Enzyme Microfiber Wash",
-        "description": "Enzyme Microfiber Wash for gentle cleaning of microfiber materials. Size: 500ml",
-        "price": 8,
-        "size": "500ml",
-        "category": "8",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "16.SG10500.jpg"
-      }
-    },
-    {
-      "pk": 93,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG101",
-        "name": "Enzyme Microfiber Wash",
-        "description": "Enzyme Microfiber Wash for gentle cleaning of microfiber materials. Size: 1L",
-        "price": 14,
-        "size": "1L",
-        "category": "8",
-        "rating": 4.8,
-        "image_url": "",
-        "image": "16.SG10500.jpg"
-      }
-    },
-    {
-      "pk": 94,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG11Z",
-        "name": "Extreme Drying Towel 60x90 550g/m2",
-        "description": "Extreme Drying Towel for quick and efficient drying. Size: 60x90cm, Weight: 550g/m2, Quantity: 1 pcs",
-        "price": 15,
-        "size": "1 pcs",
-        "category": "8",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "16.SG11Z.jpg"
-      }
-    },
-    {
-      "pk": 95,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG13W",
-        "name": "Wash Bucket with Lead 20L White",
-        "description": "Wash Bucket with Lead for convenient washing. Size: 20L, Color: White, Quantity: 1 pcs",
-        "price": 12.5,
-        "size": "1 pcs",
-        "category": "10",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "16.SG13W.jpg"
-      }
-    },
-    {
-      "pk": 96,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG13B",
-        "name": "Wash Bucket with Lead 20L Black",
-        "description": "Wash Bucket with Lead for convenient washing. Size: 20L, Color: Black, Quantity: 1 pcs",
-        "price": 12.5,
-        "size": "1 pcs",
-        "category": "10",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "16.SG13B.jpg"
-      }
-    },
-    {
-      "pk": 100,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG17",
-        "name": "Detailing Brush 16 (27mm)",
-        "description": "Detailing Brush 16 for precision detailing. Size: 27mm, Quantity: 1 pcs",
-        "price": 5.1,
-        "size": "1 pcs",
-        "category": "7",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "16.SG17.jpg"
-      }
-    },
-    {
-      "pk": 101,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG18",
-        "name": "Detailing Brush 12 (19mm)",
-        "description": "Detailing Brush 12 for precision detailing. Size: 19mm, Quantity: 1 pcs",
-        "price": 3.4,
-        "size": "1 pcs",
-        "category": "7",
-        "rating": 4.5,
-        "image_url": "",
-        "image": "16.SG17.jpg"
-      }
-    },
-    {
-      "pk": 102,
-      "model": "products.product",
-      "fields": {
-        "sku": "16.SG19",
-        "name": "Detailing Brush 8 (14mm)",
-        "description": "Detailing Brush 8 for precision detailing. Size: 14mm, Quantity: 1 pcs",
-        "price": 2.8,
-        "size": "1 pcs",
-        "category": "7",
-        "rating": 4.4,
-        "image_url": "",
-        "image": "16.SG17.jpg"
-      }
-    },
-    {
-      "pk": 104,
-      "model": "products.product",
-      "fields": {
-        "sku": "17.SG1",
-        "name": "Starter Kit",
-        "description": "Starter Kit for essential detailing needs. 1x Sleek Premium Shampoo 500 ml, 1x Back2Black Polymer Tire Dressing 500 ml, 1x Monster Wheel Cleaner Plus 500 ml, 1 x extreme drying towel V2.0, 1x Premium Finishing Cloth",
-        "price": 70,
-        "size": "1 pcs",
-        "category": "11",
-        "rating": 4.9,
-        "image_url": "",
-        "image": "17.SG1.jpg"
-      }
-    },
-    {
-      "pk": 105,
-      "model": "products.product",
-      "fields": {
-        "sku": "17.SG2",
-        "name": "Sample Kit",
-        "description": "A selected set of 10 top Shiny Garage products in 50 ml packages. It contains agents that will refresh and protect paintwork, tires and internal plastic elements. Packed in an elegant cardboard bo",
-        "price": 39.9,
-        "size": "1 pcs",
-        "category": "11",
-        "rating": 4.7,
-        "image_url": "",
-        "image": "17.SG2.jpg"
-      }
-    },
-    {
-      "pk": 106,
-      "model": "products.product",
-      "fields": {
-        "sku": "17.SG3",
-        "name": "Leather Kit Soft",
-        "description": "A complete set for the care of leather car upholstery by Shiny Garage. Leather Kit Soft contains a soft cleaning agent and a leather protection agent. The package also includes accessories such as a brush with soft bristles, an applicator and a microfiber.",
-        "price": 31,
-        "size": "1 pcs",
-        "category": "11",
-        "rating": 4.6,
-        "image_url": "",
-        "image": "17.SG3.jpg"
-      }
+  {
+    "pk": 1,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG11",
+      "name": "Fruit Snow Foam",
+      "description": "Neutral pH Snow Foam for a fruity touch. Size: 1L",
+      "price": 10.5,
+      "category": "1",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "10.SG11.jpg"
     }
+  },
+  {
+    "pk": 2,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG121",
+      "name": "Pre-Wash Citrus Oil",
+      "description": "Citrus Oil Pre-Wash for effective cleaning. Size: 1L",
+      "price": 12,
+      "category": "1",
+      "rating": 4.3,
+      "image_url": "",
+      "image": "10.SG121.jpg"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG31",
+      "name": "All Around APC",
+      "description": "All-Purpose Cleaner for versatile use. Size: 1L",
+      "price": 11.5,
+      "category": "1",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "10.SG31.jpg"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG41",
+      "name": "Pink APC",
+      "description": "Pink All-Purpose Cleaner for various surfaces. Size: 1L",
+      "price": 9.5,
+      "category": "1",
+      "rating": 4.4,
+      "image_url": "",
+      "image": "10.SG41.jpg"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG61",
+      "name": "Red Devil HD Nano Degreaser",
+      "description": "High-Performance Nano Degreaser for tough grease. Size: 1L",
+      "price": 13.5,
+      "category": "1",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "10.SG61.jpg"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG7500",
+      "name": "Bug Off Insect Remover",
+      "description": "Insect Remover for a bug-free exterior. Size: 500ml",
+      "price": 8.5,
+      "category": "1",
+      "rating": 4.2,
+      "image_url": "",
+      "image": "10.SG7500.jpg"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG81",
+      "name": "Blue Snow Foam",
+      "description": "Neutral pH Blue Snow Foam for a foamy wash. Size: 1L",
+      "price": 11.9,
+      "category": "1",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "10.SG81.jpg"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG91",
+      "name": "Pink Snow Foam",
+      "description": "Neutral pH Pink Snow Foam for a gentle wash. Size: 1L",
+      "price": 11.9,
+      "category": "1",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "10.SG91.jpg"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "products.product",
+    "fields": {
+      "sku": "10.SG101",
+      "name": "Yellow Snow Foam",
+      "description": "Neutral pH Yellow Snow Foam for a vibrant wash. Size: 1L",
+      "price": 11.9,
+      "category": "1",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "10.SG101.jpg"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "products.product",
+    "fields": {
+      "sku": "11.SG81",
+      "name": "Green Tar&Glue",
+      "description": "Tar and Glue Remover for a clean surface. Size: 1L",
+      "price": 12,
+      "category": "2",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "11.SG81.jpg"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "products.product",
+    "fields": {
+      "sku": "11.SG91",
+      "name": "D-Tox Iron & Fallout Remover",
+      "description": "Iron and Fallout Remover for a deep clean. Size: 1L",
+      "price": 13,
+      "category": "2",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "11.SG91.jpg"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "products.product",
+    "fields": {
+      "sku": "11.SG11500",
+      "name": "Smooth Clay Lube",
+      "description": "Lubricant for Smooth Clay Bar application. Size: 500ml",
+      "price": 8,
+      "category": "2",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "11.SG11500.jpg"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "products.product",
+    "fields": {
+      "sku": "11.SG10100",
+      "name": "Clay Bar Fine",
+      "description": "Fine Clay Bar for smooth surface preparation. Size: 100g",
+      "price": 10.5,
+      "category": "2",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "11.SG10100.jpg"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "products.product",
+    "fields": {
+      "sku": "12.SG14500",
+      "name": "Strawberry Shampoo",
+      "description": "Sweet Strawberry Scented Shampoo for a delightful wash. Size: 500ml",
+      "price": 7,
+      "category": "3",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "12.SG14500.jpg"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "products.product",
+    "fields": {
+      "sku": "12.SG15500",
+      "name": "Sleek Premium Shampoo",
+      "description": "Premium Shampoo for a luxurious and clean finish. Size: 500ml",
+      "price": 9,
+      "category": "3",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "12.SG15500.jpg"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG16250",
+      "name": "All in #1 Polish",
+      "description": "Versatile All-in-One Polish for a polished and protected finish. Size: 250ml",
+      "price": 10.5,
+      "category": "4",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "13.SG16250.jpg"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG16500",
+      "name": "All in #1 Polish",
+      "description": "Versatile All-in-One Polish for a polished and protected finish. Size: 500ml",
+      "price": 16,
+      "category": "4",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "13.SG16250.jpg"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG18200",
+      "name": "Extreme Wear Wax – Synthetic Paste Wax",
+      "description": "Durable Synthetic Paste Wax for extreme wear protection. Size: 200ml",
+      "price": 29.5,
+      "category": "4",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "13.SG18200.jpg"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG19500",
+      "name": "Carnauba Spray Wax",
+      "description": "Carnauba-infused Spray Wax for a glossy and protective finish. Size: 500ml",
+      "price": 15,
+      "category": "4",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "13.SG19500.jpg"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG20500",
+      "name": "Wet Protector",
+      "description": "Wet Look Protector for enhanced shine and protection. Size: 500ml",
+      "price": 12.5,
+      "category": "4",
+      "rating": 4.9,
+      "image_url": "",
+      "image": "13.SG20500.jpg"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG21500",
+      "name": "Morning Dew QD&Wax",
+      "description": "Quick Detailer and Wax for a fresh and glossy finish. Size: 500ml",
+      "price": 13,
+      "category": "4",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "13.SG21500.jpg"
+    }
+  },
+  {
+    "pk": 25,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG211",
+      "name": "Morning Dew QD&Wax",
+      "description": "Quick Detailer and Wax for a fresh and glossy finish. Size: 1L",
+      "price": 20.5,
+      "category": "4",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "13.SG21500.jpg"
+    }
+  },
+  {
+    "pk": 26,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG22500",
+      "name": "Quick Detail Spray – Synthetic Quick Detailer",
+      "description": "Synthetic Quick Detailer for fast and effective detailing. Size: 500ml",
+      "price": 10,
+      "category": "4",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "13.SG22500.jpg"
+    }
+  },
+  {
+    "pk": 27,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG23250",
+      "name": "Pure Paint Cleaner",
+      "description": "Gentle Paint Cleaner for a pure and clean surface. Size: 250ml",
+      "price": 10,
+      "category": "4",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "13.SG23250.jpg"
+    }
+  },
+  {
+    "pk": 28,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG24250",
+      "name": "Paint Cleaner + with Cutting Action",
+      "description": "Paint Cleaner with Cutting Action for effective surface preparation. Size: 250ml",
+      "price": 11,
+      "category": "4",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "13.SG24250.jpg"
+    }
+  },
+  {
+    "pk": 29,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG25500",
+      "name": "Glaze – Paint Glaze",
+      "description": "Specialized Paint Glaze for enhanced depth and shine. Size: 500ml",
+      "price": 16,
+      "category": "4",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "13.SG25500.jpg"
+    }
+  },
+  {
+    "pk": 30,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG261",
+      "name": "Foil Fixer",
+      "description": "Versatile Foil Fixer for a range of detailing tasks. Size: 1L",
+      "price": 14,
+      "category": "4",
+      "rating": 4.9,
+      "image_url": "",
+      "image": "13.SG261.jpg"
+    }
+  },
+  {
+    "pk": 31,
+    "model": "products.product",
+    "fields": {
+      "sku": "13.SG27500",
+      "name": "Scan Inspection Spray",
+      "description": "Inspection Spray for scanning and assessing surfaces. Size: 500ml",
+      "price": 10.5,
+      "category": "4",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "13.SG27500.jpg"
+    }
+  },
+  {
+    "pk": 32,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG1500",
+      "name": "Back2Black Polymer Tire Dressing",
+      "description": "Polymer-based Tire Dressing for a deep and lasting finish. Size: 500ml",
+      "price": 12.5,
+      "category": "5",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "14.SG1500.jpg"
+    }
+  },
+  {
+    "pk": 33,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG11",
+      "name": "Back2Black Polymer Tire Dressing",
+      "description": "Polymer-based Tire Dressing for a deep and lasting finish. Size: 1L",
+      "price": 22.5,
+      "category": "5",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "14.SG1500.jpg"
+    }
+  },
+  {
+    "pk": 34,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG21",
+      "name": "EF Wheel Cleaner Concentrate",
+      "description": "Concentrated Wheel Cleaner for effective and efficient cleaning. Size: 1L",
+      "price": 12,
+      "category": "5",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "14.SG21.jpg"
+    }
+  },
+  {
+    "pk": 35,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG3250",
+      "name": "Jet Black Trim Restorer",
+      "description": "Trim Restorer for restoring faded and dull trims. Size: 250ml",
+      "price": 10,
+      "category": "5",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "14.SG3250.jpg"
+    }
+  },
+  {
+    "pk": 36,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG3500",
+      "name": "Jet Black Trim Restorer",
+      "description": "Trim Restorer for restoring faded and dull trims. Size: 500ml",
+      "price": 15,
+      "category": "5",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "14.SG3250.jpg"
+    }
+  },
+  {
+    "pk": 37,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG4500",
+      "name": "Monster Wheel Cleaner – Bleeding Effect",
+      "description": "Wheel Cleaner with Bleeding Effect for thorough cleaning. Size: 500ml",
+      "price": 10.5,
+      "category": "5",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "14.SG4500.jpg"
+    }
+  },
+  {
+    "pk": 38,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG41",
+      "name": "Monster Wheel Cleaner – Bleeding Effect",
+      "description": "Wheel Cleaner with Bleeding Effect for thorough cleaning. Size: 1L",
+      "price": 16.5,
+      "category": "5",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "14.SG4500.jpg"
+    }
+  },
+  {
+    "pk": 39,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG51",
+      "name": "Pure Black Tire Cleaner Concentrate",
+      "description": "Concentrated Tire Cleaner for effective cleaning. Size: 1L",
+      "price": 12,
+      "category": "5",
+      "rating": 4.9,
+      "image_url": "",
+      "image": "14.SG51.jpg"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "products.product",
+    "fields": {
+      "sku": "14.SG6500",
+      "name": "Coco Tire Booster Spray",
+      "description": "Tire Booster Spray with Coconut scent for a fresh finish. Size: 500ml",
+      "price": 13,
+      "category": "5",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "14.SG6500.jpg"
+    }
+  },
+  {
+    "pk": 63,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG1500",
+      "name": "Apple Dressing – Natural Interior Finish",
+      "description": "Natural Interior Dressing for an apple-scented finish. Size: 500ml",
+      "price": 10,
+      "category": "6",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "15.SG1500.jpg"
+    }
+  },
+  {
+    "pk": 64,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG2500",
+      "name": "Satin Interior Dressing – Satin Interior Finish",
+      "description": "Satin Interior Dressing for a luxurious satin finish. Size: 500ml",
+      "price": 12.5,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG2500.jpg"
+    }
+  },
+  {
+    "pk": 65,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG311",
+      "name": "Leather Cleaner Professional",
+      "description": "Professional Leather Cleaner for thorough leather cleaning. Size: 1L",
+      "price": 21,
+      "category": "6",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "15.SG311.jpg"
+    }
+  },
+  {
+    "pk": 66,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG11250",
+      "name": "Leather Mousse",
+      "description": "Leather Mousse for a soft and nourished leather finish. Size: 250ml",
+      "price": 13,
+      "category": "6",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "15.SG11250.jpg"
+    }
+  },
+  {
+    "pk": 67,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG3500",
+      "name": "Leather Cleaner Soft",
+      "description": "Soft Leather Cleaner for gentle and effective cleaning. Size: 500ml",
+      "price": 11,
+      "category": "6",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "15.SG3500.jpg"
+    }
+  },
+  {
+    "pk": 68,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG51",
+      "name": "Carpet Cleaner Concentrate",
+      "description": "Concentrated Carpet Cleaner for effective carpet cleaning. Size: 1L",
+      "price": 10.5,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG51.jpg"
+    }
+  },
+  {
+    "pk": 69,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG6500",
+      "name": "Interior Cleaner",
+      "description": "Interior Cleaner for a clean and fresh interior. Size: 500ml",
+      "price": 8,
+      "category": "6",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "15.SG6500.jpg"
+    }
+  },
+  {
+    "pk": 70,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG61",
+      "name": "Interior Cleaner",
+      "description": "Interior Cleaner for a clean and fresh interior. Size: 1L",
+      "price": 15,
+      "category": "6",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "15.SG6500.jpg"
+    }
+  },
+  {
+    "pk": 71,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG7500",
+      "name": "Interior Quick Detailer",
+      "description": "Quick Detailer for a clean and refreshed interior. Size: 500ml",
+      "price": 10.5,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG7500.jpg"
+    }
+  },
+  {
+    "pk": 72,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG8500",
+      "name": "Perfect Glass Cleaner",
+      "description": "Glass Cleaner for a streak-free and clear view. Size: 500ml",
+      "price": 7.5,
+      "category": "6",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "15.SG8500.jpg"
+    }
+  },
+  {
+    "pk": 73,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG2250",
+      "name": "Bubble Gum Air Freshener Spray",
+      "description": "Air Freshener Spray with a bubble gum scent. Size: 250ml",
+      "price": 8.5,
+      "category": "6",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "15.SG2250.jpg"
+    }
+  },
+  {
+    "pk": 74,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG3250",
+      "name": "Green Tea Air Freshener Spray",
+      "description": "Air Freshener Spray with a green tea scent. Size: 250ml",
+      "price": 8.5,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG3250.jpg"
+    }
+  },
+  {
+    "pk": 75,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG4250",
+      "name": "Morning Dew Air Freshener Spray",
+      "description": "Air Freshener Spray with a morning dew scent. Size: 250ml",
+      "price": 8.5,
+      "category": "6",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "15.SG4250.jpg"
+    }
+  },
+  {
+    "pk": 76,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG5250",
+      "name": "Peach&Mango Air Freshener Spray",
+      "description": "Air Freshener Spray with a peach and mango scent. Size: 250ml",
+      "price": 8.5,
+      "category": "6",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "15.SG5250.jpg"
+    }
+  },
+  {
+    "pk": 77,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG91",
+      "name": "Blueberry Hanging Air Freshener",
+      "description": "Hanging Air Freshener with a blueberry scent. Quantity: 1 pcs",
+      "price": 2.3,
+      "category": "6",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "15.SG91.jpg"
+    }
+  },
+  {
+    "pk": 78,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG92",
+      "name": "Pinacolada Hanging Air Freshener",
+      "description": "Hanging Air Freshener with a pinacolada scent. Quantity: 1 pcs",
+      "price": 2.3,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG92.jpg"
+    }
+  },
+  {
+    "pk": 79,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG93",
+      "name": "Melon&Marakuja Hanging Air Freshener",
+      "description": "Hanging Air Freshener with a melon and marakuja scent. Quantity: 1 pcs",
+      "price": 2.3,
+      "category": "6",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "15.SG92.jpg"
+    }
+  },
+  {
+    "pk": 80,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG9200",
+      "name": "Seal Separator",
+      "description": "Seal Separator for effective sealing. Size: 200ml",
+      "price": 9,
+      "category": "6",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "15.SG9200.jpg"
+    }
+  },
+  {
+    "pk": 81,
+    "model": "products.product",
+    "fields": {
+      "sku": "15.SG10500",
+      "name": "Extra Dry – Fabric Cleaning Shampoo",
+      "description": "Fabric Cleaning Shampoo for extra dry and clean fabrics. Size: 500ml",
+      "price": 10.5,
+      "category": "6",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "15.SG10500.jpg"
+    }
+  },
+  {
+    "pk": 82,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG1",
+      "name": "Leather Brush",
+      "description": "Leather Brush for effective and gentle leather cleaning. Quantity: 1 pcs",
+      "price": 3.5,
+      "category": "7",
+      "rating": 4.2,
+      "image_url": "",
+      "image": "16.SG1.jpg"
+    }
+  },
+  {
+    "pk": 83,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG3",
+      "name": "Bi-Color Tire Applicator",
+      "description": "Bi-Color Tire Applicator for precise tire application. Quantity: 1 pcs",
+      "price": 2.5,
+      "category": "9",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "16.SG3.jpg"
+    }
+  },
+  {
+    "pk": 85,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG5",
+      "name": "Blue Work Cloth 40x40cm 300g",
+      "description": "Blue Work Cloth for versatile cleaning. Size: 40x40cm, Weight: 300g, Quantity: 1 pcs",
+      "price": 4.5,
+      "category": "8",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "16.SG5.jpg"
+    }
+  },
+  {
+    "pk": 86,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG6",
+      "name": "Glass Cloth 35x35cm",
+      "description": "Glass Cloth for streak-free glass cleaning. Size: 35x35cm, Quantity: 1 pcs",
+      "price": 3.5,
+      "category": "8",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "16.SG6.jpg"
+    }
+  },
+  {
+    "pk": 89,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG8",
+      "name": "Red Finisher Premium Microfiber Cloth 40x40cm 600g",
+      "description": "Premium Microfiber Cloth for finishing touches. Size: 40x40cm, Weight: 600g, Quantity: 1 pcs",
+      "price": 9.5,
+      "category": "8",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "16.SG8.jpg"
+    }
+  },
+  {
+    "pk": 90,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG9",
+      "name": "Microfiber Applicator",
+      "description": "Microfiber Applicator for easy and even product application. Quantity: 1 pcs",
+      "price": 2.6,
+      "category": "9",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "16.SG9.jpg"
+    }
+  },
+  {
+    "pk": 92,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG10500",
+      "name": "Enzyme Microfiber Wash",
+      "description": "Enzyme Microfiber Wash for gentle cleaning of microfiber materials. Size: 500ml",
+      "price": 8,
+      "category": "8",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "16.SG10500.jpg"
+    }
+  },
+  {
+    "pk": 93,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG101",
+      "name": "Enzyme Microfiber Wash",
+      "description": "Enzyme Microfiber Wash for gentle cleaning of microfiber materials. Size: 1L",
+      "price": 14,
+      "category": "8",
+      "rating": 4.8,
+      "image_url": "",
+      "image": "16.SG10500.jpg"
+    }
+  },
+  {
+    "pk": 94,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG11Z",
+      "name": "Extreme Drying Towel 60x90 550g/m2",
+      "description": "Extreme Drying Towel for quick and efficient drying. Size: 60x90cm, Weight: 550g/m2, Quantity: 1 pcs",
+      "price": 15,
+      "category": "8",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "16.SG11Z.jpg"
+    }
+  },
+  {
+    "pk": 95,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG13W",
+      "name": "Wash Bucket with Lead 20L White",
+      "description": "Wash Bucket with Lead for convenient washing. Size: 20L, Color: White, Quantity: 1 pcs",
+      "price": 12.5,
+      "category": "10",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "16.SG13W.jpg"
+    }
+  },
+  {
+    "pk": 96,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG13B",
+      "name": "Wash Bucket with Lead 20L Black",
+      "description": "Wash Bucket with Lead for convenient washing. Size: 20L, Color: Black, Quantity: 1 pcs",
+      "price": 12.5,
+      "category": "10",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "16.SG13B.jpg"
+    }
+  },
+  {
+    "pk": 100,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG17",
+      "name": "Detailing Brush 16 (27mm)",
+      "description": "Detailing Brush 16 for precision detailing. Size: 27mm, Quantity: 1 pcs",
+      "price": 5.1,
+      "category": "7",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "16.SG17.jpg"
+    }
+  },
+  {
+    "pk": 101,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG18",
+      "name": "Detailing Brush 12 (19mm)",
+      "description": "Detailing Brush 12 for precision detailing. Size: 19mm, Quantity: 1 pcs",
+      "price": 3.4,
+      "category": "7",
+      "rating": 4.5,
+      "image_url": "",
+      "image": "16.SG17.jpg"
+    }
+  },
+  {
+    "pk": 102,
+    "model": "products.product",
+    "fields": {
+      "sku": "16.SG19",
+      "name": "Detailing Brush 8 (14mm)",
+      "description": "Detailing Brush 8 for precision detailing. Size: 14mm, Quantity: 1 pcs",
+      "price": 2.8,
+      "category": "7",
+      "rating": 4.4,
+      "image_url": "",
+      "image": "16.SG17.jpg"
+    }
+  },
+  {
+    "pk": 104,
+    "model": "products.product",
+    "fields": {
+      "sku": "17.SG1",
+      "name": "Starter Kit",
+      "description": "Starter Kit for essential detailing needs. 1x Sleek Premium Shampoo 500 ml, 1x Back2Black Polymer Tire Dressing 500 ml, 1x Monster Wheel Cleaner Plus 500 ml, 1 x extreme drying towel V2.0, 1x Premium Finishing Cloth",
+      "price": 70,
+      "category": "11",
+      "rating": 4.9,
+      "image_url": "",
+      "image": "17.SG1.jpg"
+    }
+  },
+  {
+    "pk": 105,
+    "model": "products.product",
+    "fields": {
+      "sku": "17.SG2",
+      "name": "Sample Kit",
+      "description": "A selected set of 10 top Shiny Garage products in 50 ml packages. It contains agents that will refresh and protect paintwork, tires and internal plastic elements. Packed in an elegant cardboard bo",
+      "price": 39.9,
+      "category": "11",
+      "rating": 4.7,
+      "image_url": "",
+      "image": "17.SG2.jpg"
+    }
+  },
+  {
+    "pk": 106,
+    "model": "products.product",
+    "fields": {
+      "sku": "17.SG3",
+      "name": "Leather Kit Soft",
+      "description": "A complete set for the care of leather car upholstery by Shiny Garage. Leather Kit Soft contains a soft cleaning agent and a leather protection agent. The package also includes accessories such as a brush with soft bristles, an applicator and a microfiber.",
+      "price": 31,
+      "category": "11",
+      "rating": 4.6,
+      "image_url": "",
+      "image": "17.SG3.jpg"
+    }
+  }
 ]
