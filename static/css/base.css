@@ -173,10 +173,6 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
-.col{
-    margin-bottom: 20px;
-}
-
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -268,7 +264,9 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
-
+.col-12.col-sm-6 {
+    margin-bottom: 15px; /* Adjust the value as needed */
+}
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
