@@ -10,12 +10,19 @@
 {% endblock %}
 
 {% block content %}
+    <video autoplay muted loop class="video-background">
+        <source src="{{ MEDIA_URL }}Shiny_Garage.mp4"type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <!-- <h1 class="display-4 logo-font text-black">
-                    The new collections are here
-                </h1> -->
+            <div class="col-7 col-md-6 my-auto" style=" margin-top: 5% !important;">
+                <h1 class="display-4 logo-font text-black">
+                    <span class="front-text-home" 
+                    >  Hello Shiny 
+                    </span>
+                </h1>
                 <div class="my-5">
                     <h4>
                         <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-3 text-uppercase py-3">Shop Now</a>
