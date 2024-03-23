@@ -265,8 +265,9 @@ input[name='q']::placeholder {
 }
 
 .col-12.col-sm-6 {
-    margin-bottom: 15px; /* Adjust the value as needed */
+    margin-bottom: 15px !important;
 }
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
