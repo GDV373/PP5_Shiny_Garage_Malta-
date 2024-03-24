@@ -31,9 +31,9 @@
                     {{ form|crispy }}
                     <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
                 </form>
-                <form action="{% url 'account_delete' %}" method="POST">
+                <form id="deleteForm" action="{% url 'account_delete' %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger rounded-0 text-uppercase float-right">Delete Account</button>
+                    <button type="submit" class="btn btn-danger rounded-0 text-uppercase float-right" onclick="return confirmDelete()">Delete Account</button>
                 </form>
             </div>
             <div class="col-12 col-lg-6">
@@ -82,3 +82,9 @@
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}
+
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete your account? This is not reversable and all your data Will be lost!");
+    }
+</script>
