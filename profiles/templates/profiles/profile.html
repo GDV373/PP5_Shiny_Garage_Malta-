@@ -76,15 +76,14 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete your account? This is not reversable and all your data Will be lost!");
+        }
+    </script>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}
-
-<script>
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete your account? This is not reversable and all your data Will be lost!");
-    }
-</script>
