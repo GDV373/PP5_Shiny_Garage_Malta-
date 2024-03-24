@@ -119,6 +119,20 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
+/* ------------------------------- mailchimp */
+
+#mc_embed_signup{
+    background:#fff;
+    clear:left;
+    font:14px Helvetica,Arial,sans-serif; 
+    width: 600px;
+    float: left;
+    position: sticky;
+    margin-top: 50%;
+    background-color: white;
+    border-radius: 20px;
+}
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
