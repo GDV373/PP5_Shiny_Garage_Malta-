@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('delete/', views.account_delete, name='account_delete'),
     path('', views.profile, name='profile'),
     path('order_history/<order_number>',
          views.order_history,

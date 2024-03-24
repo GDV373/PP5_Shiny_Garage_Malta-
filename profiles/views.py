@@ -50,3 +50,16 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+    
+@login_required
+def account_delete(request):
+    """ Deletes the user's account and logs them out."""
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        logout(request)
+        messages.success(
+            request, 'Your account has been successfully deleted.')
+        return redirect(reverse('home'))
+    else:
+        return redirect(reverse('profile'))
