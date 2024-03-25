@@ -131,6 +131,7 @@ input[name='q']::placeholder {
     margin-top: 50%;
     background-color: white;
     border-radius: 20px;
+    max-width: 100%;
 }
 
 /* ------------------------------- bootstrap toasts */
