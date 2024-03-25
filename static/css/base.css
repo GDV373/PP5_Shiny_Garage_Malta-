@@ -16,6 +16,11 @@ html {
     z-index: -100;
 }
 
+.error-page{
+    margin-top: 20%;
+    position: relative;
+}
+
 .front-text-home{
     background-color: black;
     border-radius: 20px;
