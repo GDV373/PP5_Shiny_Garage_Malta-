@@ -308,6 +308,27 @@ input[name='q']::placeholder {
     margin-bottom: 15px !important;
 }
 
+@media (max-width: 991px) {
+    .travolta404 {
+        float: none; 
+        margin-top: 20px; 
+        text-align: center; 
+    }
+
+    .travolta404 img {
+        max-width: 100%; 
+        height: auto; 
+        float: none; 
+    }
+
+    /* Adjust the layout for the error page */
+    .error-page {
+        margin-top: 20%; 
+        position: relative;
+        text-align: center; 
+    }
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
