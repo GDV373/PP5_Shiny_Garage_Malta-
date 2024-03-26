@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -7,6 +9,7 @@ from checkout.webhook_handler import StripeWH_Handler
 
 import stripe
 
+logger = logging.getLogger(__name__)
 
 @require_POST
 @csrf_exempt
@@ -18,21 +21,21 @@ def webhook(request):
 
     # Get the webhook data and verify its signature
     payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE', None)
+    
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, wh_secret
         )
     except ValueError as e:
-        # Invalid payload
-        return HttpResponse(content=e, status=400)
+        logger.error("Error decoding webhook payload: %s", e)
+        return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(content=e, status=400)
+        logger.error("Error verifying webhook signature: %s", e)
+        return HttpResponse(status=400)
     except Exception as e:
-        return HttpResponse(content=e, status=400)
+        logger.exception("Error processing webhook")
+        return HttpResponse(status=500)
 
     # Set up a webhook handler
     handler = StripeWH_Handler(request)
@@ -51,5 +54,10 @@ def webhook(request):
     event_handler = event_map.get(event_type, handler.handle_event)
 
     # Call the event handler with the event
-    response = event_handler(event)
+    try:
+        response = event_handler(event)
+    except Exception as e:
+        logger.exception("Error handling webhook event")
+        return HttpResponse(status=500)
+
     return response
