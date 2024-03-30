@@ -60,52 +60,53 @@
                 </form>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <nav>
-                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                        <li class="list-inline-item dropdown">
-                            <a class="text-black nav-link" href="https://www.facebook.com/shinygaragemalta/" target="_blank" id="facebook" aria-haspopup="true" aria-expanded="false">
-                                <div class="text-center">
-                                    <div><img src="{{ MEDIA_URL }}facebook-logo-fine.png" alt="Facebook Logo" width="30" height="30"></div>
-                                    <p class="my-0">Our Facebook</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-inline-item dropdown">
-                            <a class="text-black nav-link" href="#" id="user-options-id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="text-center">
-                                    <div><i class="fas fa-user fa-lg"></i></div>
-                                    <p class="my-0">My Account</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                {% if request.user.is_authenticated %}
-                                    {% if request.user.is_superuser %}
-                                        <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
-                                    {% endif %}
-                                    <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                {% else %}
-                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                {% endif %}
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    <!-- Facebook link -->
+                    <li class="list-inline-item dropdown">
+                        <a class="text-black nav-link" href="https://www.facebook.com/shinygaragemalta/" target="_blank" id="facebook" aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
+                                <div><img src="{{ MEDIA_URL }}facebook-logo-fine.png" alt="Facebook Logo" width="30" height="30"></div>
+                                <p class="my-0">Our Facebook</p>
                             </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-                                <div class="text-center">
-                                    <div><i class="fas fa-shopping-cart fa-lg"></i></div>
-                                    <p class="my-0">
-                                        {% if grand_total %}
-                                            €{{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                            €0.00
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                        </a>
+                    </li>
+                    <!-- User options dropdown -->
+                    <li class="list-inline-item dropdown">
+                        <a class="text-black nav-link" href="#" id="user-options-id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
+                                <div><i class="fas fa-user fa-lg"></i></div>
+                                <p class="my-0">My Account</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                                {% endif %}
+                                <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            {% else %}
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <!-- Shopping cart link -->
+                    <li class="list-inline-item">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-cart fa-lg"></i></div>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        €{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        €0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row bg-white">
