@@ -1,221 +1,158 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Shiny Garage Malta</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Shiny Garage Malta     {% block extra_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Edu+QLD+Beginner&family=Pacifico&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://shinygaragemalta.s3.amazonaws.com/static/css/base.css">
+    {% block extra_meta %}
+    {% endblock %}
 
-<script src="https://kit.fontawesome.com/2ae3a7776a.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!-- Stripe JS-->
-<script src="https://js.stripe.com/v3/"></script>
+    {% block corecss %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Edu+QLD+Beginner&family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+        <script src="https://kit.fontawesome.com/2ae3a7776a.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Stripe JS-->
+        <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
 
 </head>
 <body>
-<header class="container-fluid fixed-top">
-    <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-            <!-- Logo section -->
-            <a href="/" class="nav-link main-logo-link">
-                <img src="https://shinygaragemalta.s3.amazonaws.com/media/logo1.jpg" alt="Shiny Garage Malta Logo" class="logo-img">
-            </a>
-        </div>
-        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-            <!-- Search bar section -->
-            <form method="GET" action="/products/">
-                <div class="input-group w-100">
-                    <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
-                    <div class="input-group-append">
-                        <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-            <nav>
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="https://www.facebook.com/shinygaragemalta/" target="_blank" id="facebook" aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><img src="https://shinygaragemalta.s3.amazonaws.com/media/facebook-logo-fine.png" alt="Facebook Logo" width="30" height="30"></div>
-                                <p class="my-0">Our Facebook</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options-id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">My Account</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options-id">
-                            <a href="/products/add/" class="dropdown-item">Product Management</a>
-                            <a href="/profile/" class="dropdown-item">My Profile</a>
-                            <a href="/accounts/logout/" class="dropdown-item">Logout</a>
+    <header class="container-fluid fixed-top">
+        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <!-- Logo section -->
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <img src="{{ MEDIA_URL }}logo1.jpg" alt="Shiny Garage Malta Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <!-- Search bar section -->
+                <form method="GET" action="{% url 'products' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
                         </div>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="text-black nav-link" href="/bag/">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-cart fa-lg"></i></div>
-                                <p class="my-0">€0.00</p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <nav>
+                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                        <li class="list-inline-item dropdown">
+                            <a class="text-black nav-link" href="https://www.facebook.com/shinygaragemalta/" target="_blank" id="facebook" aria-haspopup="true" aria-expanded="false">
+                                <div class="text-center">
+                                    <div><img src="{{ MEDIA_URL }}facebook-logo-fine.png" alt="Facebook Logo" width="30" height="30"></div>
+                                    <p class="my-0">Our Facebook</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-inline-item dropdown">
+                            <a class="text-black nav-link" href="#" id="user-options-id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="text-center">
+                                    <div><i class="fas fa-user fa-lg"></i></div>
+                                    <p class="my-0">My Account</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                                    {% endif %}
+                                    <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                {% else %}
+                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                {% endif %}
                             </div>
-                        </a>
-                    </li>
-                </ul>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                                <div class="text-center">
+                                    <div><i class="fas fa-shopping-cart fa-lg"></i></div>
+                                    <p class="my-0">
+                                        {% if grand_total %}
+                                            €{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                            €0.00
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% include 'includes/mobile-top-header.html' %}
+                {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-    </div>
-    <div class="row bg-white">
-        <nav class="navbar navbar-expand-lg navbar-light w-100">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-nav">
-                <ul class="navbar-nav w-auto mx-auto">
-                    <li class="nav-item d-block d-md-none">
-                        <a class="logo-font font-weight-bold nav-link text-black mr-5" href="/" id="home-link">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</a>
-                        <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                            <a href="/products/?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                            <a href="/products/?sort=rating&direction=desc" class="dropdown-item">By Rating</a>
-                            <a href="/products/?sort=category&direction=asc" class="dropdown-item">By Category</a>
-                            <a href="/products/" class="dropdown-item">All Products</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="Cleaning-Products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cleaning Products</a>
-                        <div class="dropdown-menu border-0" aria-labelledby="Cleaning-Products-link">
-                            <a href="/products/?category=pre_wash,wash,paint,wheels" class="dropdown-item">Exterior</a>
-                            <a href="/products/?category=interior" class="dropdown-item">Interior</a>
-                            <a href="/products/?category=decontamination" class="dropdown-item">Decontamination</a>
-                            <a href="/products/?category=pre_wash,wash,paint,wheels,interior,decontamination" class="dropdown-item">All Cleaning Products</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="acessories-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessories</a>
-                        <div class="dropdown-menu border-0" aria-labelledby="acessories-link">
-                            <a href="/products/?category=brush" class="dropdown-item">Brushes</a>
-                            <a href="/products/?category=cloths" class="dropdown-item">Microfibers</a>
-                            <a href="/products/?category=applicator" class="dropdown-item">Applicators</a>
-                            <a href="/products/?category=wash_buckets" class="dropdown-item">Wash Buckets</a>
-                            <a href="/products/?category=brush,cloths,applicator,wash_buckets" class="dropdown-item">All Accessories</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black" href="#" id="sets-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sets</a>
-                        <div class="dropdown-menu border-0" aria-labelledby="sets-link">
-                            <a href="/products/?category=kit_set" class="dropdown-item">All Kit Sets</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div id="delivery-banner" class="row text-center">
-        <div class="col bg-black text-white">
-            <h4 class="logo-font my-1">Free delivery on orders over €60!</h4>                
-        </div>            
-    </div>
-</header>
-</div> <!-- Closing div for header -->
-
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-
-<div class="overlay"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <hr>
-            <h2 class="logo-font mb-4">Product Management</h2>
-            <h5 class="text-muted">Add a Product</h5>
-            <hr>
+        <div id="delivery-banner" class="row text-center">
+            <div class="col bg-black text-white">
+                <h4 class="logo-font my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
+            </div>            
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <form method="POST" action="/products/add/" class="form mb-2" enctype="multipart/form-data">
-                <input type="hidden" name="csrfmiddlewaretoken" value="QzjhR7BAFCrMsQEiqEJ45A9rN0ROfd9CtZN1j1b9pcDHvPFwYI6hAL1d64sFNJCW">
-                <div id="div_id_category" class="form-group">
-                    <label for="id_category">Category</label>
-                    <select name="category" class="border-black rounded-0 select form-control" id="id_category">
-                        <option value="1">Pre wash</option>
-                        <option value="2">Decontamination</option>
-                        <option value="3">Wash</option>
-                        <option value="4">Paint</option>
-                        <option value="5">Wheels</option>
-                        <option value="6">Interior</option>
-                        <option value="7">Brush</option>
-                        <option value="8">Cloths</option>
-                        <option value="9">Applicator</option>
-                        <option value="10">Wash Buckets</option>
-                        <option value="11">Kit Set</option>
-                    </select>
-                </div>
-                <div id="div_id_sku" class="form-group">
-                    <label for="id_sku">Sku</label>
-                    <input type="text" name="sku" maxlength="254" class="border-black rounded-0 textinput form-control" id="id_sku">
-                </div>
-                <div id="div_id_name" class="form-group">
-                    <label for="id_name" class="requiredField">Name<span class="asteriskField">*</span></label>
-                    <input type="text" name="name" maxlength="254" class="border-black rounded-0 textinput form-control" required id="id_name">
-                </div>
-                <div id="div_id_description" class="form-group">
-                    <label for="id_description" class="requiredField">Description<span class="asteriskField">*</span></label>
-                    <textarea name="description" cols="40" rows="10" class="border-black rounded-0 textarea form-control" required id="id_description"></textarea>
-                </div>
-                <div id="div_id_price" class="form-group">
-                    <label for="id_price" class="requiredField">Price<span class="asteriskField">*</span></label>
-                    <input type="number" name="price" step="0.01" class="border-black rounded-0 numberinput form-control" required id="id_price">
-                </div>
-                <div id="div_id_rating" class="form-group">
-                    <label for="id_rating">Rating</label>
-                    <input type="number" name="rating" step="0.01" class="border-black rounded-0 numberinput form-control" id="id_rating">
-                </div>
-                <div id="div_id_image_url" class="form-group">
-                    <label for="id_image_url">Image url</label>
-                    <input type="url" name="image_url" maxlength="1024" class="border-black rounded-0 urlinput form-control" id="id_image_url">
-                </div>
-                <span class="btn btn-black rounded-0 btn-file">Select Image <input id="new-image" type="file" name="image" accept="image/*" class="border-black rounded-0"></span>
-                <strong><p class="text-danger" id="filename"></p></strong>
-                <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="/products/">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Add Product</button>
-                </div>
-            </form>
+    </header>
+
+    {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/toast_info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
         </div>
-    </div>
-</div>
+    {% endif %}
 
-<script type="text/javascript">
-    $('.toast').toast('show');
-</script>
+    {% block page_header %}
+    {% endblock %}
 
-<script type="text/javascript">
-    $('#new-image').change(function() {
-        var filename = $(this).val().split('\\').pop();
-        $('#filename').text(filename);
-    });
-</script>
+    {% block content %}
+    {% endblock %}
+
+    {% block postloadjs %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
+    {% endblock %}
 
 </body>
 </html>
