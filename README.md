@@ -315,7 +315,7 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 <details>
 <summary> <strong>add-product.html</strong></summary>
 
-![add_product.html]()
+![add_product.html](/readme_validations/add_product-validation.png)
 
 </details>
 
