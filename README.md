@@ -322,58 +322,7 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 <details>
 <summary> <strong>bag.html</strong></summary>
 
-![bag.html]()
-
-</details>
-
-
-
-<details>
-<summary> <strong>checkout_success.html</strong></summary>
-
-![checkout_success.html]()
-
-</details>
-
-<details>
-<summary> <strong>checkout.html</strong></summary>
-
-![checkout.html]()
-
-</details>
-
-<details>
-<summary> <strong>edit_product.html</strong></summary>
-
-![edit_product.html]()
-
-</details>
-
-<details>
-<summary> <strong>post_detail.html</strong></summary>
-
-![post-detail.html]()
-
-</details>
-
-<details>
-<summary> <strong>products.html</strong></summary>
-
-![products.html]()
-
-</details>
-
-<details>
-<summary> <strong>product-detail.html</strong></summary>
-
-![product-detail.html]()
-
-</details>
-
-<details>
-<summary> <strong>profile.html</strong></summary>
-
-![profile.html]()
+![bag.html](/readme_validations/bag-html-validation.pdf)
 
 </details>
 
@@ -384,7 +333,7 @@ CSS file validation results generated with W3C Validation Service
 <details>
 <summary> <strong>base.css</strong></summary>
 
-![base-css ]()
+![base-css ](/readme_validations/base-css-valisation.pdf)
 
 </details>
 
@@ -409,12 +358,10 @@ See more on [Stripe site](https://stripe.com/docs/testing#testing-interactively)
 ![Stripe Test Card](/documentation/stripe-test-cardjpg.jpg)
 
 
-### Automatic test: Forms
+### Automatic test: form filling and purchace sucseffully 
 
-
-### Automatic test: Views
-
-
+Automation testing from selenium and run using pytest
+![Automation Testing ](/automation_testing/test_autopurchasetest.py)
 
 Back to [top](#table-of-contents)
 
