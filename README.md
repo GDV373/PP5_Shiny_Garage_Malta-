@@ -107,10 +107,10 @@ I've used [Paint]() to design my site wireframes.
 
 | Page | Wireframe |
 | --- | --- |
-| Home | ![screenshot](/images/wierframe_home.jpg) |
-| Cart | ![screenshot](/images/wierframe_cart.jpg) |
-| Products | ![screenshot](/images/wierframe_products.jpg) |
-| profile detail | ![screenshot](/images/wierframe_profile.jpg) |
+| Home | ![screenshot](/readme_images/wierframe_home.jpg) |
+| Cart | ![screenshot](/readme_images/wierframe_cart.jpg) |
+| Products | ![screenshot](/readme_images/wierframe_products.jpg) |
+| profile detail | ![screenshot](/readme_images/wierframe_profile.jpg) |
 
 Back to [top](#table-of-contents)
 
@@ -309,7 +309,7 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 <details>
 <summary><strong>base.html</strong> </summary>
 
-![base.html]()
+[base.html](/readme_validations/home-page-html-validation.pdf)
 </details>
 
 <details>
@@ -384,14 +384,7 @@ CSS file validation results generated with W3C Validation Service
 <details>
 <summary> <strong>base.css</strong></summary>
 
-![base-css]()
-
-</details>
-
-<details>
-<summary> <strong>checkout.css</strong></summary>
-
-![checkout-css]()
+![base-css ]()
 
 </details>
 
