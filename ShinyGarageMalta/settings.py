@@ -14,9 +14,10 @@ from pathlib import Path
 from django_countries.widgets import LazyChoicesMixin
 import os
 
-# Needed to fix bug in django 
+# Needed to fix bug in django
 LazyChoicesMixin.get_choices = lambda self: self._choices
-LazyChoicesMixin.choices = property(LazyChoicesMixin.get_choices, LazyChoicesMixin.set_choices)
+LazyChoicesMixin.choices = property(LazyChoicesMixin.get_choices,
+                                    LazyChoicesMixin.set_choices)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,8 +36,11 @@ ALLOWED_HOSTS = [
     '*',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu108.gitpod.io', 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu110.gitpod.io']
-
+CSRF_TRUSTED_ORIGINS = [
+ 'http://*',
+ 'https://*',
+ 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu108.gitpod.io',
+ 'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu110.gitpod.io']
 
 # Application definition
 
@@ -58,7 +62,7 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
 
-    #extra apps
+    # extra apps
     'crispy_forms',
     'crispy_bootstrap4',
     'storages',
@@ -93,7 +97,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
@@ -140,15 +144,15 @@ WSGI_APPLICATION = 'ShinyGarageMalta.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_NAME'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_NAME'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
     }
-}
 else:
     DATABASES = {
         'default': {
@@ -200,7 +204,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join (BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
     # Cache control
@@ -225,7 +229,6 @@ if 'USE_AWS' in os.environ:
     # Override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-
 
 
 # Default primary key field type

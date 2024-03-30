@@ -600,7 +600,7 @@ Back to [top](#table-of-contents)
 - [Lucidchart](https://www.lucidchart.com/) used to design the database diagram.
 
 ### Code Validation
-- [JSHint](https://jshint.com/): used for Javascript code validation.
+- [Esprima](https://esprima.org/demo/validate.html): used for Javascript code validation.
 - [PEP8](https://peps.python.org/pep-0008/): used for Python code validation.
 - [Lighthouse](https://developer.chrome.com/docs/devtools/) Testing site performance on desktop and mobile devices.
 - [W3C HTML](https://validator.w3.org/): used for HTML code validation.
