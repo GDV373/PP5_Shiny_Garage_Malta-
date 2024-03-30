@@ -131,6 +131,10 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
+.mt-3, .my-3{
+    margin-top: 8% !important;
+}
+
 /* ------------------------------- mailchimp */
 
 #mc_embed_signup{
