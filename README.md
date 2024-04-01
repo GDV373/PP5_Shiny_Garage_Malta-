@@ -116,6 +116,8 @@ Back to [top](#table-of-contents)
 
 ## Agile Development Process
 
+Kanban board can also be found here >  [Kanban url](https://github.com/users/GDV373/projects/2/views/1). 
+
 ### Strategy
 
  This project uses Agile Methodology. 
