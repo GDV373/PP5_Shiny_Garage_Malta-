@@ -320,6 +320,14 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 </details>
 
 <details>
+<summary> <strong>product.html</strong></summary>
+
+![product.html](/readme_validations/products_html_validation.jpg)
+
+</details>
+
+<details>
+
 <summary> <strong>bag.html</strong></summary>
 
 ![bag.html](/readme_validations/bag-html-validation.pdf)
@@ -334,6 +342,16 @@ CSS file validation results generated with W3C Validation Service
 <summary> <strong>base.css</strong></summary>
 
 ![base-css ](/readme_validations/base-css-valisation.pdf)
+
+</details>
+
+### Lighthouse performance Validation
+Lighthouse validation generated with chrome lighthouse performance
+
+<details>
+<summary> <strong>Lighthouse</strong></summary>
+
+![Lighthouse ](/readme_validations/shinygaragemalta_Lighthouse.pdf)
 
 </details>
 
