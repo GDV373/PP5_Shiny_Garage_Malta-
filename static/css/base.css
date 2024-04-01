@@ -131,7 +131,7 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
-.mt-3, .my-3{
+.mt-3, .my-3, .logo-font-mb-4{
     margin-top: 8% !important;
 }
 
