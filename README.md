@@ -1,7 +1,7 @@
 # ShinyGarageMalta
 
 
-Developer: <a href='https://github.com/GDV373' target='_blank'>George Attard</a>
+Developer: <a href='https://github.com/GDV373' target='_blank' >George Attard</a>
 
 Visit the [live site](https://shinygaragemalta-594b33247f63.herokuapp.com/)
 
@@ -370,7 +370,7 @@ When testing interactively, use a card number, such as 4242 4242 4242 4242. Ente
 - Use any three-digit CVC (four digits for American Express cards).
 - Use any value you like for other form fields.
 See more on [Stripe site](https://stripe.com/docs/testing#testing-interactively)
-![Stripe Test Card](/documentation/stripe-test-cardjpg.jpg)
+![Stripe Test Card](/readme_validations/Stripe_test.jpg)
 
 
 ### Automatic test: form filling and purchace sucseffully 
