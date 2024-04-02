@@ -21,7 +21,7 @@ def contact_us(request):
                     if not EmailAddress.objects.filter(user=user, verified=True).exists():
                         send_email_confirmation(request, user)
                         
-            messages.success(request, 'Your message has been sent!')
+            messages.success(request, 'Your message has been sent! test')
             return HttpResponseRedirect(reverse('contact_us') + '?submitted=True')
         else:
             messages.warning(request, 'Message not sent. Please try again.')
