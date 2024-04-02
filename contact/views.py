@@ -11,14 +11,13 @@ def contact_us(request):
         if form.is_valid():
             form.save()
 
-            # Send email to your email address
             subject = 'New message from your website'
             message = f'Name: {form.cleaned_data["name"]}\nEmail: {form.cleaned_data["email"]}\nSubject: {form.cleaned_data["subject"]}\nMessage: {form.cleaned_data["message"]}'
             sender_email = form.cleaned_data['email']
             recipient_list = [settings.EMAIL_HOST_USER] 
             send_mail(subject, message, sender_email, recipient_list)
 
-            messages.success(request, f'Your message has been sent! We will reply ASAP!')
+            messages.success(request, f'Your message has been sent!')
             return HttpResponseRedirect('/contact?submitted=True')
         else:
             messages.warning(request, 'Message not sent. Please try again.')
