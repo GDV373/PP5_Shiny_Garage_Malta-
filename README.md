@@ -324,6 +324,13 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 </details>
 
 <details>
+<summary> <strong>contuctus.html</strong></summary>
+
+![contuctus.html](/readme_validations/products_html_validation.jpg)
+
+</details>
+
+<details>
 
 <summary> <strong>bag.html</strong></summary>
 
