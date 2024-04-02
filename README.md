@@ -370,8 +370,13 @@ When testing interactively, use a card number, such as 4242 4242 4242 4242. Ente
 - Use any three-digit CVC (four digits for American Express cards).
 - Use any value you like for other form fields.
 See more on [Stripe site](https://stripe.com/docs/testing#testing-interactively)
-![Stripe Test Card](/readme_validations/Stripe_test.jpg)
 
+<details>
+<summary> <strong>Stripe test</strong></summary>
+
+![Stripe Test](/readme_validations/Stripe_test.jpg)
+
+</details>
 
 ### Automatic test: form filling and purchace sucseffully 
 
