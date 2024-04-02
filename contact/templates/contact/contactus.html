@@ -26,40 +26,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    var contactSubmitUrl = "{% url 'contact_submit_url' %}";
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('submit-btn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            
-            // Serialize form data
-            var formData = new FormData(document.getElementById('contact-form'));
-            
-            // Send form data using AJAX
-            fetch(contactSubmitUrl, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Handle successful form submission here
-                    console.log('Form submitted successfully');
-                    // You can redirect or show a success message here
-                } else {
-                    // Handle form submission errors here
-                    console.error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    });
-</script>
-
 {% endblock %}
