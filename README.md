@@ -39,7 +39,7 @@ This is my final project for the Full-Stack Software Development Course at Code 
     - [Manual Testing](#manual-testing)
         - [How to use Stripe test card](#how-to-use-stripe-test-card)
     - [Automatic Testing](#automatic-testing)
-- [Configuration and Deployment](#configuration)
+- [Configuration and Deployment](#Configuration-and-Deployment)
     - [ElephantSQL Database](#elephantsql-database)
     - [coludaniary AWS](#amazon-aws)
     - [Stripe API](#stripe-api)
