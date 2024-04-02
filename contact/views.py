@@ -18,7 +18,7 @@ def contact_us(request):
             recipient_list = [settings.EMAIL_HOST_USER] 
             send_mail(subject, message, sender_email, recipient_list)
 
-            messages.success(request, 'Your message has been sent! We will reply ASAP!')
+            messages.success(request, f'Your message has been sent! We will reply ASAP!')
             return HttpResponseRedirect('/contact?submitted=True')
         else:
             messages.warning(request, 'Message not sent. Please try again.')
