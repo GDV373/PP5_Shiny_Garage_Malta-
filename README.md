@@ -1,7 +1,7 @@
 # ShinyGarageMalta
 
+Developer: [George Attard](https://github.com/GDV373){:target="_blank"}
 
-Developer: <a href='https://github.com/GDV373' target='_blank' >George Attard</a>
 
 Visit the [live site](https://shinygaragemalta-594b33247f63.herokuapp.com/)
 
