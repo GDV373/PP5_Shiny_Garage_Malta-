@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .forms import ContactUsForm
 from django.core.mail import send_mail
+from django.conf import settings
 
 def contact_us(request):
     if request.method == 'POST':
