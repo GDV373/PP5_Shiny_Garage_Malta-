@@ -17,10 +17,9 @@ def contact_us(request):
             recipient_list = [settings.EMAIL_HOST_USER] 
             send_mail(subject, message, sender_email, recipient_list)
 
-            messages.success(request, f'Your message has been sent!')
+            # No messages.success() call here
+
             return HttpResponseRedirect(reverse('contact_us') + '?submitted=True')
-        else:
-            messages.warning(request, 'Message not sent. Please try again.')
     
     else:
         form = ContactUsForm()

@@ -16,12 +16,10 @@
         <div class="col-12 col-md-6 mt-3">
             <h2 class="logo-font text-center mb-4">Contact Us</h2>
             <hr>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+            {% if request.GET.submitted %}
+                <div class="alert alert-success">
+                    Your message has been sent!
+                </div>
             {% endif %}
             <form method="POST" action="{% url 'contact_us' %}" id="contact-form">
                 {% csrf_token %}
