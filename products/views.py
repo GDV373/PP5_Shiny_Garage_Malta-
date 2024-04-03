@@ -142,3 +142,20 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+@login_required
+def add_to_wishlist(request, product_id):
+    if request.method == 'POST':
+        
+        try:
+            product = Product.objects.get(pk=product_id)
+            
+            WishItem.objects.create(user=request.user, product=product)
+            messages.success(request, 'Product added to wishlist successfully.')
+            return redirect('wish_list') 
+        except Product.DoesNotExist:
+            messages.error(request, 'Product does not exist.')
+            return redirect('product_detail', product_id=product_id) 
+    else:
+        return redirect('product_detail', product_id=product_id) 

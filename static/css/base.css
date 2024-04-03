@@ -35,9 +35,10 @@ html {
     padding: 0 20px;
 }
 
-/* .row {
-    margin-top: 3%; 
-} */
+#Whish-list-menu {
+    margin-top: 5%;
+    text-align: center;
+}
 
 /* from Bulma */
 .icon {
@@ -221,6 +222,9 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+.w-100 {
+    margin-right: 3%;
+}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -351,6 +355,12 @@ input[name='q']::placeholder {
     .header-container {
         padding-top: 164px;
     }
+
+    .text-lg-right{  
+        width: max-content;
+        float: right;
+    }
+
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
