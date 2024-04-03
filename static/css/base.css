@@ -35,6 +35,10 @@ html {
     padding: 0 20px;
 }
 
+.row {
+    margin-top: 3%; 
+}
+
 /* from Bulma */
 .icon {
     align-items: center;

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container">
+    <div class="row justify-content-center">        
+        <div class="col-12 col-md-6 mt-3">
+            <h2>Add Products to Wish List</h2>
+            <form method="POST" action="{% url 'add_to_wishlist' %}">
+                {% csrf_token %}
+                <select name="product_id">
+                    {% for product in all_products %}
+                        <option value="{{ product.id }}">{{ product.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Add to Wish List</button>
+            </form>
+            
+            <h2>My Wish List Items</h2>
+            <ul>
+                {% for item in wish_items %}
+                    <li>{{ item.product.name }} - {{ item.product.description }} - Price: ${{ item.product.price }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
