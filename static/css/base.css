@@ -225,6 +225,10 @@ input[name='q']::placeholder {
 .w-100 {
     margin-right: 3%;
 }
+
+.solo-product{
+    margin-right: 3%;
+}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
