@@ -429,4 +429,8 @@ input[name='q']::placeholder {
         border-radius: 20px;
         max-width: 100%;
     }
+    
+    .w-100 {
+        margin-right: 6%;
+    }
 }
