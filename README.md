@@ -378,6 +378,8 @@ Lighthouse validation generated with chrome lighthouse performance
 | Delete a Product | On the products page, click the “Delete”. | The product must be deleted. | PASS |
 | CRUD func on account | Create, change details, save, delete account confirm that account is not accassable  | All CRUD fuconalitys must work | PASS |
 | Wishlist products | Add to wish list, remove and be able to add them to cart to purchase | Wishlist must hold any item added. These can be removed as well as send to cart. Only avalable to sign in users | PASS |
+| Mail Chimp | Mailchip test to receve emails of clinet list | The email of the client will be avalable in mail chimp  | PASS |
+| Message up | Go on the message us tab, fill in the details, test form for erros and send sucsessfully  | In the gmail I receved the message from the user | PASS |
 
 #### How to use Stripe test card
 When testing interactively, use a card number, such as 4242 4242 4242 4242. Enter the card number in the Dashboard or in any payment form.
