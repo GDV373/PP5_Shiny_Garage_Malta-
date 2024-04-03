@@ -204,7 +204,7 @@ For this project, GitHub Projects was utilized as an Agile tool. While it's not 
 | 15            | Shopper        | Easily see what I've searched for and the number of results | Quickly decide whether the product I want is available |
 |               |                | ***Purchasing & Checkout***                          |                                                          |
 | 16            | Shopper        | Easily select the quantity of a product when purchasing it | Ensure I don't accidentally select the wrong product or quantity |
-| 17            | Shopper        | View items in my shopping bag to be purchased        | Identify the total cost of my purchase and all items I will receive |
+| 17            | Shopper        | View items in my shopping bag or whishlist to be purchased        | Identify the total cost of my purchase and all items I will receive |
 | 18            | Shopper        | Adjust the quantity of individual items in my bag    | Easily make changes to my purchase before checkout     |
 | 19            | Shopper        | Easily enter my payment information                   | Checkout easily with no hassles                        |
 | 20            | Shopper        | Feel my personal and payment information is secure   | Confidently provide the needed information to make a purchase |
@@ -338,6 +338,13 @@ The W3C Markup Validation Service was used to validate the HTML of the website. 
 
 </details>
 
+<details>
+
+<summary> <strong>whishlist.html</strong></summary>
+
+![whishlist.htmll](/readme_validations/wishlist-validation.pdf)
+
+</details>
 
 ### CSS Code Validation
 CSS file validation results generated with W3C Validation Service
@@ -369,6 +376,8 @@ Lighthouse validation generated with chrome lighthouse performance
 | Add a product | On the navbar, click the “Product Management” option, fill out the form and hit the “Submit” button. | A success message must be displayed and the product must be listed on the “All Products” page. | PASS |
 | Edit a product | On the products page, click the “Edit” button, change some info on the form and hit the “Submit” button. | A success message must be displayed and the product info must be updated. | PASS |
 | Delete a Product | On the products page, click the “Delete”. | The product must be deleted. | PASS |
+| CRUD func on account | Create, change details, save, delete account confirm that account is not accassable  | All CRUD fuconalitys must work | PASS |
+| Wishlist products | Add to wish list, remove and be able to add them to cart to purchase | Wishlist must hold any item added. These can be removed as well as send to cart. Only avalable to sign in users | PASS |
 
 #### How to use Stripe test card
 When testing interactively, use a card number, such as 4242 4242 4242 4242. Enter the card number in the Dashboard or in any payment form.
@@ -388,7 +397,15 @@ See more on [Stripe site](https://stripe.com/docs/testing#testing-interactively)
 ### Automatic test: form filling and purchace sucseffully 
 
 Automation testing from selenium and run using pytest
-![Automation Testing ](/automation_testing/test_autopurchasetest.py)
+
+
+## Automation Testing
+
+### Test can be found in the folder automation_testing
+
+Test for payemnts - test_autopurchasetest.py
+
+Test for wishlist - def test_wishlist
 
 Back to [top](#table-of-contents)
 
