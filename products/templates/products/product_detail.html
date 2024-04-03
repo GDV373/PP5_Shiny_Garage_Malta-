@@ -107,34 +107,6 @@
          </div>
       </div>
    </div>
-   <script>
-    document.getElementById('wishlist-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        // Make an AJAX request to submit the form data
-        var formData = new FormData(this);
-
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                document.getElementById('wishlist-success').style.display = 'block';
-                document.getElementById('wishlist-error').style.display = 'none';
-            } else {
-                document.getElementById('wishlist-error').style.display = 'block';
-                document.getElementById('wishlist-success').style.display = 'none';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script>
 </div>
 {% endblock %}
 
