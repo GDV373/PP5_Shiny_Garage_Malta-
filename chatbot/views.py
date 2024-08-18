@@ -1,28 +1,33 @@
-from django.shortcuts import render
 from django.http import JsonResponse
-import openai
-import time
+from products.models import Product
 
-# Set your OpenAI API key and assistant ID
-openai.api_key = 'OPENAI_API_KEY'
-assistant_id = 'OPEN_API_USER'
+def chatbot(request):
+    product_name = request.GET.get('product_name', '').lower()
 
-def chatbot_view(request):
-    return render(request, 'chatbot/chatbot.html')
+    # Define keyword categories
+    keywords = {
+        'wheels': ['wheel cleaner', 'tire cleaner'],
+        'foam': ['foam', 'foam cleaner', 'good foams'],
+    }
+    
+    matched_products = []
+    for keyword, related_terms in keywords.items():
+        for term in related_terms:
+            if term in product_name:
+                products = Product.objects.filter(name__icontains=keyword)
+                matched_products.extend(products)
+                break 
+    if not matched_products:
+        matched_products = Product.objects.filter(name__icontains=product_name)
+    
+    if not matched_products:
+        return JsonResponse({'message': 'No products found related to your query.'})
+    
+    product_list = [{
+        'name': product.name or 'N/A',
+        'description': product.description or 'No description available',
+        'price': str(product.price) if product.price is not None else 'N/A'
+    } for product in matched_products]
+    
+    return JsonResponse({'products': product_list})
 
-def get_response(request):
-    user_input = request.GET.get('user_input', '')
-    response = get_assistant_response(user_input)
-    return JsonResponse({'response': response})
-
-def get_assistant_response(user_input):
-    # Replace this with your OpenAI interaction logic
-    try:
-        completion = openai.Completion.create(
-            engine="davinci-codex",
-            prompt=user_input,
-            max_tokens=150
-        )
-        return completion.choices[0].text.strip()
-    except Exception as e:
-        return str(e)

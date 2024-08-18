@@ -236,7 +236,6 @@ if 'USE_AWS' in os.environ:
 
     # OPEN API
     OPENAI_API_KEY = os.getenv('OPEN_API_KEY')
-    OPENAI_API_USER = os.getenv('OPEN_API_USER')
 
 
 # Default primary key field type
