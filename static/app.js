@@ -17,6 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
         clearChat();
     });
 
+    // Define your products for fuzzy search
+    const products = [
+        { name: 'wheel cleaner', category: 'wheel cleaner' },
+        { name: 'cleaning kit', category: 'cleaning kit' },
+        { name: 'tire shine', category: 'tire shine' },
+        { name: 'car wax', category: 'car wax' },
+        { name: 'car shampoo', category: 'car shampoo' },
+        // Add more products as needed
+    ];
+
+    // Initialize Fuse.js for fuzzy search
+    const fuse = new Fuse(products, {
+        keys: ['name'],
+        threshold: 0.3, // Adjust the threshold for fuzziness
+    });
+
     function sendMessage() {
         const messageText = inputField.value.trim().toLowerCase();
 
@@ -26,39 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const smallTalk = ['how are you', 'how\'s it going', 'what\'s up', 'what\'s new'];
 
         const productRequestPattern = /(?:i (?:want|need|am looking for|would like|could use) (?:to )?(?:buy|purchase|get|find))\s+(.+?)(?: for my car|)/;
-        
-        // Define a mapping of common product requests to actual product categories
-        const productMapping = {
-            'wheel cleaner': 'wheel cleaner',
-            'cleaning kit': 'cleaning kit',
-            'tire shine': 'tire shine',
-            'wax': 'car wax',
-            'car shampoo': 'car shampoo',
-            // Add more mappings as needed
-        };
 
         let product = null;
 
-        // Simple NLP-like processing to understand product requests
-        if (greetings.some(greet => messageText.startsWith(greet))) {
-            const remainingText = messageText.split(',').slice(1).join(',').trim(); 
-            const matches = remainingText.match(productRequestPattern);
-            if (matches) {
-                product = matches[1];
-            }
-        } else {
-            const matches = messageText.match(productRequestPattern);
-            if (matches) {
-                product = matches[1];
-            } else {
-                // Check if any of the mapped products are mentioned directly
-                for (let key in productMapping) {
-                    if (messageText.includes(key)) {
-                        product = productMapping[key];
-                        break;
-                    }
-                }
-            }
+        // Fuzzy search for product matches
+        const matches = fuse.search(messageText);
+        if (matches.length > 0) {
+            product = matches[0].item.name;
         }
 
         if (greetings.includes(messageText)) {
