@@ -2,13 +2,72 @@ require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
+const cors = require('cors'); // To handle CORS
 
 const app = express();
 const apiKey = process.env.OPEN_API_KEY;  // Access your config variable
 
+// Use CORS middleware
+app.use(cors());
+
 // Serve the frontend files
 app.use(express.static('public'));
 app.use(express.json());
+
+// Serve client-side JavaScript
+app.get('/chat.js', (req, res) => {
+    res.send(`
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnChatClick = document.getElementById('btnchatclick');
+            const livechatRoom = document.querySelector('.livechat-room');
+            const closeBtn = document.querySelector('.js-close-livechat');
+            const sendButton = document.querySelector('.send-button');
+            const messageInput = document.querySelector('.message-input');
+            const livechatBody = document.querySelector('.livechat-body');
+
+            // Show/Hide the chat
+            btnChatClick.addEventListener('click', () => {
+                livechatRoom.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                livechatRoom.style.display = 'none';
+            });
+
+            // Send message
+            sendButton.addEventListener('click', () => {
+                const message = messageInput.value;
+                if (message.trim()) {
+                    addMessageToChat('You', message);
+                    messageInput.value = '';
+
+                    // Send message to server
+                    fetch('/call-gpt', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        addMessageToChat('AI', data.reply);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            });
+
+            function addMessageToChat(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            livechatBody.appendChild(messageElement);
+            }
+        });
+    `);
+});
 
 // Endpoint to interact with ChatGPT
 app.post('/call-gpt', (req, res) => {

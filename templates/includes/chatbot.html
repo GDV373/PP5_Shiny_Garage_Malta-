@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Us</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
@@ -16,7 +18,7 @@
         </a>
     </div>
 
-    <div class="livechat-room">
+    <div class="livechat-room" style="display: none;">
         <div class="livechat-header" style="background-color:#003e7d;">
             <h1>Customer Support</h1>
             <div class="close js-close-livechat">
@@ -39,7 +41,8 @@
         </div>
     </div>
 
-    <script src="{% static 'app.js' %}"></script>
+    <!-- Include the JavaScript file -->
+    <script src="{% static 'chat.js' %}"></script>
 </body>
 </html>
 {% endblock %}
