@@ -1,34 +1,30 @@
+from django.conf import settings
+import openai
 from django.http import JsonResponse
-from products.models import Product
+from django.views.decorators.csrf import csrf_exempt
+import json
 
-def chatbot(request):
-    product_name = request.GET.get('product_name', '').lower()
+# Set up your OpenAI API key from settings
+openai.api_key = settings.OPENAI_API_KEY
 
-    # Define keyword categories
-    keywords = {
-        'wheels': ['wheel','wheel cleaner', 'tire cleaner', 'wheel clean', 'wheels clean'],
-        'wheel': ['wheel','wheel cleaner', 'tire cleaner', 'wheel clean', 'wheels clean'],
-        'foam': ['foam', 'foam cleaner', 'good foams', 'foams'],
-    }
-    
-    matched_products = []
-    for keyword, related_terms in keywords.items():
-        for term in related_terms:
-            if term in product_name:
-                products = Product.objects.filter(name__icontains=keyword)
-                matched_products.extend(products)
-                break 
-    if not matched_products:
-        matched_products = Product.objects.filter(name__icontains=product_name)
-    
-    if not matched_products:
-        return JsonResponse({'message': 'No products found related to your query.'})
-    
-    product_list = [{
-        'name': product.name or 'N/A',
-        'description': product.description or 'No description available',
-        'price': str(product.price) if product.price is not None else 'N/A'
-    } for product in matched_products]
-    
-    return JsonResponse({'products': product_list})
+@csrf_exempt
+def chat_view(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_message = data.get('message')
 
+        if not user_message:
+            return JsonResponse({'error': 'No message provided'}, status=400)
+
+        # Interact with OpenAI API
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=user_message,
+            max_tokens=150
+        )
+
+        bot_message = response.choices[0].text.strip()
+
+        return JsonResponse({'response': bot_message})
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
