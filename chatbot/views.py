@@ -6,8 +6,9 @@ def chatbot(request):
 
     # Define keyword categories
     keywords = {
-        'wheels': ['wheel cleaner', 'tire cleaner'],
-        'foam': ['foam', 'foam cleaner', 'good foams'],
+        'wheels': ['wheel','wheel cleaner', 'tire cleaner', 'wheel clean', 'wheels clean'],
+        'wheel': ['wheel','wheel cleaner', 'tire cleaner', 'wheel clean', 'wheels clean'],
+        'foam': ['foam', 'foam cleaner', 'good foams', 'foams'],
     }
     
     matched_products = []
