@@ -1,87 +1,61 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const chatBody = document.querySelector('.livechat-body');
-    const chatButton = document.getElementById('btnchatclick');
-    const chatPopup = document.querySelector('.livechat-room');
-    const closeButton = document.querySelector('.livechat-header .close');
-    const inputField = document.querySelector('.message-input');
-    const sendButton = document.querySelector('.send-button');
+require('dotenv').config(); // Load environment variables from .env file
+const express = require('express');
+const path = require('path');
+const fetch = require('node-fetch');
 
-    let conversationHistory = [];
-    let products = [];
-    let fuse;
+const app = express();
+const apiKey = process.env.OPEN_API_KEY;  // Access your config variable
 
-    function loadProducts() {
-        fetch('/products/fixtures/products.json')
-            .then(response => response.json())
-            .then(data => {
-                products = data;
-                console.log('Products loaded:', products.length);
-                initializeFuse();
-            })
-            .catch(error => console.error('Error loading products:', error));
+// Serve the frontend files
+app.use(express.static('public'));
+app.use(express.json());
+
+// Endpoint to interact with ChatGPT
+app.post('/call-gpt', (req, res) => {
+    const userMessage = req.body.message;
+
+    fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`  // Use the OPEN_API_KEY config variable
+        },
+        body: JSON.stringify({
+            prompt: `User: ${userMessage}\nAI:`,
+            max_tokens: 150,
+            temperature: 0.7
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        res.json({ reply: data.choices[0].text.trim() });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        res.status(500).send('Something went wrong');
+    });
+});
+
+// Endpoint to fetch product data
+app.get('/products', (req, res) => {
+    const productName = req.query.product_name.toLowerCase();
+
+    const productsFilePath = path.join(__dirname, '/workspace/PP5_Shiny_Garage_Malta-/products/fixtures/products.json');
+    const productsData = require(productsFilePath);
+
+    const filteredProducts = productsData.products.filter(product => 
+        product.name.toLowerCase().includes(productName)
+    );
+
+    if (filteredProducts.length > 0) {
+        res.json({ products: filteredProducts });
+    } else {
+        res.json({ products: [] });
     }
+});
 
-    function initializeFuse() {
-        const options = {
-            keys: ['fields.name', 'fields.description', 'fields.category'],
-            threshold: 0.3,
-            includeScore: true
-        };
-        fuse = new Fuse(products, options);
-    }
-
-    function initializeChat() {
-        loadProducts();
-        appendMessage('received', 'Hello! I\'m your AI assistant. How can I help you with our car care products today?');
-    }
-
-    function handleUserInput(userInput) {
-        appendMessage('sent', userInput);
-        conversationHistory.push({ role: 'user', content: userInput });
-
-        showTypingIndicator();
-        setTimeout(() => {
-            const aiResponse = generateAIResponse(userInput);
-            appendMessage('received', aiResponse);
-            conversationHistory.push({ role: 'assistant', content: aiResponse });
-            hideTypingIndicator();
-        }, 1000 + Math.random() * 1000);
-    }
-
-    function generateAIResponse(userInput) {
-        const lowerInput = userInput.toLowerCase();
-        
-        if (!fuse) {
-            return "I'm still loading product information. Please try again in a moment.";
-        }
-
-        const searchResults = fuse.search(lowerInput);
-        const matchingProducts = searchResults.slice(0, 3).map(result => result.item); // Get top 3 matches
-
-        if (matchingProducts.length > 0) {
-            let response = "I found the following product(s) that might interest you:\n\n";
-            matchingProducts.forEach(product => {
-                response += `${product.fields.name}\n`;
-                response += `Description: ${product.fields.description}\n`;
-                response += `Price: €${product.fields.price}\n`;
-                response += `Category: ${product.fields.category}\n\n`;
-            });
-            response += "Would you like more information about any of these products?";
-            return response;
-        } else if (lowerInput.includes('product') || lowerInput.includes('item')) {
-            return "I'd be happy to help you find product information. Could you please specify the name or type of car care product you're interested in?";
-        } else if (lowerInput.includes('price') || lowerInput.includes('cost')) {
-            return "Our prices vary depending on the product. Can you tell me which specific car care product you'd like the price for?";
-        } else if (lowerInput.includes('category')) {
-            return "We have various categories of car care products including cleaners, polishes, waxes, and accessories. Which category are you interested in?";
-        } else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
-            return "Hello! How can I assist you with our car care products today?";
-        } else {
-            return "I'm not sure I understand. Could you please rephrase your question or provide more details about what you're looking for in our car care product range?";
-        }
-    }
-
-    // ... (rest of the code remains the same)
-
-    initializeChat();
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
