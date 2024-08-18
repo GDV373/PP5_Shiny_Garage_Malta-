@@ -7,92 +7,81 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.querySelector('.send-button');
 
     let conversationHistory = [];
+    let products = [];
+    let fuse;
+
+    function loadProducts() {
+        fetch('/products/fixtures/products.json')
+            .then(response => response.json())
+            .then(data => {
+                products = data;
+                console.log('Products loaded:', products.length);
+                initializeFuse();
+            })
+            .catch(error => console.error('Error loading products:', error));
+    }
+
+    function initializeFuse() {
+        const options = {
+            keys: ['fields.name', 'fields.description', 'fields.category'],
+            threshold: 0.3,
+            includeScore: true
+        };
+        fuse = new Fuse(products, options);
+    }
 
     function initializeChat() {
-        appendMessage('received', 'Hello! I\'m your AI assistant. How can I help you today?');
+        loadProducts();
+        appendMessage('received', 'Hello! I\'m your AI assistant. How can I help you with our car care products today?');
     }
 
     function handleUserInput(userInput) {
         appendMessage('sent', userInput);
         conversationHistory.push({ role: 'user', content: userInput });
 
-        // Simulate AI processing
         showTypingIndicator();
         setTimeout(() => {
             const aiResponse = generateAIResponse(userInput);
             appendMessage('received', aiResponse);
             conversationHistory.push({ role: 'assistant', content: aiResponse });
             hideTypingIndicator();
-        }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+        }, 1000 + Math.random() * 1000);
     }
 
     function generateAIResponse(userInput) {
-        // This is where you'd integrate with a real AI model
-        // For now, we'll use a simple keyword-based response system
         const lowerInput = userInput.toLowerCase();
-        if (lowerInput.includes('product') || lowerInput.includes('item')) {
-            return "I'd be happy to help you find product information. Could you please specify the name or type of product you're interested in?";
+        
+        if (!fuse) {
+            return "I'm still loading product information. Please try again in a moment.";
+        }
+
+        const searchResults = fuse.search(lowerInput);
+        const matchingProducts = searchResults.slice(0, 3).map(result => result.item); // Get top 3 matches
+
+        if (matchingProducts.length > 0) {
+            let response = "I found the following product(s) that might interest you:\n\n";
+            matchingProducts.forEach(product => {
+                response += `${product.fields.name}\n`;
+                response += `Description: ${product.fields.description}\n`;
+                response += `Price: €${product.fields.price}\n`;
+                response += `Category: ${product.fields.category}\n\n`;
+            });
+            response += "Would you like more information about any of these products?";
+            return response;
+        } else if (lowerInput.includes('product') || lowerInput.includes('item')) {
+            return "I'd be happy to help you find product information. Could you please specify the name or type of car care product you're interested in?";
         } else if (lowerInput.includes('price') || lowerInput.includes('cost')) {
-            return "Pricing information varies by product. Can you tell me which specific product you'd like the price for?";
+            return "Our prices vary depending on the product. Can you tell me which specific car care product you'd like the price for?";
+        } else if (lowerInput.includes('category')) {
+            return "We have various categories of car care products including cleaners, polishes, waxes, and accessories. Which category are you interested in?";
         } else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
-            return "Hello! How can I assist you today?";
+            return "Hello! How can I assist you with our car care products today?";
         } else {
-            return "I'm not sure I understand. Could you please rephrase your question or provide more details?";
+            return "I'm not sure I understand. Could you please rephrase your question or provide more details about what you're looking for in our car care product range?";
         }
     }
 
-    function showTypingIndicator() {
-        const indicator = document.createElement('div');
-        indicator.className = 'typing-indicator';
-        indicator.textContent = 'AI is typing...';
-        chatBody.appendChild(indicator);
-    }
-
-    function hideTypingIndicator() {
-        const indicator = document.querySelector('.typing-indicator');
-        if (indicator) indicator.remove();
-    }
-
-    function appendMessage(type, message) {
-        const messageElement = document.createElement('div');
-        messageElement.className = `message ${type}`;
-        messageElement.innerHTML = `
-            <div class="content">
-                <div class="body">
-                    <div class="message-body">${message}</div>
-                </div>
-            </div>
-        `;
-        chatBody.appendChild(messageElement);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function clearChat() {
-        chatBody.innerHTML = '';
-        conversationHistory = [];
-        initializeChat();
-    }
-
-    chatButton.addEventListener('click', () => chatPopup.classList.add('open'));
-    closeButton.addEventListener('click', () => {
-        chatPopup.classList.remove('open');
-        clearChat();
-    });
-
-    sendButton.addEventListener('click', () => {
-        const userInput = inputField.value.trim();
-        if (userInput) {
-            handleUserInput(userInput);
-            inputField.value = '';
-        }
-    });
-
-    inputField.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            sendButton.click();
-        }
-    });
+    // ... (rest of the code remains the same)
 
     initializeChat();
 });
