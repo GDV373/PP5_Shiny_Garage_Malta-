@@ -1,44 +1,47 @@
 {% load static %}
 {% block chatbot %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chatbot</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Chat with our bot</h1>
-    <div id="chat">
-        <div id="messages"></div>
-        <input type="text" id="user-input" placeholder="Type a message...">
-        <button id="send">Send</button>
+    <div class="chat-with-us">
+        <a id="btnchatclick" class="btn btn-secondary btn-lg">
+            CHAT WITH US  
+            <i class="fa-regular fa-envelope"></i>
+        </a>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#send').click(function() {
-                var userInput = $('#user-input').val();
-                if (userInput) {
-                    $('#messages').append('<div>You: ' + userInput + '</div>');
-                    
-                    $.ajax({
-                        url: '/chatbot/chat/',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({ 'message': userInput }),
-                        success: function(data) {
-                            $('#messages').append('<div>Bot: ' + data.response + '</div>');
-                            $('#user-input').val('');
-                        },
-                        error: function() {
-                            $('#messages').append('<div>Bot: Sorry, something went wrong.</div>');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <div class="livechat-room">
+        <div class="livechat-header" style="background-color:#003e7d;">
+            <h1>Customer Support</h1>
+            
+            <div class="close js-close-livechat">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="18" viewBox="0 0 24 24" width="18">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="livechat-body">
+    
+    <!-- Chat messages will be appended here -->
+    </div>
+        <div class="livechat-footer">
+            <div class="send-button">
+                <svg aria-label="Send" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+                </svg>
+            </div>
+            <input type="text" class="message-input" name="product_name" placeholder="Type product name for info" required>
+        </div>
+    </div>
+
+    <script src="{% static 'app.js' %}"></script>
 </body>
 </html>
-
 {% endblock %}
