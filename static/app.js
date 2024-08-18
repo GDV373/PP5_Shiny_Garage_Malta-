@@ -40,8 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const farewells = ['bye', 'goodbye', 'see you', 'later', 'ciao'];
         const thanks = ['thank you', 'thanks', 'cheers', 'much appreciated'];
         const smallTalk = ['how are you', 'how\'s it going', 'what\'s up', 'what\'s new'];
-
-        const productRequestPattern = /(?:i (?:want|need|am looking for|would like|could use) (?:to )?(?:buy|purchase|get|find))\s+(.+?)(?: for my car|)/;
+        
+        // Patterns to match different types of queries
+        const productRequestPatterns = [
+            /i (?:want|need|am looking for|would like|could use) (?:to )?(?:buy|purchase|get|find|see) (.+)/i,
+            /show me (.+)/i,
+            /tell me about (.+)/i,
+            /list (?:all|available) (.+)/i,
+            /what (?:are|is) (.+)/i,
+            /(?:show|give) me (.+)/i
+        ];
 
         let product = null;
 
@@ -51,86 +59,74 @@ document.addEventListener('DOMContentLoaded', () => {
             product = matches[0].item.name;
         }
 
-        if (greetings.includes(messageText)) {
+        // Handle greetings
+        if (greetings.some(greet => messageText.includes(greet))) {
             appendMessage('sent', inputField.value);
             appendMessageWithDelay('received', `Hello! How can I assist you today? You can ask me about our products.`);
+        
+        // Handle small talk
         } else if (smallTalk.some(phrase => messageText.includes(phrase))) {
             appendMessage('sent', inputField.value);
             appendMessageWithDelay('received', `I'm doing great, thank you! How can I assist you with our products today?`);
-        } else if (farewells.includes(messageText)) {
+
+        // Handle farewells
+        } else if (farewells.some(farewell => messageText.includes(farewell))) {
             appendMessage('sent', inputField.value);
             appendMessageWithDelay('received', `Goodbye! Feel free to chat with me again if you need more information.`);
-        } else if (thanks.some(phrase => messageText.includes(phrase))) {
+
+        // Handle thanks
+        } else if (thanks.some(thank => messageText.includes(thank))) {
             appendMessage('sent', inputField.value);
             appendMessageWithDelay('received', `You're welcome! I'm here to help. Is there anything else you need?`);
-        } else if (product) {
-            appendMessage('sent', inputField.value);
-            showTypingIndicator();
 
-            setTimeout(() => {
-                fetch(`chatbot/?product_name=${encodeURIComponent(product)}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok ' + response.statusText);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        hideTypingIndicator();
-                        if (data.products && data.products.length > 0) {
-                            const productList = data.products.map(product => `
-                                <strong>Name:</strong> ${product.name || 'N/A'}<br>
-                                <strong>Description:</strong> ${product.description || 'No description available'}<br>
-                                <strong>Price:</strong> €${product.price || 'N/A'}
-                            `).join('<br><br>');
-                            appendMessage('received', `Here are the available ${product}s:<br>${productList}<br>Is there anything else I can help you with?`);
-                        } else {
-                            appendMessage('received', `I'm terribly sorry, but I couldn't find any products matching "${product}". Please try a different product name or <a href='/contact'>contact us</a> for assistance.`);
-                        }
-                        chatBody.scrollTop = chatBody.scrollHeight;
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        hideTypingIndicator();
-                        appendMessage('received', `I'm sorry, but I couldn't process your request at this moment. Please try again later or <a href='/contact'>contact us</a> for more assistance.`);
-                    });
-            }, 2000); // 2-second delay before showing the response
-
-        } else if (messageText) {
-            appendMessage('sent', inputField.value);
-            showTypingIndicator();
-
-            setTimeout(() => {
-                fetch(`chatbot/?product_name=${encodeURIComponent(messageText)}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok ' + response.statusText);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        hideTypingIndicator();
-                        if (data.products && data.products.length > 0) {
-                            const productList = data.products.map(product => `
-                                <strong>Name:</strong> ${product.name || 'N/A'}<br>
-                                <strong>Description:</strong> ${product.description || 'No description available'}<br>
-                                <strong>Price:</strong> €${product.price || 'N/A'}
-                            `).join('<br><br>');
-                            appendMessage('received', `Here is the information you requested:<br>${productList}<br>Is there anything else I can help you with?`);
-                        } else {
-                            appendMessage('received', `I'm terribly sorry, but I couldn't find any products matching "${messageText}". Please try a different product name or <a href='/contact'>contact us</a> for assistance.`);
-                        }
-                        chatBody.scrollTop = chatBody.scrollHeight;
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        hideTypingIndicator();
-                        appendMessage('received', `I'm sorry, but I couldn't process your request at this moment. Please try again later or <a href='/contact'>contact us</a> for more assistance.`);
-                    });
-            }, 2000); // 2-second delay before showing the response
-
+        // Handle product requests
         } else {
-            appendMessageWithDelay('received', `I didn't catch that. Could you please rephrase your request? I'm here to help.`);
+            let matchFound = false;
+
+            for (const pattern of productRequestPatterns) {
+                const match = messageText.match(pattern);
+                if (match && match[1]) {
+                    product = match[1].trim();
+                    matchFound = true;
+                    break;
+                }
+            }
+
+            if (matchFound || product) {
+                showTypingIndicator();
+
+                setTimeout(() => {
+                    fetch(`chatbot/?product_name=${encodeURIComponent(product)}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            hideTypingIndicator();
+                            if (data.products && data.products.length > 0) {
+                                const productList = data.products.map(product => `
+                                    <strong>Name:</strong> ${product.name || 'N/A'}<br>
+                                    <strong>Description:</strong> ${product.description || 'No description available'}<br>
+                                    <strong>Price:</strong> €${product.price || 'N/A'}
+                                `).join('<br><br>');
+                                appendMessage('received', `Here are the available ${product}s:<br>${productList}<br>Is there anything else I can help you with?`);
+                            } else {
+                                appendMessage('received', `I'm terribly sorry, but I couldn't find any products matching "${product}". Please try a different product name or <a href='/contact'>contact us</a> for assistance.`);
+                            }
+                            chatBody.scrollTop = chatBody.scrollHeight;
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                            hideTypingIndicator();
+                            appendMessage('received', `I'm sorry, but I couldn't process your request at this moment. Please try again later or <a href='/contact'>contact us</a> for more assistance.`);
+                        });
+                }, 2000); // 2-second delay before showing the response
+
+            } else {
+                appendMessageWithDelay('received', `I didn't catch that. Could you please rephrase your request? I'm here to help.`);
+            }
         }
 
         inputField.value = ''; // Clear the input field after sending the message
