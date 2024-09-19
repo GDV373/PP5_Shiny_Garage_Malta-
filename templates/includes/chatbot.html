@@ -7,41 +7,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Botpress Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/9e57e3d1-ab48-46c6-b037-b56b10bfdc4c/webchat/v2.1/config.js"></script>
 </head>
 <body>
-    <div class="chat-with-us">
-        <a id="btnchatclick" class="btn btn-secondary btn-lg">
-            CHAT WITH US  
-            <i class="fa-regular fa-envelope"></i>
-        </a>
-    </div>
-
-    <div class="livechat-room">
-        <div class="livechat-header" style="background-color:#003e7d;">
-            <h1>Customer Support</h1>
-            
-            <div class="close js-close-livechat">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="18" viewBox="0 0 24 24" width="18">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                </svg>
-            </div>
-        </div>
-        <div class="livechat-body">
-    
-    <!-- Chat messages will be appended here -->
-    </div>
-        <div class="livechat-footer">
-            <div class="send-button">
-                <svg aria-label="Send" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
-                </svg>
-            </div>
-            <input type="text" class="message-input" name="product_name" placeholder="Type product name for info" required>
-        </div>
-    </div>
-
-    <script src="{% static 'app.js' %}"></script>
 </body>
 </html>
 {% endblock %}
