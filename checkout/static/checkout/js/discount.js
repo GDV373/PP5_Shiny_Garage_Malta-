@@ -17,19 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify({ discount_code: discountCode }),
         })
-        .then(response => response.json())
+        .then(response => {
+            // Check if response is OK (status 200-299)
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error: ${response.status} - ${text}`);
+                });
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.discount_applied) {
                 const discountValue = data.discount_value; // Discount amount from server
-                const originalTotal = parseFloat(totalElement.textContent.replace('€', '')); // Current total
+                const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.')); // Current total
                 const updatedTotal = originalTotal - discountValue; // Apply discount
-                const updatedGrandTotal = updatedTotal + parseFloat(deliveryElement.textContent.replace('€', '')); // Include delivery
+                const updatedGrandTotal = updatedTotal + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')); // Include delivery
 
                 // Update the displayed values
-                totalElement.textContent = `€${updatedTotal.toFixed(2)}`;
-                grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2)}</strong>`;
+                totalElement.textContent = `€${updatedTotal.toFixed(2).replace('.', ',')}`; // Format to Euro style
+                grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2).replace('.', ',')}</strong>`; // Format to Euro style
                 
-                alert(`Discount applied: -€${discountValue.toFixed(2)}`);
+                alert(`Discount applied: -€${discountValue.toFixed(2).replace('.', ',')}`);
             } else {
                 alert(data.message || 'Invalid discount code');
             }
