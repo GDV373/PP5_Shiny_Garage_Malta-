@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import OrderForm
-
 from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
@@ -44,11 +43,9 @@ def checkout_success(request, order_number):
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
-        # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
 
-        # Save the user's info
         if save_info:
             profile_data = {
                 'default_phone_number': order.phone_number,
@@ -63,9 +60,7 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
 
     if 'bag' in request.session:
         del request.session['bag']
@@ -81,9 +76,13 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    discount = None  # Initialize discount variable
+    discount_value = 0
+    invalid_discount = False
+
     if request.method == 'POST':
         bag = request.session.get('bag', {})
-        discount_code = request.POST.get('discount_code', '').strip()  # Capture the discount code from the form
+        discount_code = request.POST.get('discount_code', '').strip()
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -104,17 +103,12 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
-            # Initialize discount variables
-            discount = None
-            discount_value = 0
-            invalid_discount = False
-            
             # Apply discount if code is valid
             if discount_code:
                 try:
-                    discount = Discount.objects.get(code=discount_code, start_date__lte=timezone.now(), end_date__gte=timezone.now())
-                    discount_value = discount.amount_off or (order.order_total * (discount.percentage_off / 100))
-                    order.grand_total = max(0, order.grand_total - discount_value)  # Ensure total is not negative
+                    discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+                    discount_value = discount.discount_value
+                    order.discount_value = discount_value  # Update the order with the discount value
                 except Discount.DoesNotExist:
                     invalid_discount = True
                     messages.error(request, "Invalid discount code or it has expired.")
