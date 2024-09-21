@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const discountCode = discountCodeInput.value.trim();
 
         // Fetch request to validate the discount code
-        fetch('{% url "checkout" %}', {  // Change this to your actual checkout URL
+        fetch(checkoutUrl, {  // Use the JavaScript variable here
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
