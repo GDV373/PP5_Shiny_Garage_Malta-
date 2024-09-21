@@ -324,6 +324,10 @@ input[name='q']::placeholder {
     margin-bottom: 15px !important;
 }
 
+.col {
+    margin-bottom: 3%;
+}
+
 @media (max-width: 991px) {
     .travolta404 {
         float: none; 
