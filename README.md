@@ -266,8 +266,14 @@ Central to the success of Shiny Garage Malta is its emphasis on user experience 
 
 Back to [top](#table-of-contents)
 
+## Custom models 
 
+As part of the Project 3 custom models are requested which are the following:
+    1. Wishlist 
+    2. Contact
+    3. Chatbox
 
+Back to [top](#table-of-contents)
 
 ### Robots
 
