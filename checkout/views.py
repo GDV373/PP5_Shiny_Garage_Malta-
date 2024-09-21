@@ -72,6 +72,7 @@ def checkout_success(request, order_number):
 
     return render(request, template, context)
 
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
