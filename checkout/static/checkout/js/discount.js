@@ -1,31 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const applyButton = document.getElementById('apply_discount');
+document.addEventListener('DOMContentLoaded', () => {
+    const applyDiscountButton = document.getElementById('apply-discount');
     const discountCodeInput = document.getElementById('discount_code');
-    const grandTotalElement = document.getElementById('grand_total');
-    const finalAmountElement = document.getElementById('final_amount');
-    const orderSummary = document.getElementById('order-summary');
+    const totalElement = document.querySelector('.order-total'); // Selector for order total
+    const deliveryElement = document.querySelector('.delivery'); // Selector for delivery cost
+    const grandTotalElement = document.querySelector('.grand-total'); // Selector for grand total
 
-    const originalTotal = parseFloat(orderSummary.dataset.total); // Use the data attribute
-    const deliveryCost = parseFloat(orderSummary.dataset.delivery); // Use the data attribute
-
-    applyButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
+    applyDiscountButton.addEventListener('click', () => {
         const discountCode = discountCodeInput.value.trim();
-        
-        // Example logic for applying discount
-        let discountValue = 0; // Set initial discount value
-        if (discountCode === 'YOUR_DISCOUNT_CODE') {
-            discountValue = 10; // Example fixed discount value
-        }
-        
-        // Update totals
-        const newGrandTotal = (originalTotal + deliveryCost) - discountValue;
-        
-        grandTotalElement.innerText = '€' + newGrandTotal.toFixed(2);
-        finalAmountElement.innerText = newGrandTotal.toFixed(2);
 
-        if (discountValue > 0) {
-            alert("Discount applied: -€" + discountValue.toFixed(2));
-        }
+        // Fetch request to validate the discount code
+        fetch('{% url "checkout" %}', {  // Change this to your actual checkout URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token
+            },
+            body: JSON.stringify({ discount_code: discountCode }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.discount_applied) {
+                const discountValue = data.discount_value; // Discount amount from server
+                const originalTotal = parseFloat(totalElement.textContent.replace('€', '')); // Current total
+                const updatedTotal = originalTotal - discountValue; // Apply discount
+                const updatedGrandTotal = updatedTotal + parseFloat(deliveryElement.textContent.replace('€', '')); // Include delivery
+
+                // Update the displayed values
+                totalElement.textContent = `€${updatedTotal.toFixed(2)}`;
+                grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2)}</strong>`;
+                
+                alert(`Discount applied: -€${discountValue.toFixed(2)}`);
+            } else {
+                alert(data.message || 'Invalid discount code');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 });
+
+// Function to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
