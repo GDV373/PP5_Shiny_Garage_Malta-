@@ -85,28 +85,32 @@ def checkout(request):
         discount_code = request.POST.get('discount_code', '').strip()
 
         form_data = {
-            'full_name': request.POST['full_name'],
-            'email': request.POST['email'],
-            'phone_number': request.POST['phone_number'],
-            'country': request.POST['country'],
-            'postcode': request.POST['postcode'],
-            'town_or_city': request.POST['town_or_city'],
-            'street_address1': request.POST['street_address1'],
-            'street_address2': request.POST['street_address2'],
-            'county': request.POST['county'],
+            'full_name': request.POST.get('full_name', ''),
+            'email': request.POST.get('email', ''),
+            'phone_number': request.POST.get('phone_number', ''),
+            'country': request.POST.get('country', ''),
+            'postcode': request.POST.get('postcode', ''),
+            'town_or_city': request.POST.get('town_or_city', ''),
+            'street_address1': request.POST.get('street_address1', ''),
+            'street_address2': request.POST.get('street_address2', ''),
+            'county': request.POST.get('county', ''),
         }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
+            pid = request.POST.get('client_secret', '').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
             # Apply discount if code is valid
             if discount_code:
                 try:
-                    discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+                    discount = Discount.objects.get(
+                        code=discount_code,
+                        valid_from__lte=timezone.now(),
+                        valid_to__gte=timezone.now()
+                    )
                     discount_value = discount.discount_value
                     order.discount_value = discount_value  # Update the order with the discount value
                 except Discount.DoesNotExist:
