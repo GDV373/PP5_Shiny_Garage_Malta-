@@ -33,7 +33,6 @@ def cache_checkout_data(request):
                                  'again later.'))
         return HttpResponse(content=e, status=400)
 
-
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -72,48 +71,44 @@ def checkout_success(request, order_number):
 
     return render(request, template, context)
 
-
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    discount = None  # Initialize discount variable
+    discount = None
     discount_value = 0
     invalid_discount = False
+    intent = None  # Initialize intent variable
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
         discount_code = request.POST.get('discount_code', '').strip()
 
         form_data = {
-            'full_name': request.POST.get('full_name', ''),
-            'email': request.POST.get('email', ''),
-            'phone_number': request.POST.get('phone_number', ''),
-            'country': request.POST.get('country', ''),
-            'postcode': request.POST.get('postcode', ''),
-            'town_or_city': request.POST.get('town_or_city', ''),
-            'street_address1': request.POST.get('street_address1', ''),
-            'street_address2': request.POST.get('street_address2', ''),
-            'county': request.POST.get('county', ''),
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'country': request.POST['country'],
+            'postcode': request.POST['postcode'],
+            'town_or_city': request.POST['town_or_city'],
+            'street_address1': request.POST['street_address1'],
+            'street_address2': request.POST['street_address2'],
+            'county': request.POST['county'],
         }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret', '').split('_secret')[0]
+            pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
             # Apply discount if code is valid
             if discount_code:
                 try:
-                    discount = Discount.objects.get(
-                        code=discount_code,
-                        valid_from__lte=timezone.now(),
-                        valid_to__gte=timezone.now()
-                    )
+                    discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
                     discount_value = discount.discount_value
-                    order.discount_value = discount_value  # Update the order with the discount value
+                    order.discount_value = discount_value
                 except Discount.DoesNotExist:
                     invalid_discount = True
                     messages.error(request, "Invalid discount code or it has expired.")
@@ -153,10 +148,15 @@ def checkout(request):
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
+
+        try:
+            intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+            )
+        except Exception as e:
+            messages.error(request, "There was a problem with the payment. Please try again.")
+            return redirect(reverse('view_bag'))
 
         if request.user.is_authenticated:
             try:
@@ -186,7 +186,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret if intent else None,
         'discount_applied': discount is not None,
         'discount_code': discount_code if discount else '',
         'discount_value': discount_value,
