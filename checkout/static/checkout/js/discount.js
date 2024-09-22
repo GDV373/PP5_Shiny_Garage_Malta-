@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const discountCode = discountCodeInput.value.trim();
 
         // Fetch request to validate the discount code
-        fetch(checkoutUrl, {  // Use the JavaScript variable here
+        fetch('/validate-discount/', {  // Your discount validation endpoint
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ discount_code: discountCode }),
         })
         .then(response => {
-            // Check if response is OK (status 200-299)
             if (!response.ok) {
                 return response.text().then(text => {
                     throw new Error(`Error: ${response.status} - ${text}`);

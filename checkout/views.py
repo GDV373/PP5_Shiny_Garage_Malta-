@@ -13,8 +13,30 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
+from django.http import JsonResponse
+from .models import Discount
+
 import stripe
 import json
+
+
+def validate_discount(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            discount_code = data.get('discount_code')
+
+            if discount_code:
+                discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+                return JsonResponse({
+                    'discount_applied': True,
+                    'discount_value': discount.discount_value,
+                })
+            else:
+                return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
+        except Discount.DoesNotExist:
+            return JsonResponse({'discount_applied': False, 'message': 'Invalid or expired discount code'}, status=400)
+    return JsonResponse({'discount_applied': False, 'message': 'Invalid request'}, status=400)
 
 @require_POST
 def cache_checkout_data(request):
