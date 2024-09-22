@@ -17,12 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 success: function(response) {
                     if (response.valid) {
-                        // Discount applied successfully: Update totals and show a success message
+                        // Update the displayed totals with the new values
                         document.getElementById('discount-amount').textContent = `€${response.discount_amount}`;
                         document.getElementById('new-grand-total').textContent = `€${response.new_grand_total}`;
                         document.getElementById('discount-message').textContent = 'Discount applied!';
                         document.getElementById('discount-message').style.color = 'green';
-                        document.getElementById('discount-row').style.display = 'block';  // Show discount row
+                        document.getElementById('discount-row').style.display = 'block';  // Show the discount row
+
+                        // Update hidden input for discounted grand total (to send to Stripe)
+                        document.getElementById('discounted-grand-total').value = response.new_grand_total;
+
                     } else {
                         // Invalid discount code: Show an error message
                         document.getElementById('discount-message').textContent = 'Invalid discount code.';

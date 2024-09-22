@@ -198,6 +198,20 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    # Get the discount amount (if any)
+    discount_amount = 0
+    if hasattr(order, 'discount'):
+        discount_amount = order.discount_value  # Adjust depending on how your discount is stored
+
+    context = {
+        'order': order,
+        'discount_amount': discount_amount,  # Pass discount to the context
+        'from_profile': 'profile' in request.GET,
+    }
+    return render(request, 'checkout/checkout_success.html', context)
+
     """
     Handle successful checkouts
     """
