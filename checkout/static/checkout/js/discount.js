@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     applyDiscountButton.addEventListener('click', () => {
         const discountCode = discountCodeInput.value.trim();
 
-        // Fetch request to validate the discount code
-        fetch('/validate-discount/', {  // Your discount validation endpoint
+        
+        fetch('/checkout/validate-discount/', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
