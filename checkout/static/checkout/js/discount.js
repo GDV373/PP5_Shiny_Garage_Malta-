@@ -24,14 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify({ discount_code: discountCode }),
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => {
-                    throw new Error(`Error: ${response.status} - ${text}`);
-                });
-            }
-            return response.json();
-        })
+        .then(response => response.json())  // Parse the response as JSON
         .then(data => {
             if (data.discount_applied) {
                 const discountValue = parseFloat(data.discount_value); // Convert to float to use toFixed
@@ -50,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 discountMessage.classList.add('text-success');
                 discountMessage.textContent = `Discount applied: -€${discountValue.toFixed(2).replace('.', ',')}`;
             } else {
-                // Show error message in red
+                // Show error message in red (this is the invalid discount case)
                 discountMessage.style.display = 'block';
                 discountMessage.classList.remove('text-success');
                 discountMessage.classList.add('text-danger');
@@ -58,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(error => {
+            // Catch unexpected errors (like network issues)
             console.error('Error:', error);
             discountMessage.style.display = 'block';
             discountMessage.classList.add('text-danger');
