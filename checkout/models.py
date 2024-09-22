@@ -9,6 +9,21 @@ from django_countries.fields import CountryField
 from products.models import Product
 from profiles.models import UserProfile
 
+class Discount(models.Model):
+    DISCOUNT_TYPE_CHOICES = [
+        ('percentage', 'Percentage'),
+        ('fixed', 'Fixed Amount'),
+    ]
+
+    code = models.CharField(max_length=15, unique=True)
+    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE_CHOICES)
+    discount_value = models.DecimalField(max_digits=6, decimal_places=2)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.code
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
