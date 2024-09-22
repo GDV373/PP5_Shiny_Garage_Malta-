@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 url: '/checkout/apply_discount/',
                 method: 'POST',
                 data: {
-                    'discount_code': discountCode,  // Discount code entered by the user
-                    'csrfmiddlewaretoken': csrfToken,  // CSRF token for security, required by Django
+                    'discount_code': discountCode,
+                    'csrfmiddlewaretoken': csrfToken,
                     'current_total': currentTotal,  // Current total price of items in the cart
-                    'current_shipping': currentShipping  // Current shipping cost (if applicable)
+                    'current_shipping': currentShipping  // Current shipping cost
                 },
                 success: function(response) {
                     if (response.valid) {
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('discounted-grand-total').value = response.new_grand_total;
 
                     } else {
-                        // Invalid discount code: Show an error message
                         document.getElementById('discount-message').textContent = 'Invalid discount code.';
                         document.getElementById('discount-message').style.color = 'red';
                         document.getElementById('discount-row').style.display = 'none';  // Hide discount row if invalid

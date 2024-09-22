@@ -21,6 +21,8 @@ import stripe
 import json
 import decimal
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 def apply_discount(request):
     if request.method == 'POST':
         try:
@@ -75,6 +77,38 @@ def apply_discount(request):
 
     return JsonResponse({'valid': False, 'error': 'Invalid request method'}, status=400)
 
+def checkout(request):
+    if request.method == 'POST':
+        # Get the discounted grand total (fallback to grand_total if not provided)
+        discounted_grand_total = request.POST.get('discounted_grand_total', None)
+
+        if discounted_grand_total:
+            amount_to_charge = float(discounted_grand_total)
+        else:
+            amount_to_charge = order.grand_total  # Fallback if no discount was applied
+
+        # Convert amount to smallest unit (e.g., cents for Stripe)
+        stripe_amount = int(amount_to_charge * 100)
+
+        # Create Stripe PaymentIntent with the correct amount
+        stripe.PaymentIntent.create(
+            amount=stripe_amount,
+            currency="eur",
+            payment_method=request.POST['payment_method'],
+            confirm=True,
+        )
+        
+        # Rest of your checkout logic
+        return redirect('checkout_success', order_number=order.order_number)
+
+def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    context = {
+        'order': order,
+        'from_profile': 'profile' in request.GET,
+    }
+    return render(request, 'checkout/checkout_success.html', context)
 
 @require_POST
 def cache_checkout_data(request):
@@ -94,7 +128,7 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-def checkout(request):
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -197,7 +231,6 @@ def checkout(request):
     return render(request, template, context)
 
 
-def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     # Get the discount amount (if any)
