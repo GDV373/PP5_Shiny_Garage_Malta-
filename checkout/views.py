@@ -51,13 +51,28 @@ def validate_discount(request):
 @require_POST
 def cache_checkout_data(request):
     try:
-        pid = request.POST.get('client_secret').split('_secret')[0]
+        # Log the incoming request data for debugging
+        print("Request POST data: ", request.POST)
+
+        # Extract the client_secret and split to get the PaymentIntent ID
+        client_secret = request.POST.get('client_secret')
+        if not client_secret:
+            return HttpResponse(content="Missing client_secret", status=400)
+
+        pid = client_secret.split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
-        # Get discount value and total from the frontend
+        # Get the discount value and total from the frontend
         discount_value = float(request.POST.get('discount_value', 0))
-        total = float(request.POST.get('total'))
+        total = float(request.POST.get('total', 0))
         total_after_discount = total - discount_value
+
+        # Log the discount and total values
+        print(f"Discount value: {discount_value}, Total: {total}, Total after discount: {total_after_discount}")
+
+        # Check if total after discount is valid
+        if total_after_discount <= 0:
+            return HttpResponse(content="Invalid total amount", status=400)
 
         # Modify the PaymentIntent with the updated amount
         stripe.PaymentIntent.modify(
@@ -67,9 +82,13 @@ def cache_checkout_data(request):
         return HttpResponse(status=200)
 
     except stripe.error.InvalidRequestError as e:
+        # Log the error message and return the error response
+        print(f"Stripe error: {e}")
         return HttpResponse(content=f"Failed to update PaymentIntent: {str(e)}", status=400)
 
     except Exception as e:
+        # Log any other exceptions for debugging
+        print(f"General error: {e}")
         return HttpResponse(content=f"Error: {str(e)}", status=400)
 
 
