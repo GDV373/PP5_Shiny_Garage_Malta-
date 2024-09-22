@@ -59,18 +59,27 @@
                 <hr class="my-0">
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2">
-                        <p id="discount-amount" class="my-0">Discount: €0.00</p>
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p id="discount-amount" class="my-0">€0.00</p>
                         <p class="my-0">€{{ total | floatformat:2 }}</p>
                         <p class="my-0">€{{ delivery | floatformat:2 }}</p>
                         <p class="my-0"><strong id="new-grand-total">€{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
+
+                <!-- Discount Row (Hidden by Default) -->
+                <div class="row text-black text-right" id="discount-row" style="display: none;">
+                    <div class="col-7 offset-2">
+                        <p id="discount-label" class="my-0">Discount:</p>
+                    </div>
+                    <div class="col-3">
+                        <p id="discount-amount" class="my-0">€0.00</p>
+                    </div>
+                </div>
+
                 <div class="row mb-4">
                     <div class="col-7 offset-2">
                         <label for="discount_code" class="small text-muted">Discount Code</label>

@@ -15,6 +15,7 @@ from bag.contexts import bag_contents
 
 from django.http import JsonResponse
 from .models import Discount
+from django.utils import timezone
 
 import stripe
 import json
@@ -25,25 +26,34 @@ def apply_discount(request):
         discount_code = request.POST.get('discount_code', '')
         try:
             discount = Discount.objects.get(code=discount_code, active=True)
-            # Assuming you have a way to calculate the discount:
-            current_total = float(request.POST.get('current_total', 0))
+
+            # Check if the discount is still valid
+            if not discount.is_valid():
+                return JsonResponse({'valid': False})
+
             discount_amount = 0
+            current_total = float(request.POST.get('current_total', 0))
+            current_shipping = float(request.POST.get('current_shipping', 0))
 
-            if discount.discount_type == 'percentage':
+            # Calculate discount based on discount type
+            if discount.discount_type == 'item':
                 discount_amount = current_total * (discount.discount_value / 100)
-            elif discount.discount_type == 'fixed':
-                discount_amount = discount.discount_value
-
-            new_grand_total = current_total - discount_amount
+                new_grand_total = current_total - discount_amount + current_shipping
+            elif discount.discount_type == 'shipping':
+                discount_amount = min(current_shipping, discount.discount_value)  # Cap discount to shipping cost
+                new_grand_total = current_total + (current_shipping - discount_amount)
 
             return JsonResponse({
                 'valid': True,
+                'discount_type': discount.discount_type,
                 'discount_amount': f'{discount_amount:.2f}',
                 'new_grand_total': f'{new_grand_total:.2f}',
             })
         except Discount.DoesNotExist:
             return JsonResponse({'valid': False})
 
+    return JsonResponse({'valid': False}, status=400)
+    
 @require_POST
 def cache_checkout_data(request):
     try:
