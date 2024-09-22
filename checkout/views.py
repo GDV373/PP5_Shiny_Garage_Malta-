@@ -19,7 +19,7 @@ from django.utils import timezone
 
 import stripe
 import json
-
+import decimal
 
 def apply_discount(request):
     if request.method == 'POST':
@@ -39,16 +39,18 @@ def apply_discount(request):
             if not discount.is_valid():
                 return JsonResponse({'valid': False, 'error': 'Discount code is not valid'}, status=400)
 
-            # Assuming the `current_total` is sent in the request
+            # Convert current_total to float and ensure discount value is also float
             current_total = float(request.POST.get('current_total', 0))
+            discount_value = float(discount.discount_value)  # Convert to float
+            
             discount_amount = 0
 
             # Calculate the discount based on the type
             if discount.discount_type == 'item':
-                discount_amount = current_total * (discount.discount_value / 100)
+                discount_amount = current_total * (discount_value / 100)  # Percentage discount on items
             elif discount.discount_type == 'shipping':
-                current_shipping = float(request.POST.get('current_shipping', 0))
-                discount_amount = min(current_shipping, discount.discount_value)
+                current_shipping = float(request.POST.get('current_shipping', 0))  # Convert shipping to float
+                discount_amount = min(current_shipping, discount_value)  # Cap discount to the shipping cost
 
             new_grand_total = current_total - discount_amount
 
