@@ -57,19 +57,19 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
-        # Get discount value and total from the frontend
-        discount_value = float(request.POST.get('discount_value', 0))
-        total = float(request.POST.get('total'))
+        # Get discount value and total from the POST request
+        discount_value = float(request.POST.get('discount_value', 0))  # Discount value from frontend
+        total = float(request.POST.get('total'))  # Total from frontend
         total_after_discount = total - discount_value
 
-        # Modify the PaymentIntent with the updated amount
+        # Modify the PaymentIntent with the updated total after discount
         stripe.PaymentIntent.modify(
             pid,
             amount=int(total_after_discount * 100),  # Stripe expects amounts in cents
             metadata={
                 'bag': json.dumps(request.session.get('bag', {})),
                 'save_info': request.POST.get('save_info'),
-                'username': request.user,
+                'username': request.user.username,
                 'discount_value': discount_value,  # Store discount value in metadata
             }
         )
@@ -77,6 +77,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
+
 
 
 def checkout_success(request, order_number):

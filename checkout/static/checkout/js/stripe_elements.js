@@ -38,26 +38,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle form submission
     var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (ev) {
+    form.addEventListener('submit', function(ev) {
         ev.preventDefault();
+    
+        // Disable card and button while processing
         card.update({ 'disabled': true });
         $('#submit-button').attr('disabled', true);
         $('#payment-form').fadeToggle(100);
         $('#loading-overlay').fadeToggle(100);
-
+    
         var saveInfo = Boolean($('#id-save-info').attr('checked'));
-        var discountCode = $('#discount_code').val().trim();  // Add discount code here
+        var discountCode = $('#discount_code').val().trim();  // Get the discount code
         var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-
+        
+        // Extract discount value and total
+        var discountValue = parseFloat($('.discount-value').text().replace('€', '').replace(',', '.')) || 0;
+        var grandTotal = parseFloat($('.grand-total').text().replace('€', '').replace(',', '.'));
+    
+        // Data to pass to the backend
         var postData = {
             'csrfmiddlewaretoken': csrfToken,
             'client_secret': clientSecret,
             'save_info': saveInfo,
-            'discount_code': discountCode,  // Pass the discount code to the backend
+            'discount_value': discountValue,  // Pass the discount value to backend
+            'total': grandTotal  // Pass the total after discount to backend
         };
-
+    
         var url = '/checkout/cache_checkout_data/';
-
+    
+        // Send data to backend to update PaymentIntent with the final total
         $.post(url, postData).done(function () {
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
@@ -87,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         state: $.trim(form.county.value),
                     }
                 },
-            }).then(function (result) {
+            }).then(function(result) {
                 if (result.error) {
                     var errorDiv = document.getElementById('card-errors');
                     var html = `
