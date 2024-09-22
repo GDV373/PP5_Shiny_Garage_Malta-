@@ -13,9 +13,36 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
+from django.http import JsonResponse
+from .models import Discount
+
 import stripe
 import json
 
+
+def apply_discount(request):
+    if request.method == 'POST':
+        discount_code = request.POST.get('discount_code', '')
+        try:
+            discount = Discount.objects.get(code=discount_code, active=True)
+            # Assuming you have a way to calculate the discount:
+            current_total = float(request.POST.get('current_total', 0))
+            discount_amount = 0
+
+            if discount.discount_type == 'percentage':
+                discount_amount = current_total * (discount.discount_value / 100)
+            elif discount.discount_type == 'fixed':
+                discount_amount = discount.discount_value
+
+            new_grand_total = current_total - discount_amount
+
+            return JsonResponse({
+                'valid': True,
+                'discount_amount': f'{discount_amount:.2f}',
+                'new_grand_total': f'{new_grand_total:.2f}',
+            })
+        except Discount.DoesNotExist:
+            return JsonResponse({'valid': False})
 
 @require_POST
 def cache_checkout_data(request):
