@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('apply-discount').addEventListener('click', function() {
         const discountCode = document.getElementById('discount-code').value;
         const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-        const currentTotal = parseFloat(document.getElementById('current-total').textContent.replace('€', ''));  // Get the current total from the HTML
-        const currentShipping = parseFloat(document.getElementById('current-shipping').textContent.replace('€', ''));  // Get the current shipping from the HTML
+        const currentTotal = parseFloat(document.getElementById('current-total').textContent.replace('€', ''));
+        const currentShipping = parseFloat(document.getElementById('current-shipping').textContent.replace('€', ''));
 
         if (discountCode) {
             $.ajax({
@@ -12,38 +12,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: {
                     'discount_code': discountCode,
                     'csrfmiddlewaretoken': csrfToken,
-                    'current_total': currentTotal,  // Current total price of items in the cart
-                    'current_shipping': currentShipping  // Current shipping cost
+                    'current_total': currentTotal,
+                    'current_shipping': currentShipping
                 },
                 success: function(response) {
                     if (response.valid) {
-                        // Update the displayed totals with the new values
+                        // Show discount and update grand total
                         document.getElementById('discount-amount').textContent = `€${response.discount_amount}`;
                         document.getElementById('new-grand-total').textContent = `€${response.new_grand_total}`;
                         document.getElementById('discount-message').textContent = 'Discount applied!';
                         document.getElementById('discount-message').style.color = 'green';
                         document.getElementById('discount-row').style.display = 'block';  // Show the discount row
-
-                        // Update hidden input for discounted grand total (to send to Stripe)
-                        document.getElementById('discounted-grand-total').value = response.new_grand_total;
-
                     } else {
+                        // Hide the discount row and show error message
                         document.getElementById('discount-message').textContent = 'Invalid discount code.';
                         document.getElementById('discount-message').style.color = 'red';
-                        document.getElementById('discount-row').style.display = 'none';  // Hide discount row if invalid
+                        document.getElementById('discount-row').style.display = 'none';
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log("AJAX Error:", error);  // Log error details
                     document.getElementById('discount-message').textContent = 'Error applying discount.';
                     document.getElementById('discount-message').style.color = 'red';
-                    document.getElementById('discount-row').style.display = 'none';  // Hide discount row on error
+                    document.getElementById('discount-row').style.display = 'none';
                 }
             });
         } else {
+            // No discount code entered, ensure grand total remains visible
             document.getElementById('discount-message').textContent = 'Please enter a discount code.';
             document.getElementById('discount-message').style.color = 'red';
-            document.getElementById('discount-row').style.display = 'none';  // Hide discount row if no code entered
+            document.getElementById('discount-row').style.display = 'none';
         }
     });
 });
