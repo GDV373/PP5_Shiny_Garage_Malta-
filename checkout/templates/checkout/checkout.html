@@ -60,11 +60,13 @@
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2">
                         <p class="my-0">Order Total:</p>
+                        <p class="my-0 discount-label" style="display: none;">Discount:</p> <!-- Hidden initially -->
                         <p class="my-0">Delivery:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
                         <p class="my-0 order-total">€{{ total | floatformat:2 }}</p>
+                        <p class="my-0 discount-value" style="display: none;">€0.00</p> <!-- Hidden initially -->
                         <p class="my-0 delivery">€{{ delivery | floatformat:2 }}</p>
                         <p class="my-0 grand-total"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
@@ -107,7 +109,7 @@
                         <div class="form-group">
                             <label for="discount_code">Enter discount code (optional)</label>
                             <input type="text" class="form-control" id="discount_code" name="discount_code" placeholder="Enter discount code">
-                            <p id="discount-message" class="text-danger mt-2" style="display: none;"></p> <!-- Placeholder for error message -->
+                            <p id="discount-message" class="text-danger mt-2" style="display: none;"></p> <!-- Placeholder for success/error message -->
                             <button type="button" id="apply-discount" class="btn btn-primary mt-2">Apply Discount</button>
                         </div>
                     </fieldset>
@@ -136,7 +138,7 @@
                             <span class="icon">
                                 <i class="fas fa-exclamation-circle"></i>
                             </span>
-                            <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
+                            <span>Your card will be charged <strong>€{{ grand_total | floatformat:2 }}</strong></span>
                         </p>
                     </div>
                 </form>

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalElement = document.querySelector('.order-total'); // Selector for order total
     const deliveryElement = document.querySelector('.delivery'); // Selector for delivery cost
     const grandTotalElement = document.querySelector('.grand-total'); // Selector for grand total
+    const discountLabel = document.querySelector('.discount-label'); // Label for discount
+    const discountValueElement = document.querySelector('.discount-value'); // Discount value element
 
     applyDiscountButton.addEventListener('click', () => {
         const discountCode = discountCodeInput.value.trim();
@@ -31,36 +33,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log('Discount response data:', data); // Log the response data
-
             if (data.discount_applied) {
                 const discountValue = data.discount_value; // Discount amount from server
-                console.log('Discount applied: ', discountValue); // Log discount value
-
                 const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.')); // Current total
-                console.log('Original total: ', originalTotal); // Log original total
+                const updatedGrandTotal = originalTotal - discountValue + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')); // Include delivery
 
-                const updatedTotal = originalTotal - discountValue; // Apply discount
-                console.log('Updated total: ', updatedTotal); // Log updated total
+                // Update the displayed discount value
+                discountLabel.style.display = 'block'; // Show discount label
+                discountValueElement.style.display = 'block'; // Show discount value
+                discountValueElement.textContent = `-€${discountValue.toFixed(2).replace('.', ',')}`; // Format discount to Euro style
 
-                const updatedGrandTotal = updatedTotal + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')); // Include delivery
-
-                // Update the displayed values
-                totalElement.textContent = `€${updatedTotal.toFixed(2).replace('.', ',')}`; // Format to Euro style
+                // Update grand total
                 grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2).replace('.', ',')}</strong>`; // Format to Euro style
                 
-                // Clear error message on success
-                discountMessage.style.display = 'none';
-                discountMessage.textContent = '';
+                // Display success message
+                discountMessage.style.display = 'block';
+                discountMessage.classList.remove('text-danger');
+                discountMessage.classList.add('text-success');
+                discountMessage.textContent = `Discount code applied: €${discountValue.toFixed(2).replace('.', ',')}`;
             } else {
                 // Show error message in red
                 discountMessage.style.display = 'block';
+                discountMessage.classList.remove('text-success');
+                discountMessage.classList.add('text-danger');
                 discountMessage.textContent = data.message || 'Invalid discount code';
             }
         })
         .catch(error => {
             console.error('Error:', error);
             discountMessage.style.display = 'block';
+            discountMessage.classList.remove('text-success');
+            discountMessage.classList.add('text-danger');
             discountMessage.textContent = 'An error occurred. Please try again.';
         });
     });
