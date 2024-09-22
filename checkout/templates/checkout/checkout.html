@@ -107,12 +107,7 @@
                         <div class="form-group">
                             <label for="discount_code">Enter discount code (optional)</label>
                             <input type="text" class="form-control" id="discount_code" name="discount_code" placeholder="Enter discount code">
-                            {% if discount_applied %}
-                                <p class="text-success mt-2">Discount "<strong>{{ discount_code }}</strong>" applied: -€{{ discount_value|floatformat:2 }}</p>
-                            {% endif %}
-                            {% if invalid_discount %}
-                                <p class="text-danger mt-2">Invalid or expired discount code</p>
-                            {% endif %}
+                            <p id="discount-message" class="text-danger mt-2" style="display: none;"></p> <!-- Placeholder for error message -->
                             <button type="button" id="apply-discount" class="btn btn-primary mt-2">Apply Discount</button>
                         </div>
                     </fieldset>

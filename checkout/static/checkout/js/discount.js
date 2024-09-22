@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const applyDiscountButton = document.getElementById('apply-discount');
     const discountCodeInput = document.getElementById('discount_code');
+    const discountMessage = document.getElementById('discount-message'); // Discount message element
     const totalElement = document.querySelector('.order-total'); // Selector for order total
     const deliveryElement = document.querySelector('.delivery'); // Selector for delivery cost
     const grandTotalElement = document.querySelector('.grand-total'); // Selector for grand total
@@ -8,8 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     applyDiscountButton.addEventListener('click', () => {
         const discountCode = discountCodeInput.value.trim();
 
-        
-        fetch('/checkout/validate-discount/', { 
+        // Reset discount message each time button is clicked
+        discountMessage.style.display = 'none';
+        discountMessage.textContent = '';
+
+        // Fetch request to validate the discount code
+        fetch('/checkout/validate-discount/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,12 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 totalElement.textContent = `€${updatedTotal.toFixed(2).replace('.', ',')}`; // Format to Euro style
                 grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2).replace('.', ',')}</strong>`; // Format to Euro style
                 
-                alert(`Discount applied: -€${discountValue.toFixed(2).replace('.', ',')}`);
+                // Clear error message on success
+                discountMessage.style.display = 'none';
+                discountMessage.textContent = '';
             } else {
-                alert(data.message || 'Invalid discount code');
+                // Show error message in red
+                discountMessage.style.display = 'block';
+                discountMessage.textContent = data.message || 'Invalid discount code';
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+            discountMessage.style.display = 'block';
+            discountMessage.textContent = 'An error occurred. Please try again.';
+        });
     });
 });
 
