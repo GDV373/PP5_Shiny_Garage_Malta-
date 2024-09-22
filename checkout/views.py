@@ -27,27 +27,24 @@ def validate_discount(request):
             if not discount_code:
                 return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
 
-            # Try to find a valid discount
             try:
                 discount = Discount.objects.get(
                     code=discount_code,
                     valid_from__lte=timezone.now(),
                     valid_to__gte=timezone.now(),
-                    active=True  # Assuming there's an 'active' field
+                    active=True
                 )
-                
-                # Return discount value if valid
                 return JsonResponse({
                     'discount_applied': True,
                     'discount_value': discount.discount_value
                 })
-                
+
             except Discount.DoesNotExist:
                 return JsonResponse({'discount_applied': False, 'message': 'Invalid or expired discount code'}, status=400)
-                
+
         except json.JSONDecodeError:
             return JsonResponse({'discount_applied': False, 'message': 'Invalid JSON data'}, status=400)
-        
+
     return JsonResponse({'discount_applied': False, 'message': 'Invalid request method'}, status=400)
 
 
@@ -68,10 +65,12 @@ def cache_checkout_data(request):
             amount=int(total_after_discount * 100),  # Stripe expects amounts in cents
         )
         return HttpResponse(status=200)
-    except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
-        return HttpResponse(content=e, status=400)
 
+    except stripe.error.InvalidRequestError as e:
+        return HttpResponse(content=f"Failed to update PaymentIntent: {str(e)}", status=400)
+
+    except Exception as e:
+        return HttpResponse(content=f"Error: {str(e)}", status=400)
 
 
 def checkout_success(request, order_number):
@@ -117,10 +116,10 @@ def checkout(request):
     discount_value = 0
     total = 0
     discount_code = None
+    intent = None
 
     if request.method == 'POST':
-        # This section should handle the POST request when the form is submitted
-
+        # Handle form submission (PaymentIntent is created here)
         bag = request.session.get('bag', {})
         discount_code = request.POST.get('discount_code', '').strip()
 
@@ -138,23 +137,33 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            # Create the order and handle discounts if necessary
             current_bag = bag_contents(request)
             total = current_bag['grand_total']
-            if discount_code:
-                # Apply discount logic
-                pass
 
-            # Only create or modify the PaymentIntent at this point
+            if discount_code:
+                try:
+                    discount = Discount.objects.get(
+                        code=discount_code,
+                        valid_from__lte=timezone.now(),
+                        valid_to__gte=timezone.now(),
+                        active=True
+                    )
+                    discount_value = discount.discount_value
+                    total -= discount_value
+                except Discount.DoesNotExist:
+                    messages.error(request, 'Invalid discount code.')
+
+            # Create the PaymentIntent only when the form is submitted
             stripe.api_key = stripe_secret_key
             intent = stripe.PaymentIntent.create(
                 amount=int(total * 100),  # Convert to cents for Stripe
                 currency=settings.STRIPE_CURRENCY,
             )
-            # Then pass the intent.client_secret to the template
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(reverse('checkout_success', args=[order_form.cleaned_data['email']]))
 
     else:
-        # If it's a GET request (page load), just render the page without creating or modifying the PaymentIntent
+        # GET request - Show the checkout form without creating PaymentIntent
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
 
@@ -181,8 +190,8 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret if intent else None,
         'total': total,
     }
 
     return render(request, template, context)
-
