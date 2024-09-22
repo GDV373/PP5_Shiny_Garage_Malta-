@@ -14,63 +14,40 @@ from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
 from django.http import JsonResponse
-from .models import Discount
 
 import stripe
 import json
 
-
-def validate_discount(request):
-    if request.method == 'POST':
-        try:
-            # Load JSON data from the request body
-            data = json.loads(request.body)
-            discount_code = data.get('discount_code')
-
-            # Check if a discount code was provided
-            if not discount_code:
-                return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
-
-            # Try to find a valid discount
-            try:
-                discount = Discount.objects.get(
-                    code=discount_code,
-                    valid_from__lte=timezone.now(),
-                    valid_to__gte=timezone.now(),
-                    active=True  # Assuming you have an 'active' field
-                )
-                
-                # Return discount value if valid
-                return JsonResponse({
-                    'discount_applied': True,
-                    'discount_value': discount.discount_value
-                })
-                
-            except Discount.DoesNotExist:
-                return JsonResponse({'discount_applied': False, 'message': 'Invalid or expired discount code'}, status=400)
-                
-        except json.JSONDecodeError:
-            return JsonResponse({'discount_applied': False, 'message': 'Invalid JSON data'}, status=400)
-        
-    # Return a generic response for non-POST requests
-    return JsonResponse({'discount_applied': False, 'message': 'Invalid request method'}, status=400)
 
 @require_POST
 def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user,
-        })
+
+        # Get discount value from the frontend
+        discount_value = float(request.POST.get('discount_value', 0))
+
+        # Calculate the final total, applying the discount
+        total = float(request.POST.get('total'))
+        total_after_discount = total - discount_value
+
+        # Modify the PaymentIntent with the updated amount
+        stripe.PaymentIntent.modify(
+            pid,
+            amount=int(total_after_discount * 100),  # Convert to cents for Stripe
+            metadata={
+                'bag': json.dumps(request.session.get('bag', {})),
+                'save_info': request.POST.get('save_info'),
+                'username': request.user,
+                'discount_value': discount_value,  # Save discount value in metadata
+            }
+        )
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, ('Sorry, your payment cannot be '
-                                 'processed right now. Please try '
-                                 'again later.'))
+        messages.error(request, ('Sorry, your payment cannot be processed right now. Please try again later.'))
         return HttpResponse(content=e, status=400)
+
 
 def checkout_success(request, order_number):
     """
@@ -109,6 +86,7 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -187,7 +165,7 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, ('There was an error with your form. Please double check your information.'))
+            messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
