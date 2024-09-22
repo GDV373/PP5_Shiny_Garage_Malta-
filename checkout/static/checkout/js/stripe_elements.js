@@ -36,10 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle form submission
     var form = document.getElementById('payment-form');
+    var isSubmitting = false;  // Flag to prevent multiple submissions
+
     form.addEventListener('submit', function(ev) {
         ev.preventDefault();
+
+        if (isSubmitting) {
+            return;  // Prevent duplicate submissions
+        }
+        isSubmitting = true;  // Set flag to true after first submission
 
         // Disable card and button while processing
         card.update({ 'disabled': true });
@@ -48,14 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#loading-overlay').fadeToggle(100);
 
         var saveInfo = Boolean($('#id-save-info').attr('checked'));
-        var discountCode = $('#discount_code').val().trim();  // Get the discount code
         var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         
-        // Extract discount value and total
+        // Extract discount value and grand total
         var discountValue = parseFloat($('.discount-value').text().replace('€', '').replace(',', '.')) || 0;
         var grandTotal = parseFloat($('.grand-total').text().replace('€', '').replace(',', '.'));
 
-        // Data to pass to the backend
+        // Data to send to backend
         var postData = {
             'csrfmiddlewaretoken': csrfToken,
             'client_secret': clientSecret,
@@ -66,9 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var url = '/checkout/cache_checkout_data/';
 
-        // Send data to backend to update PaymentIntent with the final total
+        // Update PaymentIntent with final total, then confirm the payment
         $.post(url, postData).done(function () {
-            // Confirm the card payment only after successful update of PaymentIntent
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
@@ -110,14 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#loading-overlay').fadeToggle(100);
                     card.update({ 'disabled': false });
                     $('#submit-button').attr('disabled', false);
+                    isSubmitting = false;  // Reset flag if error occurs
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {
-                        form.submit();  // Submit the form only when payment is successful
+                        form.submit();  // Submit form after successful payment
                     }
                 }
             });
         }).fail(function () {
-            location.reload();
+            location.reload();  // Reload page if backend fails
+            isSubmitting = false;  // Reset flag on failure
         });
     });
 });
