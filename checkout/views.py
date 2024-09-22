@@ -79,34 +79,41 @@ def apply_discount(request):
 
 def checkout(request):
     if request.method == 'POST':
-        # Handle the form submission logic here (process payment, etc.)
         order_form = OrderForm(request.POST)
-
+        
         if order_form.is_valid():
-            # Process order
             order = order_form.save(commit=False)
-            # More order processing logic...
+            # Calculate grand total here if necessary and other order processing logic
+
+            # Return redirect to success view after payment processing
             return redirect('checkout_success', order_number=order.order_number)
         else:
-            # If the form is not valid, re-render the form with errors
+            # Handle form errors
             context = {
                 'order_form': order_form,
-                'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',
-                'grand_total': 'YOUR_GRAND_TOTAL',
+                'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',  # Replace with actual client secret
+                'grand_total': 'YOUR_GRAND_TOTAL'  # Replace with actual grand total
             }
             return render(request, 'checkout/checkout.html', context)
+
     else:
-        # Handle GET request - Render the checkout form
         order_form = OrderForm()
 
         context = {
             'order_form': order_form,
-            'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',  # Stripe info (replace with actual value)
-            'grand_total': 'YOUR_GRAND_TOTAL',  # Replace with the actual grand total
+            'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',
+            'grand_total': 'YOUR_GRAND_TOTAL'
         }
         return render(request, 'checkout/checkout.html', context)
 
 def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    context = {
+        'order': order,
+        'from_profile': 'profile' in request.GET,
+    }
+    return render(request, 'checkout/checkout_success.html', context)
     order = get_object_or_404(Order, order_number=order_number)
 
     context = {
