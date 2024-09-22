@@ -26,9 +26,11 @@ def apply_discount(request):
         try:
             # Get the discount code from the POST data
             discount_code = request.POST.get('discount_code', '')
-            
-            if not discount_code:
-                return JsonResponse({'valid': False, 'error': 'No discount code provided'}, status=400)
+
+            # Log the incoming data for debugging
+            print(f"Discount Code: {discount_code}")
+            print(f"Current Total: {request.POST.get('current_total')}")
+            print(f"Current Shipping: {request.POST.get('current_shipping')}")
 
             # Fetch the discount object from the database
             discount = Discount.objects.get(code=discount_code, active=True)
@@ -63,6 +65,7 @@ def apply_discount(request):
 
         except Exception as e:
             # Log the error and return a 500 response with detailed information
+            print(f"Error applying discount: {str(e)}")
             return JsonResponse({'valid': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'valid': False, 'error': 'Invalid request method'}, status=400)
