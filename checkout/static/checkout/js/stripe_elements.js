@@ -40,21 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(ev) {
         ev.preventDefault();
-    
+
         // Disable card and button while processing
         card.update({ 'disabled': true });
         $('#submit-button').attr('disabled', true);
         $('#payment-form').fadeToggle(100);
         $('#loading-overlay').fadeToggle(100);
-    
+
         var saveInfo = Boolean($('#id-save-info').attr('checked'));
+        var discountCode = $('#discount_code').val().trim();  // Get the discount code
         var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         
-        // Extract discount value and grand total
+        // Extract discount value and total
         var discountValue = parseFloat($('.discount-value').text().replace('€', '').replace(',', '.')) || 0;
         var grandTotal = parseFloat($('.grand-total').text().replace('€', '').replace(',', '.'));
-    
-        // Data to send to backend
+
+        // Data to pass to the backend
         var postData = {
             'csrfmiddlewaretoken': csrfToken,
             'client_secret': clientSecret,
@@ -62,11 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'discount_value': discountValue,  // Pass the discount value to backend
             'total': grandTotal  // Pass the total after discount to backend
         };
-    
+
         var url = '/checkout/cache_checkout_data/';
-    
-        // Update PaymentIntent with final total, then confirm the payment
+
+        // Send data to backend to update PaymentIntent with the final total
         $.post(url, postData).done(function () {
+            // Confirm the card payment only after successful update of PaymentIntent
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
@@ -110,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#submit-button').attr('disabled', false);
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {
-                        form.submit();
+                        form.submit();  // Submit the form only when payment is successful
                     }
                 }
             });
