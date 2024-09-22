@@ -1,23 +1,22 @@
 from django.utils import timezone
-from .models import Order, OrderLineItem, Discount
 from django.shortcuts import (
     render, redirect, reverse, get_object_or_404, HttpResponse
 )
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.http import JsonResponse
 
+from .models import Order, OrderLineItem, Discount
 from .forms import OrderForm
 from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
-from django.http import JsonResponse
-from .models import Discount
-
 import stripe
 import json
+
 
 def validate_discount(request):
     if request.method == 'POST':
@@ -58,10 +57,8 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
-        # Get discount value from the frontend
+        # Get discount value and total from the frontend
         discount_value = float(request.POST.get('discount_value', 0))
-
-        # Calculate the final total, applying the discount
         total = float(request.POST.get('total'))
         total_after_discount = total - discount_value
 
