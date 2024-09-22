@@ -23,26 +23,31 @@ import json
 
 def apply_discount(request):
     if request.method == 'POST':
-        discount_code = request.POST.get('discount_code', '')
         try:
+            # Get the discount code from the POST data
+            discount_code = request.POST.get('discount_code', '')
+
+            # Fetch the discount object from the database
             discount = Discount.objects.get(code=discount_code, active=True)
 
-            # Check if the discount is still valid
+            # Check if the discount is valid
             if not discount.is_valid():
                 return JsonResponse({'valid': False})
 
             discount_amount = 0
             current_total = float(request.POST.get('current_total', 0))
-            current_shipping = float(request.POST.get('current_shipping', 0))
 
-            # Calculate discount based on discount type
+            # Calculate the discount based on the type
             if discount.discount_type == 'item':
                 discount_amount = current_total * (discount.discount_value / 100)
-                new_grand_total = current_total - discount_amount + current_shipping
             elif discount.discount_type == 'shipping':
-                discount_amount = min(current_shipping, discount.discount_value)  # Cap discount to shipping cost
-                new_grand_total = current_total + (current_shipping - discount_amount)
+                # Assume you pass shipping cost in the request to apply the shipping discount
+                current_shipping = float(request.POST.get('current_shipping', 0))
+                discount_amount = min(current_shipping, discount.discount_value)
 
+            new_grand_total = current_total - discount_amount
+
+            # Return success response
             return JsonResponse({
                 'valid': True,
                 'discount_type': discount.discount_type,
@@ -50,10 +55,15 @@ def apply_discount(request):
                 'new_grand_total': f'{new_grand_total:.2f}',
             })
         except Discount.DoesNotExist:
-            return JsonResponse({'valid': False})
+            # Handle invalid discount codes
+            return JsonResponse({'valid': False}, status=400)
+        except Exception as e:
+            # Log the error and return a 500 response
+            print(f"Error applying discount: {str(e)}")
+            return JsonResponse({'valid': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'valid': False}, status=400)
-    
+
 @require_POST
 def cache_checkout_data(request):
     try:
