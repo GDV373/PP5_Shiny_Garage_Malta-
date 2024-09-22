@@ -19,15 +19,12 @@ from .models import Discount
 import stripe
 import json
 
-
 def validate_discount(request):
     if request.method == 'POST':
         try:
-            # Load JSON data from the request body
             data = json.loads(request.body)
             discount_code = data.get('discount_code')
 
-            # Check if a discount code was provided
             if not discount_code:
                 return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
 
@@ -37,7 +34,7 @@ def validate_discount(request):
                     code=discount_code,
                     valid_from__lte=timezone.now(),
                     valid_to__gte=timezone.now(),
-                    active=True  # Assuming you have an 'active' field
+                    active=True  # Assuming there's an 'active' field
                 )
                 
                 # Return discount value if valid
@@ -52,8 +49,8 @@ def validate_discount(request):
         except json.JSONDecodeError:
             return JsonResponse({'discount_applied': False, 'message': 'Invalid JSON data'}, status=400)
         
-    # Return a generic response for non-POST requests
     return JsonResponse({'discount_applied': False, 'message': 'Invalid request method'}, status=400)
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -71,24 +68,21 @@ def cache_checkout_data(request):
         # Modify the PaymentIntent with the updated amount
         stripe.PaymentIntent.modify(
             pid,
-            amount=int(total_after_discount * 100),  # Convert to cents for Stripe
+            amount=int(total_after_discount * 100),  # Stripe expects amounts in cents
             metadata={
                 'bag': json.dumps(request.session.get('bag', {})),
                 'save_info': request.POST.get('save_info'),
                 'username': request.user,
-                'discount_value': discount_value,  # Save discount value in metadata
+                'discount_value': discount_value,  # Store discount value in metadata
             }
         )
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, ('Sorry, your payment cannot be processed right now. Please try again later.'))
+        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -129,7 +123,6 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     discount_value = 0
-    invalid_discount = False
     total = 0
     discount_code = None
 
@@ -158,12 +151,16 @@ def checkout(request):
             # Check for discount code
             if discount_code:
                 try:
-                    discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now(), active=True)
+                    discount = Discount.objects.get(
+                        code=discount_code,
+                        valid_from__lte=timezone.now(),
+                        valid_to__gte=timezone.now(),
+                        active=True
+                    )
                     discount_value = discount.discount_value
                     total -= discount_value  # Apply discount
                 except Discount.DoesNotExist:
-                    invalid_discount = True
-                    messages.error(request, "Invalid discount code or it has expired.")
+                    messages.error(request, 'Invalid discount code or it has expired.')
 
             # Create the order without committing to the DB yet
             order = order_form.save(commit=False)
@@ -186,7 +183,7 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, "One of the products in your cart wasn't found in our database. Please call us for assistance!")
+                    messages.error(request, 'One of the products in your cart was not found in our database. Please call us for assistance!')
                     order.delete()
                     return redirect(reverse('view_bag'))
 
@@ -205,7 +202,7 @@ def checkout(request):
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your cart at the moment")
+            messages.error(request, 'There is nothing in your cart at the moment.')
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
