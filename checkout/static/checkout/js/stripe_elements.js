@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $.post(url, postData).done(function () {
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
-                    card: card,
+                    card: card,  // Make sure the card element is correctly passed here
                     billing_details: {
                         name: $.trim(form.full_name.value),
                         phone: $.trim(form.phone_number.value),
