@@ -31,10 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+            console.log('Discount response data:', data); // Log the response data
+
             if (data.discount_applied) {
                 const discountValue = data.discount_value; // Discount amount from server
+                console.log('Discount applied: ', discountValue); // Log discount value
+
                 const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.')); // Current total
+                console.log('Original total: ', originalTotal); // Log original total
+
                 const updatedTotal = originalTotal - discountValue; // Apply discount
+                console.log('Updated total: ', updatedTotal); // Log updated total
+
                 const updatedGrandTotal = updatedTotal + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')); // Include delivery
 
                 // Update the displayed values
