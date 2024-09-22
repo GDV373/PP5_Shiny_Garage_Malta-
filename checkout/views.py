@@ -14,6 +14,7 @@ from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
 from django.http import JsonResponse
+from .models import Discount
 
 import stripe
 import json
