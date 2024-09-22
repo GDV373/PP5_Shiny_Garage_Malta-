@@ -41,11 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', function(ev) {
         ev.preventDefault();
+        console.log("Form submission triggered");
 
         if (isSubmitting) {
+            console.log("Form is already submitting, stopping duplicate submission");
             return;  // Prevent duplicate submissions
         }
         isSubmitting = true;  // Set flag to true after first submission
+        console.log("Form is now submitting...");
 
         // Disable card and button while processing
         card.update({ 'disabled': true });
@@ -73,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update PaymentIntent with final total, then confirm the payment
         $.post(url, postData).done(function () {
+            console.log("PaymentIntent successfully updated");
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
@@ -103,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             }).then(function(result) {
                 if (result.error) {
+                    console.log("Error confirming payment:", result.error.message);
                     var errorDiv = document.getElementById('card-errors');
                     var html = `
                         <span class="icon" role="alert">
@@ -117,11 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     isSubmitting = false;  // Reset flag if error occurs
                 } else {
                     if (result.paymentIntent.status === 'succeeded') {
+                        console.log("Payment succeeded, submitting form");
                         form.submit();  // Submit form after successful payment
                     }
                 }
             });
         }).fail(function () {
+            console.log("Failed to update PaymentIntent");
             location.reload();  // Reload page if backend fails
             isSubmitting = false;  // Reset flag on failure
         });
