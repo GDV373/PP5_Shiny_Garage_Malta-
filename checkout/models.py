@@ -10,20 +10,25 @@ from products.models import Product
 from profiles.models import UserProfile
 
 class Discount(models.Model):
-    DISCOUNT_TYPE_CHOICES = [
-        ('percentage', 'Percentage'),
-        ('fixed', 'Fixed Amount'),
-    ]
+    DISCOUNT_TYPE_CHOICES = (
+        ('item', 'Item'),
+        ('shipping', 'Shipping'),
+    )
 
-    code = models.CharField(max_length=15, unique=True)
-    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE_CHOICES)
-    discount_value = models.DecimalField(max_digits=6, decimal_places=2)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
+    code = models.CharField(max_length=15, unique=True, null=False, blank=False)
+    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE_CHOICES, null=False, blank=False)
+    discount_value = models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
+    valid_from = models.DateTimeField(null=False, blank=False)
+    valid_to = models.DateTimeField(null=False, blank=False)
     active = models.BooleanField(default=True)
 
+    def is_valid(self):
+        """Check if discount is valid."""
+        now = timezone.now()
+        return self.active and self.valid_from <= now <= self.valid_to
+
     def __str__(self):
-        return self.code
+        return f'{self.code} ({self.discount_type} - {self.discount_value})'
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
