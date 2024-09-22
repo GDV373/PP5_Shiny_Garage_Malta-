@@ -39,22 +39,22 @@ def apply_discount(request):
             if not discount.is_valid():
                 return JsonResponse({'valid': False, 'error': 'Discount code is not valid'}, status=400)
 
-            # Convert current_total and shipping to float and ensure discount_value is also float
+            # Convert current_total and current_shipping to float and ensure discount_value is float
             current_total = float(request.POST.get('current_total', 0))
             current_shipping = float(request.POST.get('current_shipping', 0))
-            discount_value = float(discount.discount_value)  # Convert to float
-            
+            discount_value = float(discount.discount_value)  # The fixed discount value 
+
             discount_amount = 0
 
-            # Calculate the discount based on the type
+            # Apply the discount based on the type
             if discount.discount_type == 'item':
-                # Discount is a percentage off the item total
-                discount_amount = current_total * (discount_value / 100)  # E.g., 5% off current total
+                # Subtract the fixed discount value from the item total
+                discount_amount = min(current_total, discount_value)  # Ensure we don't subtract more than the total
             elif discount.discount_type == 'shipping':
-                # Discount is a fixed amount off the shipping cost
-                discount_amount = min(current_shipping, discount_value)  # E.g., €5 off shipping
+                # Subtract the fixed discount value from the shipping cost
+                discount_amount = min(current_shipping, discount_value)  # Ensure we don't subtract more than the shipping cost
 
-            # Calculate new grand total
+            # Calculate the new grand total: total + shipping - discount
             new_grand_total = current_total + current_shipping - discount_amount
 
             # Return success response
@@ -74,6 +74,7 @@ def apply_discount(request):
             return JsonResponse({'valid': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'valid': False, 'error': 'Invalid request method'}, status=400)
+
 
 @require_POST
 def cache_checkout_data(request):
