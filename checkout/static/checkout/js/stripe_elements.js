@@ -48,14 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#loading-overlay').fadeToggle(100);
     
         var saveInfo = Boolean($('#id-save-info').attr('checked'));
-        var discountCode = $('#discount_code').val().trim();  // Get the discount code
         var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         
-        // Extract discount value and total
+        // Extract discount value and grand total
         var discountValue = parseFloat($('.discount-value').text().replace('€', '').replace(',', '.')) || 0;
         var grandTotal = parseFloat($('.grand-total').text().replace('€', '').replace(',', '.'));
     
-        // Data to pass to the backend
+        // Data to send to backend
         var postData = {
             'csrfmiddlewaretoken': csrfToken,
             'client_secret': clientSecret,
@@ -66,9 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
         var url = '/checkout/cache_checkout_data/';
     
-        // Send data to backend to update PaymentIntent with the final total
+        // Update PaymentIntent with final total, then confirm the payment
         $.post(url, postData).done(function () {
-            // Confirm the card payment only after successful update of PaymentIntent
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
