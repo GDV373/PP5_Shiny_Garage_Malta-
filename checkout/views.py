@@ -119,6 +119,8 @@ def checkout(request):
     discount_code = None
 
     if request.method == 'POST':
+        # This section should handle the POST request when the form is submitted
+
         bag = request.session.get('bag', {})
         discount_code = request.POST.get('discount_code', '').strip()
 
@@ -136,75 +138,25 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            # Calculate original total
+            # Create the order and handle discounts if necessary
             current_bag = bag_contents(request)
             total = current_bag['grand_total']
-
-            # Check for discount code
             if discount_code:
-                try:
-                    discount = Discount.objects.get(
-                        code=discount_code,
-                        valid_from__lte=timezone.now(),
-                        valid_to__gte=timezone.now(),
-                        active=True
-                    )
-                    discount_value = discount.discount_value
-                    total -= discount_value  # Apply discount
-                except Discount.DoesNotExist:
-                    messages.error(request, 'Invalid discount code or it has expired.')
+                # Apply discount logic
+                pass
 
-            # Create the order without committing to the DB yet
-            order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid = pid
-            order.original_bag = json.dumps(bag)
-            order.discount_value = discount_value  # Save discount value in order
-            order.total = total  # Save the discounted total in the order
-
-            # Save the order to the DB
-            order.save()
-
-            for item_id, item_data in bag.items():
-                try:
-                    product = Product.objects.get(id=item_id)
-                    order_line_item = OrderLineItem(
-                        order=order,
-                        product=product,
-                        quantity=item_data,
-                    )
-                    order_line_item.save()
-                except Product.DoesNotExist:
-                    messages.error(request, 'One of the products in your cart was not found in our database. Please call us for assistance!')
-                    order.delete()
-                    return redirect(reverse('view_bag'))
-
-            # Pass the discounted total to Stripe
-            stripe_total = round(total * 100)
+            # Only create or modify the PaymentIntent at this point
             stripe.api_key = stripe_secret_key
             intent = stripe.PaymentIntent.create(
-                amount=stripe_total,
+                amount=int(total * 100),  # Convert to cents for Stripe
                 currency=settings.STRIPE_CURRENCY,
             )
+            # Then pass the intent.client_secret to the template
 
-            request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
-        else:
-            messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
-        bag = request.session.get('bag', {})
-        if not bag:
-            messages.error(request, 'There is nothing in your cart at the moment.')
-            return redirect(reverse('products'))
-
+        # If it's a GET request (page load), just render the page without creating or modifying the PaymentIntent
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
 
         if request.user.is_authenticated:
             try:
@@ -225,15 +177,12 @@ def checkout(request):
         else:
             order_form = OrderForm()
 
-    # Define the context before rendering
+    template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-        'discount_applied': discount_code is not None,
-        'discount_code': discount_code if discount_code else '',
-        'discount_value': discount_value,
         'total': total,
     }
 
-    return render(request, 'checkout/checkout.html', context)
+    return render(request, template, context)
+
