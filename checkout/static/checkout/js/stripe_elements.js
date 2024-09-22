@@ -68,9 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Send data to backend to update PaymentIntent with the final total
         $.post(url, postData).done(function () {
+            // Confirm the card payment only after successful update of PaymentIntent
             stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
-                    card: card,  // Make sure the card element is correctly passed here
+                    card: card,
                     billing_details: {
                         name: $.trim(form.full_name.value),
                         phone: $.trim(form.phone_number.value),
