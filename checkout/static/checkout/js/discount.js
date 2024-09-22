@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalElement = document.querySelector('.order-total'); // Selector for order total
     const deliveryElement = document.querySelector('.delivery'); // Selector for delivery cost
     const grandTotalElement = document.querySelector('.grand-total'); // Selector for grand total
-    const discountLabel = document.querySelector('.discount-label'); // Label for discount
-    const discountValueElement = document.querySelector('.discount-value'); // Discount value element
+    const discountLabelElement = document.querySelector('.discount-label'); // Selector for discount label
+    const discountValueElement = document.querySelector('.discount-value'); // Selector for discount value
 
     applyDiscountButton.addEventListener('click', () => {
         const discountCode = discountCodeInput.value.trim();
@@ -34,23 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             if (data.discount_applied) {
-                const discountValue = data.discount_value; // Discount amount from server
+                const discountValue = parseFloat(data.discount_value); // Convert to float to use toFixed
                 const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.')); // Current total
-                const updatedGrandTotal = originalTotal - discountValue + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')); // Include delivery
+                const updatedGrandTotal = originalTotal + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')) - discountValue; // Include delivery
 
-                // Update the displayed discount value
-                discountLabel.style.display = 'block'; // Show discount label
-                discountValueElement.style.display = 'block'; // Show discount value
-                discountValueElement.textContent = `-€${discountValue.toFixed(2).replace('.', ',')}`; // Format discount to Euro style
-
-                // Update grand total
+                // Update the displayed values
+                discountLabelElement.style.display = 'block';
+                discountValueElement.style.display = 'block';
+                discountValueElement.textContent = `-€${discountValue.toFixed(2).replace('.', ',')}`; // Format to Euro style
                 grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2).replace('.', ',')}</strong>`; // Format to Euro style
                 
-                // Display success message
+                // Show success message in green
                 discountMessage.style.display = 'block';
                 discountMessage.classList.remove('text-danger');
                 discountMessage.classList.add('text-success');
-                discountMessage.textContent = `Discount code applied: €${discountValue.toFixed(2).replace('.', ',')}`;
+                discountMessage.textContent = `Discount applied: -€${discountValue.toFixed(2).replace('.', ',')}`;
             } else {
                 // Show error message in red
                 discountMessage.style.display = 'block';
@@ -62,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error:', error);
             discountMessage.style.display = 'block';
-            discountMessage.classList.remove('text-success');
             discountMessage.classList.add('text-danger');
             discountMessage.textContent = 'An error occurred. Please try again.';
         });
