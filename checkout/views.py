@@ -39,20 +39,23 @@ def apply_discount(request):
             if not discount.is_valid():
                 return JsonResponse({'valid': False, 'error': 'Discount code is not valid'}, status=400)
 
-            # Convert current_total to float and ensure discount value is also float
+            # Convert current_total and shipping to float and ensure discount_value is also float
             current_total = float(request.POST.get('current_total', 0))
+            current_shipping = float(request.POST.get('current_shipping', 0))
             discount_value = float(discount.discount_value)  # Convert to float
             
             discount_amount = 0
 
             # Calculate the discount based on the type
             if discount.discount_type == 'item':
-                discount_amount = current_total * (discount_value / 100)  # Percentage discount on items
+                # Discount is a percentage off the item total
+                discount_amount = current_total * (discount_value / 100)  # E.g., 5% off current total
             elif discount.discount_type == 'shipping':
-                current_shipping = float(request.POST.get('current_shipping', 0))  # Convert shipping to float
-                discount_amount = min(current_shipping, discount_value)  # Cap discount to the shipping cost
+                # Discount is a fixed amount off the shipping cost
+                discount_amount = min(current_shipping, discount_value)  # E.g., €5 off shipping
 
-            new_grand_total = current_total - discount_amount
+            # Calculate new grand total
+            new_grand_total = current_total + current_shipping - discount_amount
 
             # Return success response
             return JsonResponse({
