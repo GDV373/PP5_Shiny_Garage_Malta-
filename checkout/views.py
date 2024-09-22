@@ -23,20 +23,37 @@ import json
 def validate_discount(request):
     if request.method == 'POST':
         try:
+            # Load JSON data from the request body
             data = json.loads(request.body)
             discount_code = data.get('discount_code')
 
-            if discount_code:
-                discount = Discount.objects.get(code=discount_code, valid_from__lte=timezone.now(), valid_to__gte=timezone.now())
+            # Check if a discount code was provided
+            if not discount_code:
+                return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
+
+            # Try to find a valid discount
+            try:
+                discount = Discount.objects.get(
+                    code=discount_code,
+                    valid_from__lte=timezone.now(),
+                    valid_to__gte=timezone.now(),
+                    active=True  # Assuming you have an 'active' field
+                )
+                
+                # Return discount value if valid
                 return JsonResponse({
                     'discount_applied': True,
-                    'discount_value': discount.discount_value,
+                    'discount_value': discount.discount_value
                 })
-            else:
-                return JsonResponse({'discount_applied': False, 'message': 'Discount code missing'}, status=400)
-        except Discount.DoesNotExist:
-            return JsonResponse({'discount_applied': False, 'message': 'Invalid or expired discount code'}, status=400)
-    return JsonResponse({'discount_applied': False, 'message': 'Invalid request'}, status=400)
+                
+            except Discount.DoesNotExist:
+                return JsonResponse({'discount_applied': False, 'message': 'Invalid or expired discount code'}, status=400)
+                
+        except json.JSONDecodeError:
+            return JsonResponse({'discount_applied': False, 'message': 'Invalid JSON data'}, status=400)
+        
+    # Return a generic response for non-POST requests
+    return JsonResponse({'discount_applied': False, 'message': 'Invalid request method'}, status=400)
 
 @require_POST
 def cache_checkout_data(request):
