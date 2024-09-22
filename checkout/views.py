@@ -79,40 +79,30 @@ def apply_discount(request):
 
 def checkout(request):
     if request.method == 'POST':
-        # Get the discounted grand total (fallback to grand_total if not provided)
-        discounted_grand_total = request.POST.get('discounted_grand_total', None)
+        # Handle the form submission logic here (process payment, etc.)
+        order_form = OrderForm(request.POST)
 
-        if discounted_grand_total:
-            amount_to_charge = float(discounted_grand_total)
+        if order_form.is_valid():
+            # Process order
+            order = order_form.save(commit=False)
+            # More order processing logic...
+            return redirect('checkout_success', order_number=order.order_number)
         else:
-            # If order is missing, handle error or default action here
-            return HttpResponse("Error: Order not found or no total provided", status=400)
-
-        # Convert amount to smallest unit (e.g., cents for Stripe)
-        stripe_amount = int(amount_to_charge * 100)
-
-        # Create Stripe PaymentIntent with the correct amount
-        try:
-            stripe.PaymentIntent.create(
-                amount=stripe_amount,
-                currency="eur",
-                payment_method=request.POST['payment_method'],
-                confirm=True,
-            )
-        except Exception as e:
-            # If Stripe fails, return an error message to the user
-            return HttpResponse(f"Stripe error: {str(e)}", status=500)
-
-        # Redirect to checkout success after payment is confirmed
-        order_number = "YOUR_ORDER_NUMBER"  # Fetch or generate the actual order number
-        return redirect('checkout_success', order_number=order_number)
-
+            # If the form is not valid, re-render the form with errors
+            context = {
+                'order_form': order_form,
+                'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',
+                'grand_total': 'YOUR_GRAND_TOTAL',
+            }
+            return render(request, 'checkout/checkout.html', context)
     else:
-        # This branch handles GET requests (render checkout form)
-        # Fetch or set any necessary context for your checkout form here
+        # Handle GET request - Render the checkout form
+        order_form = OrderForm()
+
         context = {
-            'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',  # Fetch the real client secret
-            'grand_total': 'YOUR_GRAND_TOTAL',  # Fetch the real grand total
+            'order_form': order_form,
+            'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',  # Stripe info (replace with actual value)
+            'grand_total': 'YOUR_GRAND_TOTAL',  # Replace with the actual grand total
         }
         return render(request, 'checkout/checkout.html', context)
 
