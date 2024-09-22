@@ -1,11 +1,3 @@
-/*
-    Core logic/payment flow for this comes from here:
-    https://stripe.com/docs/payments/accept-a-payment
-
-    CSS from here: 
-    https://stripe.com/docs/stripe-js
-*/
-
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -55,13 +47,19 @@ form.addEventListener('submit', function(ev) {
     $('#loading-overlay').fadeToggle(100);
 
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var discountValue = parseFloat($('.discount-amount').text().replace('€', '').replace(',', '.')) || 0;  // Fetch discount
+    var grandTotal = parseFloat($('.grand-total').text().replace('€', '').replace(',', '.')) || 0;  // Updated grand total after discount
+
     // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
+        'discount_value': discountValue,  // Include discount value in the data sent
+        'grand_total': grandTotal         // Include updated grand total
     };
+
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
