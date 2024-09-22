@@ -1,49 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
     const applyDiscountButton = document.getElementById('apply-discount');
     const discountCodeInput = document.getElementById('discount_code');
-    const discountMessage = document.getElementById('discount-message'); // Discount message element
-    const totalElement = document.querySelector('.order-total'); // Selector for order total
-    const deliveryElement = document.querySelector('.delivery'); // Selector for delivery cost
-    const grandTotalElement = document.querySelector('.grand-total'); // Selector for grand total
-    const discountLabelElement = document.querySelector('.discount-label'); // Selector for discount label
-    const discountValueElement = document.querySelector('.discount-value'); // Selector for discount value
+    const discountMessage = document.getElementById('discount-message'); 
+    const totalElement = document.querySelector('.order-total'); 
+    const deliveryElement = document.querySelector('.delivery'); 
+    const grandTotalElement = document.querySelector('.grand-total'); 
+    const discountLabelElement = document.querySelector('.discount-label'); 
+    const discountValueElement = document.querySelector('.discount-value');
 
-    applyDiscountButton.addEventListener('click', () => {
+    applyDiscountButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent form submission
         const discountCode = discountCodeInput.value.trim();
 
-        // Reset discount message each time button is clicked
-        discountMessage.style.display = 'none';
-        discountMessage.textContent = '';
+        if (!discountCode) {
+            discountMessage.textContent = 'Please enter a discount code.';
+            discountMessage.style.display = 'block';
+            return;
+        }
 
-        // Fetch request to validate the discount code
-        fetch('/checkout/validate-discount/', {
+        // Reset previous messages
+        discountMessage.style.display = 'none';
+
+        // Send the discount code to validate
+        fetch(checkoutUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'), // Get CSRF token
+                'X-CSRFToken': getCookie('csrftoken'), // Use your CSRF token here
             },
-            body: JSON.stringify({ discount_code: discountCode }),
+            body: JSON.stringify({
+                'discount_code': discountCode
+            })
         })
-        .then(response => response.json())  // Parse the response as JSON
+        .then(response => response.json())
         .then(data => {
             if (data.discount_applied) {
-                const discountValue = parseFloat(data.discount_value); // Convert to float to use toFixed
-                const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.')); // Current total
-                const updatedGrandTotal = originalTotal + parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.')) - discountValue; // Include delivery
+                const discountValue = parseFloat(data.discount_value);
 
-                // Update the displayed values
+                // Show the discount details
                 discountLabelElement.style.display = 'block';
                 discountValueElement.style.display = 'block';
-                discountValueElement.textContent = `-€${discountValue.toFixed(2).replace('.', ',')}`; // Format to Euro style
-                grandTotalElement.innerHTML = `<strong>€${updatedGrandTotal.toFixed(2).replace('.', ',')}</strong>`; // Format to Euro style
-                
-                // Show success message in green
+                discountValueElement.textContent = `-€${discountValue.toFixed(2)}`;
+
+                // Update grand total after applying discount
+                const originalTotal = parseFloat(totalElement.textContent.replace('€', '').replace(',', '.'));
+                const deliveryCost = parseFloat(deliveryElement.textContent.replace('€', '').replace(',', '.'));
+                const newGrandTotal = originalTotal + deliveryCost - discountValue;
+                grandTotalElement.innerHTML = `<strong>€${newGrandTotal.toFixed(2)}</strong>`;
+
+                // Display success message
                 discountMessage.style.display = 'block';
                 discountMessage.classList.remove('text-danger');
                 discountMessage.classList.add('text-success');
-                discountMessage.textContent = `Discount applied: -€${discountValue.toFixed(2).replace('.', ',')}`;
+                discountMessage.textContent = `Discount applied successfully! -€${discountValue.toFixed(2)}`;
             } else {
-                // Show error message in red (this is the invalid discount case)
                 discountMessage.style.display = 'block';
                 discountMessage.classList.remove('text-success');
                 discountMessage.classList.add('text-danger');
@@ -51,16 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(error => {
-            // Catch unexpected errors (like network issues)
             console.error('Error:', error);
             discountMessage.style.display = 'block';
             discountMessage.classList.add('text-danger');
-            discountMessage.textContent = 'An error occurred. Please try again.';
+            discountMessage.textContent = 'An error occurred while applying the discount.';
         });
     });
 });
 
-// Function to get CSRF token
+// Utility function to get the CSRF token
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
