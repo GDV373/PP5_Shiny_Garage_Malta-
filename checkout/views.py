@@ -51,10 +51,7 @@ def validate_discount(request):
 @require_POST
 def cache_checkout_data(request):
     try:
-        # Log the incoming request data for debugging
-        print("Request POST data: ", request.POST)
-
-        # Extract the client_secret and split to get the PaymentIntent ID
+        # Extract the client_secret and get the PaymentIntent ID
         client_secret = request.POST.get('client_secret')
         if not client_secret:
             return HttpResponse(content="Missing client_secret", status=400)
@@ -62,15 +59,12 @@ def cache_checkout_data(request):
         pid = client_secret.split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
-        # Get the discount value and total from the frontend
+        # Get discount value and total from the frontend
         discount_value = float(request.POST.get('discount_value', 0))
         total = float(request.POST.get('total', 0))
         total_after_discount = total - discount_value
 
-        # Log the discount and total values
-        print(f"Discount value: {discount_value}, Total: {total}, Total after discount: {total_after_discount}")
-
-        # Check if total after discount is valid
+        # Ensure valid total
         if total_after_discount <= 0:
             return HttpResponse(content="Invalid total amount", status=400)
 
@@ -81,15 +75,40 @@ def cache_checkout_data(request):
         )
         return HttpResponse(status=200)
 
+    except stripe.error.CardError as e:
+        # Since it's a decline, stripe.error.CardError will be caught
+        messages.error(request, f"Card error: {e.user_message}")
+        return HttpResponse(content=f"Card error: {e.user_message}", status=400)
+
+    except stripe.error.RateLimitError as e:
+        # Too many requests made to the API too quickly
+        messages.error(request, "Rate limit error")
+        return HttpResponse(content="Rate limit error", status=400)
+
     except stripe.error.InvalidRequestError as e:
-        # Log the error message and return the error response
-        print(f"Stripe error: {e}")
+        # Invalid parameters were supplied to Stripe's API
+        print(f"Invalid request error: {e}")
         return HttpResponse(content=f"Failed to update PaymentIntent: {str(e)}", status=400)
 
+    except stripe.error.AuthenticationError as e:
+        # Authentication with Stripe's API failed
+        messages.error(request, "Authentication error")
+        return HttpResponse(content="Authentication error", status=400)
+
+    except stripe.error.APIConnectionError as e:
+        # Network communication with Stripe failed
+        messages.error(request, "Network error")
+        return HttpResponse(content="Network error", status=400)
+
+    except stripe.error.StripeError as e:
+        # Display a very generic error to the user, and maybe send yourself an email
+        messages.error(request, "Something went wrong. Please try again later.")
+        return HttpResponse(content="Stripe error", status=400)
+
     except Exception as e:
-        # Log any other exceptions for debugging
+        # Something else happened unrelated to Stripe
         print(f"General error: {e}")
-        return HttpResponse(content=f"Error: {str(e)}", status=400)
+        return HttpResponse(content=f"An error occurred: {str(e)}", status=400)
 
 
 def checkout_success(request, order_number):
