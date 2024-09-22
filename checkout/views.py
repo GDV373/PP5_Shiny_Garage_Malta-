@@ -7,7 +7,7 @@ from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
-
+from django.http import HttpResponse
 from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
@@ -85,21 +85,36 @@ def checkout(request):
         if discounted_grand_total:
             amount_to_charge = float(discounted_grand_total)
         else:
-            amount_to_charge = order.grand_total  # Fallback if no discount was applied
+            # If order is missing, handle error or default action here
+            return HttpResponse("Error: Order not found or no total provided", status=400)
 
         # Convert amount to smallest unit (e.g., cents for Stripe)
         stripe_amount = int(amount_to_charge * 100)
 
         # Create Stripe PaymentIntent with the correct amount
-        stripe.PaymentIntent.create(
-            amount=stripe_amount,
-            currency="eur",
-            payment_method=request.POST['payment_method'],
-            confirm=True,
-        )
-        
-        # Rest of your checkout logic
-        return redirect('checkout_success', order_number=order.order_number)
+        try:
+            stripe.PaymentIntent.create(
+                amount=stripe_amount,
+                currency="eur",
+                payment_method=request.POST['payment_method'],
+                confirm=True,
+            )
+        except Exception as e:
+            # If Stripe fails, return an error message to the user
+            return HttpResponse(f"Stripe error: {str(e)}", status=500)
+
+        # Redirect to checkout success after payment is confirmed
+        order_number = "YOUR_ORDER_NUMBER"  # Fetch or generate the actual order number
+        return redirect('checkout_success', order_number=order_number)
+
+    else:
+        # This branch handles GET requests (render checkout form)
+        # Fetch or set any necessary context for your checkout form here
+        context = {
+            'client_secret': 'YOUR_STRIPE_CLIENT_SECRET',  # Fetch the real client secret
+            'grand_total': 'YOUR_GRAND_TOTAL',  # Fetch the real grand total
+        }
+        return render(request, 'checkout/checkout.html', context)
 
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
