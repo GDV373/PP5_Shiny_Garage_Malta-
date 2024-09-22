@@ -118,7 +118,6 @@ def checkout(request):
     total = 0
     discount_code = None
 
-    # Retrieve or create PaymentIntent only once
     if request.method == 'POST':
         bag = request.session.get('bag', {})
         discount_code = request.POST.get('discount_code', '').strip()
@@ -137,11 +136,11 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            # Calculate the total
+            # Calculate original total
             current_bag = bag_contents(request)
             total = current_bag['grand_total']
 
-            # Check for discount code and update total
+            # Check for discount code
             if discount_code:
                 try:
                     discount = Discount.objects.get(
@@ -155,22 +154,18 @@ def checkout(request):
                 except Discount.DoesNotExist:
                     messages.error(request, 'Invalid discount code or it has expired.')
 
-            # Modify the existing PaymentIntent, do not create a new one
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            stripe.api_key = stripe_secret_key
-            stripe.PaymentIntent.modify(
-                pid,
-                amount=int(total * 100),  # Amount in cents
-            )
-
+            # Create the order without committing to the DB yet
             order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
-            order.discount_value = discount_value
-            order.total = total
+            order.discount_value = discount_value  # Save discount value in order
+            order.total = total  # Save the discounted total in the order
+
+            # Save the order to the DB
             order.save()
 
-            # Save line items to the order
+            # Create line items for the order
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -181,48 +176,72 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, 'One of the products in your cart was not found.')
+                    messages.error(request, 'One of the products in your cart was not found in our database. Please call us for assistance!')
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            # Save info in session if needed
+            # Retrieve or create a PaymentIntent
+            stripe.api_key = stripe_secret_key
+            try:
+                payment_intent = stripe.PaymentIntent.retrieve(pid)
+                # Check if PaymentIntent can be modified
+                if payment_intent['status'] in ['requires_payment_method', 'requires_confirmation']:
+                    stripe.PaymentIntent.modify(
+                        pid,
+                        amount=int(total * 100),  # Pass the updated total
+                    )
+                else:
+                    messages.error(request, 'This payment has already been confirmed or succeeded.')
+                    return redirect(reverse('checkout'))
+            except stripe.error.InvalidRequestError:
+                # If no valid PaymentIntent exists, create a new one
+                intent = stripe.PaymentIntent.create(
+                    amount=int(total * 100),
+                    currency=settings.STRIPE_CURRENCY,
+                )
+                request.session['save_info'] = 'save-info' in request.POST
+                return redirect(reverse('checkout_success', args=[order.order_number]))
+
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. Please double-check your information.')
-
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, 'There is nothing in your cart.')
+            messages.error(request, 'There is nothing in your cart at the moment.')
             return redirect(reverse('products'))
 
-        # Calculate the total
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
-
-        # Create a PaymentIntent if it doesn't exist yet
+        stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
-            amount=int(total * 100),
+            amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
 
         if request.user.is_authenticated:
-            profile = UserProfile.objects.get(user=request.user)
-            order_form = OrderForm(initial={
-                'full_name': profile.user.get_full_name(),
-                'email': profile.user.email,
-                'phone_number': profile.default_phone_number,
-                'country': profile.default_country,
-                'postcode': profile.default_postcode,
-                'town_or_city': profile.default_town_or_city,
-                'street_address1': profile.default_street_address1,
-                'street_address2': profile.default_street_address2,
-                'county': profile.default_county,
-            })
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
         else:
             order_form = OrderForm()
+
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
     context = {
