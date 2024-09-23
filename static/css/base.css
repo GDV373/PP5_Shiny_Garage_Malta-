@@ -328,6 +328,10 @@ input[name='q']::placeholder {
     margin-bottom: 3%;
 }
 
+label[for="id_body"] {
+    display: none;
+}
+
 .comment-box {
     width: 100%;
     min-height: 150px;
