@@ -328,6 +328,18 @@ input[name='q']::placeholder {
     margin-bottom: 3%;
 }
 
+.comment-box {
+    width: 100%;
+    min-height: 150px;
+    max-width: 100%;
+    padding: 10px;
+    resize: vertical;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
 @media (max-width: 991px) {
     .travolta404 {
         float: none; 

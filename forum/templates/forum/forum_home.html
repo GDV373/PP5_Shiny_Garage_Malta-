@@ -26,7 +26,7 @@
                     <!-- Notification for unauthenticated users -->
                     <div class="alert alert-warning" role="alert">
                         You must be <a href="{% url 'account_login' %}" class="alert-link">logged in</a> or 
-                        <a href="{% url 'account_signup' %}" class="alert-link">register</a> to view or create a thread.
+                        <a href="{% url 'account_signup' %}" class="alert-link">register</a> to create a thread.
                     </div>
                 {% endif %}
 
@@ -48,17 +48,18 @@
                             <div class="card h-100 border-0">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="{% url 'forum_thread_detail' thread.id %}">{{ thread.title }}</a>
+                                        {% if user.is_authenticated %}
+                                            <!-- Link to thread details for logged-in users -->
+                                            <a href="{% url 'forum_thread_detail' thread.id %}">{{ thread.title }}</a>
+                                        {% else %}
+                                            <!-- Show thread title but no link for unregistered users -->
+                                            <span>{{ thread.title }}</span>
+                                        {% endif %}
                                     </h5>
                                     <p class="card-text">Posted by {{ thread.created_by }} on {{ thread.created_at|date:"Y-m-d" }}</p>
                                 </div>
                             </div>
                         </div>
-                        {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
                     {% endfor %}
                 </div>
 
@@ -90,15 +91,6 @@
                         </nav>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Pinned "Page X of X" at the bottom -->
-        <div class="row">
-            <div class="col-12 text-center mt-3">
-                <p class="text-muted">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </p>
             </div>
         </div>
     </div>

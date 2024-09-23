@@ -20,7 +20,7 @@ def delete_thread(request, thread_id):
 
     return render(request, 'forum/delete_thread_confirmation.html', {'thread': thread})
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def create_thread(request):
     if request.method == 'POST':
         form = ThreadForm(request.POST)
@@ -33,6 +33,7 @@ def create_thread(request):
         form = ThreadForm()
 
     return render(request, 'forum/create_thread.html', {'form': form})
+
 
 @login_required
 def create_comment(request, thread_id):
@@ -70,10 +71,12 @@ def forum_home(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'forum/forum_home.html', {'page_obj': page_obj})
 
+@login_required(login_url='/accounts/login/')
 def thread_detail(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     comments = thread.comments.all()
     
+    # Handle comment form submission
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -90,3 +93,4 @@ def thread_detail(request, thread_id):
         'comments': comments,
         'comment_form': comment_form,
     })
+
