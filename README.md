@@ -242,7 +242,7 @@ Back to [top](#table-of-contents)
 ### Features to Implement in Future
 
 
-- Wishlist
+- Wheel gift rulette
 - Pre-Order function
 - Coupon Code 
 
@@ -269,9 +269,27 @@ Back to [top](#table-of-contents)
 ## Custom models 
 
 As part of the Project 3 custom models are requested which are the following:
-    1. Wishlist 
-    2. Contact
-    3. Chatbox
+   - 1. Wishlist 
+   - 2. Contact
+   - 3. Forum
+
+Back to [top](#table-of-contents)
+
+## Site Originality
+
+The website features a modern black-and-white theme, chosen to complement the products and give the site a clean, professional aesthetic. The models have been slightly customized to meet project-specific requirements, while maintaining most of the core functionality.
+
+Stripe integration is largely unchanged due to challenges encountered when implementing discount codes. I faced an issue where applying a discount resulted in two payments being sent—one for the full price and another for the discounted price. Due to time constraints, I wasn't able to resolve this issue fully, so the integration remains mostly similar to the original setup.
+
+One feature I am particularly proud of is the fully original AI chatbot, prominently displayed on the homepage. Developed using BotPress, this chatbot not only handles all the CSS and HTML for easy maintenance but also includes a product list that can be updated to show the items available for purchase (though stock levels are not tracked at this time). The chatbot functions as a ChatGPT-like assistant, carefully instructed on what it can and cannot say for user safety. Additionally, it has been given a jolly and friendly character to enhance user interaction.
+
+The site also includes several original Django apps: a wishlist app, a contact app, and a forum app—all developed from scratch to meet the specific needs of the platform.
+
+In addition to changing default Django icons where possible, I’ve also added an extensive product catalog from Shiny Garage Malta to reinforce the site's professional, production-ready image.
+
+![Chatbot](/readme_images/Chatbot.png) 
+
+![Chatbot](/readme_images/Forum.png) 
 
 Back to [top](#table-of-contents)
 
@@ -609,7 +627,8 @@ Back to [top](#table-of-contents)
 
 ### Acknowledgements
 
-- I would like to thank my wife for all the things she had to take care without me till I got this project done, and the slack comunity that helped me out when 
-I got lost or could not understand what went sideways. 
+- I would like to thank my wife for all the things she had to take care without me till I got this project done, to my almost two year old todler that could not understnad why her daddy is locked away for long nights (Im sorry and I will make it up to you! xx), and the slack comunity that helped me out when 
+I got lost or could not understand what went sideways.
+- As this project was a huge mile stone for me I understand that I have alot of prctise to do and alot trial and error to master the code and espasally on stripe. I hope this satisfies and finaly gets me the pass that I need to close this first chapter of my coding journey. Thank you 
 
 Back to [top](#table-of-contents)
