@@ -1,5 +1,37 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Post Comment</button>
-</form>
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Add a Comment</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-8">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Comment Body -->
+                    <div class="form-group">
+                        <label for="id_body" class="font-weight-bold">Your Comment</label>
+                        {{ form.body|as_crispy_field }}
+                        <small class="form-text text-muted">Feel free to share your thoughts or feedback. Keep it respectful and relevant to the topic.</small>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Post Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
