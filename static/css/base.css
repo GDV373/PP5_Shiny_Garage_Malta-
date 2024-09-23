@@ -332,6 +332,10 @@ label[for="id_body"] {
     display: none;
 }
 
+textarea {
+    width: 100%;
+}
+
 .comment-box {
     width: 100%;
     min-height: 150px;
