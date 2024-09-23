@@ -15,14 +15,13 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10 col-md-8">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6">
                 <form method="post">
                     {% csrf_token %}
 
-                    <!-- Comment Body -->
+                    <!-- Comment Body (Removed the label) -->
                     <div class="form-group">
-                        <label for="id_body" class="font-weight-bold">Your Comment</label>
-                        {{ form.body|as_crispy_field }}
+                        <textarea class="form-control comment-box" id="id_body" name="body" rows="6" placeholder="Write your comment here..."></textarea>
                         <small class="form-text text-muted">Feel free to share your thoughts or feedback. Keep it respectful and relevant to the topic.</small>
                     </div>
 
