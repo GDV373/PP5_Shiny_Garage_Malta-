@@ -4,6 +4,22 @@ from .forms import ThreadForm, CommentForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
+
+@login_required
+def delete_thread(request, thread_id):
+    """ Render delete confirmation page and handle thread deletion. """
+    thread = get_object_or_404(Thread, id=thread_id)
+
+    # Ensure only the thread owner can delete the thread
+    if request.user != thread.created_by:
+        return redirect('forum_home')
+
+    if request.method == 'POST':
+        thread.delete()
+        return redirect('forum_home')
+
+    return render(request, 'forum/delete_thread_confirmation.html', {'thread': thread})
+
 @login_required
 def create_thread(request):
     if request.method == 'POST':

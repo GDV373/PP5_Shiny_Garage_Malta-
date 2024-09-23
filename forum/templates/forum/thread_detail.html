@@ -16,8 +16,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-10 offset-1">
-                <p class="text-muted">Posted by {{ thread.created_by }} on {{ thread.created_at|date:"Y-m-d" }}</p>
-                <p>{{ thread.body }}</p>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="text-muted">
+                            Posted by {{ thread.created_by }} on {{ thread.created_at|date:"Y-m-d" }}
+                        </p>
+                        <p>{{ thread.body }}</p>
+                    </div>
+                </div>
 
                 <h3>Comments</h3>
                 <ul class="list-unstyled">
@@ -36,12 +42,18 @@
                     {% endfor %}
                 </ul>
 
-                <h4>Leave a Comment:</h4>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <button type="submit" class="btn btn-primary">Post Comment</button>
-                </form>
+                {% if user.is_authenticated %}
+                    <h4>Leave a Comment:</h4>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                    </form>
+                {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        You must be <a href="{% url 'account_login' %}" class="alert-link">logged in</a> to leave a comment.
+                    </div>
+                {% endif %}
 
                 {% if thread.created_by == request.user %}
                     <a href="{% url 'delete_thread' thread.id %}" class="btn btn-danger mt-3">Delete Thread</a>
