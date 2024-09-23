@@ -331,13 +331,13 @@ input[name='q']::placeholder {
 .comment-box {
     width: 100%;
     min-height: 150px;
-    max-width: 100%;
     padding: 12px;
     resize: vertical;
     border-radius: 4px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     font-size: 16px;
     margin-bottom: 15px;
+    box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
