@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div class="overlay"></div>
     <div class="container">
@@ -52,42 +60,18 @@
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2">
                         <p class="my-0">Order Total:</p>
+                        <p class="my-0 discount-label" style="display: none;">Discount:</p> <!-- Discount label, hidden initially -->
                         <p class="my-0">Delivery:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p id="current-total" class="my-0">€{{ total | floatformat:2 }}</p>
-                        <p id="current-shipping" class="my-0">€{{ delivery | floatformat:2 }}</p>
-                        <p id="new-grand-total" class="my-0"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
-                    </div>
-                </div>
-
-                <!-- Discount Row, hidden by default -->
-                <div class="row text-black text-right" id="discount-row" style="display: none;">
-                    <div class="col-7 offset-2">
-                        <p id="discount-label" class="my-0">Discount:</p>
-                    </div>
-                    <div class="col-3">
-                        <p id="discount-amount" class="my-0">€0.00</p>
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-7 offset-2">
-                        <label for="discount_code" class="small text-muted">Discount Code</label>
-                        <input type="text" id="discount-code" class="form-control" placeholder="Enter discount code">
-                    </div>
-                    <div class="col-3 text-right align-self-end">
-                        <button id="apply-discount" class="btn btn-outline-primary btn-sm">Apply</button>
-                    </div>
-                </div>
-                <div class="row text-right">
-                    <div class="col-7 offset-2">
-                        <p id="discount-message" class="text-success"></p>
+                        <p class="my-0 order-total">€{{ total | floatformat:2 }}</p>
+                        <p class="my-0 discount-value" style="display: none;">€0.00</p> <!-- Discount value, hidden initially -->
+                        <p class="my-0 delivery">€{{ delivery | floatformat:2 }}</p>
+                        <p class="my-0 grand-total"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
@@ -106,12 +90,30 @@
                         {{ order_form.county | as_crispy_field }}
                         {{ order_form.postcode | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
+                        <div class="form-check form-check-inline float-right mr-0">
+                            {% if user.is_authenticated %}
+                                <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                            {% else %}
+                                <label class="form-check-label" for="id-save-info">
+                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
+                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                                </label>
+                            {% endif %}
+                        </div>
                     </fieldset>
 
-                    <!-- Hidden input for discounted grand total -->
-                    <input type="hidden" id="discounted-grand-total" name="discounted_grand_total" value="{{ grand_total|floatformat:2 }}">
+                    <!-- Discount Code Fieldset -->
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Discount Code</legend>
+                        <div class="form-group">
+                            <label for="discount_code">Enter discount code (optional)</label>
+                            <input type="text" class="form-control" id="discount_code" name="discount_code" placeholder="Enter discount code">
+                            <p id="discount-message" class="text-danger mt-2" style="display: none;"></p> <!-- Error message, hidden initially -->
+                            <button type="button" id="apply-discount" class="btn btn-primary mt-2">Apply Discount</button>
+                        </div>
+                    </fieldset>
 
-                    <!-- Stripe Payment Section -->
                     <fieldset class="px-3">
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <div class="mb-3" id="card-element"></div>
@@ -119,14 +121,30 @@
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
 
-                    <div class="submit-button text-right mt-5 mb-2">
-                        <button id="submit-button" class="btn btn-black rounded-0">Complete Order</button>
+                    <div class="submit-button text-right mt-5 mb-2">                    
+                        <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="font-weight-bold">Adjust Bag</span>
+                        </a>
+                        <button id="submit-button" class="btn btn-black rounded-0">
+                            <span class="font-weight-bold">Complete Order</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </button>
+                        <p class="small text-danger my-0">
+                            <span class="icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </span>
+                            <span>Your card will be charged <strong>€{{ grand_total | floatformat:2 }}</strong></span>
+                        </p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
     <div id="loading-overlay">
         <h1 class="text-light logo-font loading-spinner">
             <span class="icon">
@@ -134,12 +152,16 @@
             </span>
         </h1>
     </div>
+
+    <script>
+        const checkoutUrl = "{% url 'validate_discount' %}";
+    </script>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
+    <script src="{% static 'checkout/js/discount.js' %}"></script>
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
-    <script src="{% static 'checkout/js/discount.js' %}"></script>
 {% endblock %}

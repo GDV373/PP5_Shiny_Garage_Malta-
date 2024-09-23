@@ -11,7 +11,7 @@ urlpatterns = [
          views.cache_checkout_data,
          name='cache_checkout_data'),
     path('wh/', webhook, name='webhook'),
-    path('apply_discount/', 
-          views.apply_discount, 
-          name='apply_discount'),
+    path('validate-discount/',
+          views.validate_discount,
+          name='validate_discount'),
 ]
