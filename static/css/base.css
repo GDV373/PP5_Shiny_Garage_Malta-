@@ -332,12 +332,26 @@ input[name='q']::placeholder {
     width: 100%;
     min-height: 150px;
     max-width: 100%;
-    padding: 10px;
+    padding: 12px;
     resize: vertical;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     font-size: 16px;
+    margin-bottom: 15px;
 }
+
+@media (min-width: 768px) {
+    .comment-box {
+        min-height: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .comment-box {
+        min-height: 250px;
+    }
+}
+
 
 
 @media (max-width: 991px) {
