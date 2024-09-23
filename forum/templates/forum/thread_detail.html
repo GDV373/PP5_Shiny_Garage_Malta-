@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">{{ thread.title }}</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <p class="text-muted">Posted by {{ thread.created_by }} on {{ thread.created_at|date:"Y-m-d" }}</p>
+                <p>{{ thread.body }}</p>
+
+                <h3>Comments</h3>
+                <ul class="list-unstyled">
+                    {% for comment in comments %}
+                        <li class="media mb-3">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1">{{ comment.created_by }}</h5>
+                                <p>{{ comment.display_body }}</p>
+                                {% if comment.created_by == request.user %}
+                                    <a href="{% url 'delete_comment' comment.id %}" class="text-danger">Delete</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li>No comments yet. Be the first to comment!</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Leave a Comment:</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                </form>
+
+                {% if thread.created_by == request.user %}
+                    <a href="{% url 'delete_thread' thread.id %}" class="btn btn-danger mt-3">Delete Thread</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

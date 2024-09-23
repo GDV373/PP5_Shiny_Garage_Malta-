@@ -41,6 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
  'http://*',
  'https://*',
  'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu108.gitpod.io',
+ 'https://8000-gdv373-pp5shinygaragema-ntloeyij5ks.ws.codeinstitute-ide.net',
  'https://8000-gdv373-pp5shinygaragema-91v11pj7nlb.ws-eu110.gitpod.io']
 
 # Application definition
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'contact',
     'wishlist',
     'chatbot',
+    'forum',
 
     # extra apps
     'crispy_forms',

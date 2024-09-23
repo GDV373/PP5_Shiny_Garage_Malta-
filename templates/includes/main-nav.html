@@ -11,8 +11,8 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
-                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item">By Rating</a>
+                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
@@ -39,7 +39,6 @@
                 <a href="{% url 'products' %}?category=applicator" class="dropdown-item">Applicators</a>
                 <a href="{% url 'products' %}?category=wash_buckets" class="dropdown-item">Wash Buckets</a>
                 <a href="{% url 'products' %}?category=brush,cloths,applicator,wash_buckets" class="dropdown-item">All Acessories</a>
-                
             </div>
         </li>
 
@@ -55,6 +54,13 @@
         <li class="nav-item">
             <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'contact_us' %}" id="message-link" aria-haspopup="true" aria-expanded="false">
                 <div class="messages">Message Us</div>
+            </a>
+        </li>
+
+        <!-- Forum Link -->
+        <li class="nav-item">
+            <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'forum_home' %}" id="forum-link" aria-haspopup="true" aria-expanded="false">
+                Forum
             </a>
         </li>
     </ul>

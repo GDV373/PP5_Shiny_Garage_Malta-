@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Forum Threads</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-10 offset-1 text-center">
+
+                {% if user.is_authenticated %}
+                    <!-- Button for authenticated users to create a thread -->
+                    <a href="{% url 'create_thread' %}" class="btn btn-primary mb-3">
+                        Create New Thread
+                    </a>
+                {% else %}
+                    <!-- Notification for unauthenticated users -->
+                    <div class="alert alert-warning" role="alert">
+                        You must be <a href="{% url 'account_login' %}" class="alert-link">logged in</a> or 
+                        <a href="{% url 'account_signup' %}" class="alert-link">register</a> to view or create a thread.
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="row mt-1 mb-2">
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {{ page_obj.paginator.count }} Threads
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for thread in page_obj %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{% url 'forum_thread_detail' thread.id %}">{{ thread.title }}</a>
+                                    </h5>
+                                    <p class="card-text">Posted by {{ thread.created_by }} on {{ thread.created_at|date:"Y-m-d" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                            <div class="col-12 d-sm-none mb-5">
+                                <hr>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="row">
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1">&laquo; First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                    </li>
+                                {% endif %}
+                                <li class="page-item active">
+                                    <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                                </li>
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pinned "Page X of X" at the bottom -->
+        <div class="row">
+            <div class="col-12 text-center mt-3">
+                <p class="text-muted">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
